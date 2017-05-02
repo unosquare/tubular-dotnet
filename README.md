@@ -32,50 +32,25 @@ You can access to global settings by using the static object `TubularDefaultSett
 Depending in your environment you must use the solution **Unosquare.Tubular.sln** if you want to build with `dotnet` or **Unosquare.Tubular.Lib.sln** if you use `msbuild` or `xbuild`.
 In other words, use first solution file for VS2015 with .NET Core support or the second one for any other environment.
 
-## Samples
+## Sample
 
 You can check out the <a href="http://unosquare.github.io/tubular" target="_blank">Tubular GitHub Page</a> to get a few examples. We still need to work on more samples and better documentation, but we feel what we have now will get you up to speed very quickly :).
 
-The following HTML represents a basic grid. You don't need to add anything else to your controller! Everything you need is to create your markup.
+The following HTML represents a basic REST to response to a grid.
 
-```html
- <div class="container">
-        <tb-grid server-url="/data/customers.json" page-size="20" 
-                 class="row" grid-name="mygrid">
-            <div class="col-md-12">
-                <div class="panel panel-default panel-rounded">
-                    <tb-grid-table class="table-bordered">
-                        <tb-column-definitions>
-                            <tb-column name="CustomerName">
-                                <tb-column-header>
-                                    <span>{{label}}</span>
-                                </tb-column-header>
-                            </tb-column>
-                            <tb-column name="Invoices">
-                                <tb-column-header>
-                                    <span>{{label}}</span>
-                                </tb-column-header>
-                            </tb-column>
-                        </tb-column-definitions>
-                        <tb-row-set>
-                            <tb-row-template ng-repeat="row in $component.rows" 
-                                             row-model="row">
-                                <tb-cell-template>
-                                    {{row.CustomerName}}
-                                </tb-cell-template>
-                                <tb-cell-template>
-                                    {{row.Invoices}}
-                                </tb-cell-template>
-                            </tb-row-template>
-                        </tb-row-set>
-                    </tb-grid-table>
-                </div>
-            </div>
-        </tb-grid>
-    </div>
+```csharp
+ [RoutePrefix("api/users")]
+    public class UsersController : ApiController
+    {
+        [HttpPost, Route("paged")]
+        public IHttpActionResult GridData([FromBody] GridDataRequest request)
+        {
+            using (var context = new SampleDbContext(false)) {
+                return Ok(request.CreateGridDataResponse(context.SystemUsers));
+            }
+        }
+    }
 ```
-
-Tubular works directly with either your own OData service or a custom RESTful call. You can simplify your RESTful API significantly by using our .NET Tubular.ServerSide library which handles `IQueryable` easily.
 
 ## Boilerplate
 
