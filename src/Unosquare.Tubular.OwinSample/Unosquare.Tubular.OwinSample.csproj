@@ -130,18 +130,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\dist\tubular-bundle.css">
-      <Link>ui\vendor\tubular\tubular-bundle.css</Link>
-    </Content>
-    <Content Include="..\..\dist\tubular-bundle.js">
-      <Link>ui\vendor\tubular\tubular-bundle.js</Link>
-    </Content>
-    <Content Include="..\..\dist\tubular-chartjs-bundle.js">
-      <Link>ui\vendor\tubular\tubular-chartjs-bundle.js</Link>
-    </Content>
-    <Content Include="..\..\dist\tubular-highcharts-bundle.js">
-      <Link>ui\vendor\tubular\tubular-highcharts-bundle.js</Link>
-    </Content>
     <Content Include="index.html" />
     <Content Include="ui\app\app.js" />
     <Content Include="ui\app\common\form.html" />
