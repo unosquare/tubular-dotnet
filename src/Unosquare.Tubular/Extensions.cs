@@ -250,43 +250,52 @@
                             decimalF(subset.Select(column.Name).Cast<decimal?>()));
                     }
                 };
-            
+
 #endif
             foreach (var column in aggregateColumns)
             {
-                switch (column.Aggregate)
+                try
                 {
+                    switch (column.Aggregate)
+                    {
 #if NET452
-                    case AggregationFunction.Sum:
-                        aggregate(column, x => x.Sum(), x => x.Sum());
+                        case AggregationFunction.Sum:
+                            aggregate(column, x => x.Sum(), x => x.Sum());
 
-                        break;
-                    case AggregationFunction.Average:
-                        aggregate(column, x => x.Average(), x => x.Average());
+                            break;
+                        case AggregationFunction.Average:
+                            aggregate(column, x => x.Average(), x => x.Average());
 
-                        break;
-                    case AggregationFunction.Max:
-                        aggregate(column, x => x.Max(), x => x.Max());
-                       
-                        break;
-                    case AggregationFunction.Min:
-                        aggregate(column, x => x.Min(), x => x.Min());
+                            break;
+                        case AggregationFunction.Max:
+                            aggregate(column, x => x.Max(), x => x.Max());
 
-                        break;
+                            break;
+                        case AggregationFunction.Min:
+                            aggregate(column, x => x.Min(), x => x.Min());
+
+                            break;
 #endif
-                    case AggregationFunction.Count:
-                        payload.Add(column.Name, subset.Select(column.Name).Count());
-                        break;
-                    case AggregationFunction.DistinctCount:
-                        payload.Add(column.Name,
-                            subset.Select(column.Name).Distinct().Count());
-                        break;
+                        case AggregationFunction.Count:
+                            payload.Add(column.Name, subset.Select(column.Name).Count());
+                            break;
+                        case AggregationFunction.DistinctCount:
+                            payload.Add(column.Name,
+                                subset.Select(column.Name).Distinct().Count());
+                            break;
 
-                    default:
-                        payload.Add(column.Name, 0);
-                        break;
+                        default:
+                            payload.Add(column.Name, 0);
+                            break;
+                    }
+                }
+                catch (InvalidCastException)
+                {
+                    throw new InvalidCastException(
+                        $"Invalid casting using column {column.Name} with aggregate {column.Aggregate}");
                 }
             }
+
             return payload;
         }
 
