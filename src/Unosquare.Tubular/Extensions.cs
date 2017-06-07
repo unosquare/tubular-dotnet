@@ -236,18 +236,24 @@
             var payload = new Dictionary<string, object>(aggregateColumns.Length);
 
 #if NET452
-            Action<GridColumn, Func<IQueryable<double?>, double?>, Func<IQueryable<decimal?>, decimal?>> aggregate =
-                (column, doubleF, decimalF) =>
+            Action<GridColumn, Func<IQueryable<double>, double>, Func<IQueryable<decimal>, decimal>, Func<IQueryable<int>, int>> aggregate =
+                (column, doubleF, decimalF, intF) =>
                 {
                     if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(double))
                     {
+
                         payload.Add(column.Name,
-                            doubleF(subset.Select(column.Name).Cast<double?>()));
+                            doubleF(subset.Select(column.Name).Cast<double>()));
+                    }
+                    else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(decimal))
+                    {
+                        payload.Add(column.Name,
+                            decimalF(subset.Select(column.Name).Cast<decimal>()));
                     }
                     else
                     {
                         payload.Add(column.Name,
-                            decimalF(subset.Select(column.Name).Cast<decimal?>()));
+                            intF(subset.Select(column.Name).Cast<int>()));
                     }
                 };
 
@@ -260,19 +266,19 @@
                     {
 #if NET452
                         case AggregationFunction.Sum:
-                            aggregate(column, x => x.Sum(), x => x.Sum());
+                            aggregate(column, x => x.Sum(), x => x.Sum(), x => x.Sum());
 
                             break;
                         case AggregationFunction.Average:
-                            aggregate(column, x => x.Average(), x => x.Average());
+                            aggregate(column, x => x.Average(), x => x.Average(), x => x.Sum() / x.Count());
 
                             break;
                         case AggregationFunction.Max:
-                            aggregate(column, x => x.Max(), x => x.Max());
+                            aggregate(column, x => x.Max(), x => x.Max(), x => x.Max());
 
                             break;
                         case AggregationFunction.Min:
-                            aggregate(column, x => x.Min(), x => x.Min());
+                            aggregate(column, x => x.Min(), x => x.Min(), x => x.Min());
 
                             break;
 #endif
