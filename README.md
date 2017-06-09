@@ -1,6 +1,7 @@
  [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/tubular/)](https://github.com/igrigorik/ga-beacon)
  [![Build Status](https://travis-ci.org/unosquare/tubular-dotnet.svg?branch=master)](https://travis-ci.org/unosquare/tubular-dotnet)
  [![Build status](https://ci.appveyor.com/api/projects/status/ia9hnxea6b64xbhh?svg=true)](https://ci.appveyor.com/project/geoperez/tubular-dotnet)
+[![Coverage Status](https://coveralls.io/repos/github/unosquare/tubular-dotnet/badge.svg?branch=master)](https://coveralls.io/github/unosquare/tubular-dotnet?branch=master)
 
 ![Tubular DotNet](http://unosquare.github.io/tubular/assets/tubular.png)
 
