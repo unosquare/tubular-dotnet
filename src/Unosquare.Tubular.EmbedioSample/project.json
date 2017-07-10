@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "EmbedIO": "1.6.10",
-    "Unosquare.Swan": "0.14.3",
+    "Unosquare.Swan": "0.14.7",
     "Unosquare.Tubular": { "target": "project" }
   },
   "frameworks": {

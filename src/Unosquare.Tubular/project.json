@@ -3,7 +3,7 @@
   "copyright": "Unosquare 2016-2017",
   "version": "1.4.3-*",
   "dependencies": {
-    "System.Linq.Dynamic.Core": "1.0.7.3"
+    "System.Linq.Dynamic.Core": "1.0.7.6"
   },
   "frameworks": {
     "netstandard1.6": {

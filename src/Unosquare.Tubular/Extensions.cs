@@ -20,6 +20,9 @@
     /// </summary>
     public static class Extensions
     {
+        private const string DateTimeFormat = "yyyy-MM-dd hh:mm:ss.f";
+        private const string DateFormat = "yyyy-MM-dd";
+
 #if NET452
         private static readonly Regex TimezoneOffset = new Regex(@"timezoneOffset=(\d[^&]*)");
 #endif
@@ -400,24 +403,24 @@
                                 break;
                             case DataType.DateTime:
                             case DataType.DateTimeUtc:
-                                searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString("yyyy-MM-dd"));
+                                searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString(DateFormat));
                                 break;
                             case DataType.Date:
                                 if (TubularDefaultSettings.AdjustTimezoneOffset)
                                 {
-                                    searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToUniversalTime().ToString("yyyy-MM-dd hh:mm:ss.f"));
+                                    searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToUniversalTime().ToString(DateTimeFormat));
                                     searchParamArgs.Add(
                                         DateTime.Parse(column.Filter.Text)
                                             .Date.ToUniversalTime()
                                             .AddDays(1)
-                                            .AddMinutes(-1).ToString("yyyy-MM-dd hh:mm:ss.f"));
+                                            .AddMinutes(-1).ToString(DateTimeFormat));
                                 }
                                 else
                                 {
-                                    searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToString("yyyy-MM-dd hh:mm:ss.f"));
+                                    searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToString(DateTimeFormat));
                                     searchParamArgs.Add(DateTime.Parse(column.Filter.Text)
                                         .Date.AddDays(1)
-                                        .AddMinutes(-1).ToString("yyyy-MM-dd hh:mm:ss.f"));
+                                        .AddMinutes(-1).ToString(DateTimeFormat));
                                 }
                                 break;
                             case DataType.Boolean:
@@ -493,7 +496,7 @@
                         if (column.DataType == DataType.Numeric)
                             searchParamArgs.Add(decimal.Parse(column.Filter.Text));
                         else
-                            searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString("yyyy-MM-dd"));
+                            searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString(DateFormat));
 
                         break;
                     case CompareOperators.Multiple:
@@ -524,8 +527,8 @@
                         }
                         else
                         {
-                            searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString("yyyy-MM-dd"));
-                            searchParamArgs.Add(DateTime.Parse(column.Filter.Argument[0]).ToString("yyyy-MM-dd"));
+                            searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString(DateFormat));
+                            searchParamArgs.Add(DateTime.Parse(column.Filter.Argument[0]).ToString(DateFormat));
                         }
 
                         break;
