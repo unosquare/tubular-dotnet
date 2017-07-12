@@ -1,6 +1,6 @@
 ﻿namespace Unosquare.Tubular.Tests.Database
 {
-    using Unosquare.Tubular.ObjectModel;
+    using ObjectModel;
 
     public class Thing
     {
@@ -28,7 +28,9 @@
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Number", Aggregate = AggregationFunction.Sum},
-                new GridColumn {Name = "DecimalNumber", Aggregate = AggregationFunction.Sum}
+                new GridColumn {Name = "DecimalNumber", Aggregate = AggregationFunction.Sum},
+                new GridColumn {Name = "Name", Aggregate = AggregationFunction.Max},
+                new GridColumn {Name = "Date", Aggregate = AggregationFunction.Min}
             };
         }
 

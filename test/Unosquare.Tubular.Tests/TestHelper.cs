@@ -292,8 +292,12 @@
                 "Same average number");
             Assert.AreEqual(dataSource.Sum(x => x.DecimalNumber), (decimal) response.AggregationPayload["DecimalNumber"],
                 "Same average decimal number");
+            Assert.AreEqual(dataSource.Max(x => x.Name), response.AggregationPayload["Name"],
+                "Same max name");
+            Assert.AreEqual(dataSource.Min(x => x.Date), response.AggregationPayload["Date"],
+                "Same min date");
         }
-
+        
         [Test]
         public void TestMultipleAggregate()
         {

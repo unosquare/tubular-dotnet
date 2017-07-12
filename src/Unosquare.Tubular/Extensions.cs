@@ -99,8 +99,7 @@
         /// <returns></returns>
         public static object AdjustTimeZone(object data, int timezoneOffset)
         {
-            var dateTimeProperties =
-                data.GetType()
+            var dateTimeProperties = data.GetType()
                     .GetProperties()
                     .Where(x => x.PropertyType == typeof(DateTime) || x.PropertyType == typeof(DateTime?));
 
@@ -122,7 +121,10 @@
                 value = nullableValue.Value;
             }
             else
+            {
                 value = (DateTime) prop.GetValue(data);
+            }
+
             value = value.AddMinutes(-timezoneOffset);
             prop.SetValue(data, value);
         }
@@ -239,8 +241,8 @@
             var payload = new Dictionary<string, object>(aggregateColumns.Length);
 
 #if NET452
-            Action<GridColumn, Func<IQueryable<double>, double>, Func<IQueryable<decimal>, decimal>, Func<IQueryable<int>, int>> aggregate =
-                (column, doubleF, decimalF, intF) =>
+            Action<GridColumn, Func<IQueryable<double>, double>, Func<IQueryable<decimal>, decimal>, Func<IQueryable<int>, int>, Func<IQueryable<string>, string>, Func<IQueryable<DateTime>, DateTime>> aggregate =
+                (column, doubleF, decimalF, intF, stringF, dateF) =>
                 {
                     if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(double))
                     {
@@ -253,10 +255,24 @@
                         payload.Add(column.Name,
                             decimalF(subset.Select(column.Name).Cast<decimal>()));
                     }
-                    else
+                    else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(int))
                     {
                         payload.Add(column.Name,
                             intF(subset.Select(column.Name).Cast<int>()));
+                    }
+                    else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(DateTime))
+                    {
+                        if (dateF == null) return;
+
+                        payload.Add(column.Name,
+                            dateF(subset.Select(column.Name).Cast<DateTime>()));
+                    }
+                    else
+                    {
+                        if (stringF == null) return;
+
+                        payload.Add(column.Name,
+                            stringF(subset.Select(column.Name).Cast<string>()));
                     }
                 };
 
@@ -269,19 +285,19 @@
                     {
 #if NET452
                         case AggregationFunction.Sum:
-                            aggregate(column, x => x.Sum(), x => x.Sum(), x => x.Sum());
+                            aggregate(column, x => x.Sum(), x => x.Sum(), x => x.Sum(), null, null);
 
                             break;
                         case AggregationFunction.Average:
-                            aggregate(column, x => x.Average(), x => x.Average(), x => x.Sum() / x.Count());
+                            aggregate(column, x => x.Average(), x => x.Average(), x => x.Sum() / x.Count(), null, null);
 
                             break;
                         case AggregationFunction.Max:
-                            aggregate(column, x => x.Max(), x => x.Max(), x => x.Max());
+                            aggregate(column, x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max());
 
                             break;
                         case AggregationFunction.Min:
-                            aggregate(column, x => x.Min(), x => x.Min(), x => x.Min());
+                            aggregate(column, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min());
 
                             break;
 #endif
@@ -294,8 +310,8 @@
                             break;
 
                         default:
-                            payload.Add(column.Name, 0);
-                            break;
+                            throw new ArgumentOutOfRangeException(
+                                $"The AggregationFunction in column {column.Name} is not valid");
                     }
                 }
                 catch (InvalidCastException)
