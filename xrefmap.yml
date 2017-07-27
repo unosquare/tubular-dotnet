@@ -307,11 +307,11 @@ references:
   commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.AffectedCount
   fullName: Unosquare.Tubular.GenericModels.ApiResult.AffectedCount
   nameWithType: ApiResult.AffectedCount
-- uid: Unosquare.Tubular.GenericModels.ApiResult.Error(Exception)
+- uid: Unosquare.Tubular.GenericModels.ApiResult.Error(System.Exception)
   name: Error(Exception)
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Error_Exception_
-  commentId: M:Unosquare.Tubular.GenericModels.ApiResult.Error(Exception)
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.Error(Exception)
+  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Error_System_Exception_
+  commentId: M:Unosquare.Tubular.GenericModels.ApiResult.Error(System.Exception)
+  fullName: Unosquare.Tubular.GenericModels.ApiResult.Error(System.Exception)
   nameWithType: ApiResult.Error(Exception)
 - uid: Unosquare.Tubular.GenericModels.ApiResult.Error*
   name: Error
@@ -962,7 +962,15 @@ references:
 - uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data
   name: Data
   href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Data
-  commentId: F:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data
+  commentId: P:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data
+  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Data
+  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Data
+  nameWithType: MultipleSerieChartResponse<T>.Data
+  nameWithType.vb: MultipleSerieChartResponse(Of T).Data
+- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data*
+  name: Data
+  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Data_
+  commentId: Overload:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data
   fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Data
   fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Data
   nameWithType: MultipleSerieChartResponse<T>.Data
@@ -970,7 +978,15 @@ references:
 - uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels
   name: Labels
   href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Labels
-  commentId: F:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels
+  commentId: P:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels
+  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Labels
+  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Labels
+  nameWithType: MultipleSerieChartResponse<T>.Labels
+  nameWithType.vb: MultipleSerieChartResponse(Of T).Labels
+- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels*
+  name: Labels
+  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Labels_
+  commentId: Overload:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels
   fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Labels
   fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Labels
   nameWithType: MultipleSerieChartResponse<T>.Labels
@@ -978,7 +994,15 @@ references:
 - uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series
   name: Series
   href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Series
-  commentId: F:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series
+  commentId: P:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series
+  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Series
+  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Series
+  nameWithType: MultipleSerieChartResponse<T>.Series
+  nameWithType.vb: MultipleSerieChartResponse(Of T).Series
+- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series*
+  name: Series
+  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Series_
+  commentId: Overload:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series
   fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Series
   fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Series
   nameWithType: MultipleSerieChartResponse<T>.Series
@@ -995,7 +1019,15 @@ references:
 - uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data
   name: Data
   href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Data
-  commentId: F:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data
+  commentId: P:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data
+  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Data
+  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Data
+  nameWithType: SingleSerieChartResponse<T>.Data
+  nameWithType.vb: SingleSerieChartResponse(Of T).Data
+- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data*
+  name: Data
+  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Data_
+  commentId: Overload:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data
   fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Data
   fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Data
   nameWithType: SingleSerieChartResponse<T>.Data
@@ -1003,7 +1035,15 @@ references:
 - uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels
   name: Labels
   href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Labels
-  commentId: F:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels
+  commentId: P:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels
+  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Labels
+  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Labels
+  nameWithType: SingleSerieChartResponse<T>.Labels
+  nameWithType.vb: SingleSerieChartResponse(Of T).Labels
+- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels*
+  name: Labels
+  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Labels_
+  commentId: Overload:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels
   fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Labels
   fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Labels
   nameWithType: SingleSerieChartResponse<T>.Labels
@@ -1011,7 +1051,15 @@ references:
 - uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName
   name: SerieName
   href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_SerieName
-  commentId: F:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName
+  commentId: P:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName
+  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.SerieName
+  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).SerieName
+  nameWithType: SingleSerieChartResponse<T>.SerieName
+  nameWithType.vb: SingleSerieChartResponse(Of T).SerieName
+- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName*
+  name: SerieName
+  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_SerieName_
+  commentId: Overload:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName
   fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.SerieName
   fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).SerieName
   nameWithType: SingleSerieChartResponse<T>.SerieName
@@ -1049,6 +1097,12 @@ references:
 - uid: Unosquare.Tubular.TubularDefaultSettings.AdjustTimezoneOffset
   name: AdjustTimezoneOffset
   href: api/Unosquare.Tubular.TubularDefaultSettings.html#Unosquare_Tubular_TubularDefaultSettings_AdjustTimezoneOffset
-  commentId: F:Unosquare.Tubular.TubularDefaultSettings.AdjustTimezoneOffset
+  commentId: P:Unosquare.Tubular.TubularDefaultSettings.AdjustTimezoneOffset
+  fullName: Unosquare.Tubular.TubularDefaultSettings.AdjustTimezoneOffset
+  nameWithType: TubularDefaultSettings.AdjustTimezoneOffset
+- uid: Unosquare.Tubular.TubularDefaultSettings.AdjustTimezoneOffset*
+  name: AdjustTimezoneOffset
+  href: api/Unosquare.Tubular.TubularDefaultSettings.html#Unosquare_Tubular_TubularDefaultSettings_AdjustTimezoneOffset_
+  commentId: Overload:Unosquare.Tubular.TubularDefaultSettings.AdjustTimezoneOffset
   fullName: Unosquare.Tubular.TubularDefaultSettings.AdjustTimezoneOffset
   nameWithType: TubularDefaultSettings.AdjustTimezoneOffset
