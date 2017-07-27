@@ -32,8 +32,6 @@ build_script:
 test_script:
 - tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"%ProgramFiles%\dotnet\dotnet.exe" -targetargs:"test test\Unosquare.Tubular.Tests -c %CONFIGURATION%" -output:coverage.xml -filter:"+[Unosquare.Tubular*]* -[Unosquare.Tubular.Tests*]*" -register:userdotnet
 - tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
-cache:
-- '%USERPROFILE%\.nuget\packages'
 after_build:
 - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
