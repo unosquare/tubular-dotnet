@@ -1,7 +1,25 @@
-﻿using System.Collections.Generic;
-
-namespace Unosquare.Tubular.GenericModels
+﻿namespace Unosquare.Tubular.GenericModels
 {
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Represents a top menu
+    /// </summary>
+    /// <seealso cref="Unosquare.Tubular.GenericModels.Menu" />
+    public class AppModule : Menu
+    {
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is root and
+        /// it doesn't show child menu
+        /// </summary>
+        public bool IsRoot { get; set; }
+
+        /// <summary>
+        /// Gets or sets the menus.
+        /// </summary>
+        public List<Menu> Menus { get; set; }
+    }
+
     /// <summary>
     /// Represents a application menu
     /// </summary>
@@ -46,23 +64,5 @@ namespace Unosquare.Tubular.GenericModels
         /// Gets or sets the icon.
         /// </summary>
         public string Icon { get; set; }
-    }
-
-    /// <summary>
-    /// Represents a top menu
-    /// </summary>
-    /// <seealso cref="Unosquare.Tubular.GenericModels.Menu" />
-    public class AppModule : Menu
-    {
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance is root and
-        /// it doesn't show child menu
-        /// </summary>
-        public bool IsRoot { get; set; }
-
-        /// <summary>
-        /// Gets or sets the menus.
-        /// </summary>
-        public List<Menu> Menus { get; set; }
     }
 }

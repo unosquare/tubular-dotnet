@@ -9,7 +9,7 @@
     public class Filter
     {
         /// <summary>
-        /// Initialize a Filter with default params
+        /// Initializes a new instance of the <see cref="Filter"/> class.
         /// </summary>
         public Filter()
         {

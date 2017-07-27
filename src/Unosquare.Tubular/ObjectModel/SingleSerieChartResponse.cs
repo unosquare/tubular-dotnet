@@ -3,20 +3,22 @@
     /// <summary>
     /// Creates a single-serie chart reponse
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of numeric data.</typeparam>
     public class SingleSerieChartResponse<T>
     {
         /// <summary>
         /// The chart response data
         /// </summary>
-        public T[] Data;
+        public T[] Data { get; set; }
+
         /// <summary>
         /// The chart labels
         /// </summary>
-        public string[] Labels;
+        public string[] Labels { get; set; }
+
         /// <summary>
         /// The serie name
         /// </summary>
-        public string SerieName;
+        public string SerieName { get; set; }
     }
 }

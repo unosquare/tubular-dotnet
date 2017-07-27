@@ -30,6 +30,13 @@
         private static readonly ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>> TypePropertyCache =
             new ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>>();
 
+        /// <summary>
+        /// Delegates a process to format a subset response
+        /// </summary>
+        /// <param name="dataSource">The datasource</param>
+        /// <returns>A subset</returns>
+        public delegate IQueryable ProcessResponseSubset(IQueryable dataSource);
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Dictionary<string, PropertyInfo> ExtractProperties(Type t)
         {
@@ -75,7 +82,7 @@
                     {
                         if (column.Key.DataType == DataType.DateTimeUtc ||
                             TubularDefaultSettings.AdjustTimezoneOffset == false)
-                            payloadItem.Add(((DateTime) column.Value));
+                            payloadItem.Add((DateTime) column.Value);
                         else
                             payloadItem.Add(((DateTime) column.Value).AddMinutes(-timezoneOffset));
                     }
@@ -94,8 +101,8 @@
         /// <summary>
         /// Adjust a timezone data in a object
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="timezoneOffset"></param>
+        /// <param name="data">The data.</param>
+        /// <param name="timezoneOffset">The timezone offset.</param>
         /// <returns></returns>
         public static object AdjustTimeZone(object data, int timezoneOffset)
         {
@@ -135,7 +142,7 @@
 /// </summary>
 /// <param name="request">The Http Request</param>
 /// <param name="data">The output object</param>
-/// <param name="fromLocal"></param>
+/// <param name="fromLocal">Set if the adjustment is from local time</param>
 /// <returns></returns>
         public static object AdjustObjectTimeZone(this HttpRequestMessage request, object data, bool fromLocal = false)
         {
@@ -154,20 +161,16 @@
 #endif
 
         /// <summary>
-        /// Delegates a process to format a subset response
-        /// </summary>
-        /// <param name="dataSource">The datasource</param>
-        public delegate IQueryable ProcessResponseSubset(IQueryable dataSource);
-
-        /// <summary>
         /// Generates a GridDataReponse using the GridDataRequest and an IQueryable source,
         /// like a DataSet in Entity Framework.
         /// </summary>
         /// <param name="request">The Tubular's grid request</param>
         /// <param name="dataSource">The IQueryable source</param>
         /// <param name="preProcessSubset">The subset's process delegate</param>
-        /// <returns></returns>
-        public static GridDataResponse CreateGridDataResponse(this GridDataRequest request, IQueryable dataSource,
+        /// <returns>A grid response</returns>
+        public static GridDataResponse CreateGridDataResponse(
+            this GridDataRequest request, 
+            IQueryable dataSource,
             ProcessResponseSubset preProcessSubset = null)
         {
             if (request?.Columns == null || request.Columns.Any() == false)
@@ -246,7 +249,6 @@
                 {
                     if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(double))
                     {
-
                         payload.Add(column.Name,
                             doubleF(subset.Select(column.Name).Cast<double>()));
                     }
@@ -369,7 +371,9 @@
                     {
                         filter += string.Format(isDbQuery
                             ? "{0}.Contains(@{1}) ||"
-                            : "({0} != null && {0}.ToLowerInvariant().Contains(@{1})) ||", column.Name, values.Count);
+                            : "({0} != null && {0}.ToLowerInvariant().Contains(@{1})) ||", 
+                            column.Name, 
+                            values.Count);
 
                         values.Add(searchValue);
                     }
@@ -506,7 +510,9 @@
                     case CompareOperators.Gt:
                     case CompareOperators.Lte:
                     case CompareOperators.Lt:
-                        searchLambda.AppendFormat("{0} {2} @{1} &&", column.Name, searchParamArgs.Count,
+                        searchLambda.AppendFormat("{0} {2} @{1} &&", 
+                            column.Name, 
+                            searchParamArgs.Count,
                             GetSqlOperator(column.Filter.Operator));
 
                         if (column.DataType == DataType.Numeric)
@@ -533,8 +539,10 @@
                     case CompareOperators.Between:
                         if (column.Filter.Argument == null || column.Filter.Argument.Length == 0) continue;
 
-                        searchLambda.AppendFormat("(({0} >= @{1}) &&  ({0} <= @{2})) &&", column.Name,
-                            searchParamArgs.Count, searchParamArgs.Count + 1);
+                        searchLambda.AppendFormat("(({0} >= @{1}) &&  ({0} <= @{2})) &&", 
+                            column.Name,
+                            searchParamArgs.Count, 
+                            searchParamArgs.Count + 1);
 
                         if (column.DataType == DataType.Numeric)
                         {

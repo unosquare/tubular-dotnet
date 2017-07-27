@@ -3,20 +3,22 @@
     /// <summary>
     /// Represents a multiple serie chart response
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of numeric data.</typeparam>
     public class MultipleSerieChartResponse<T>
     {
         /// <summary>
         /// The chart response data
         /// </summary>
-        public T[][] Data;
+        public T[][] Data { get; set; }
+        
         /// <summary>
         /// The chart labels
         /// </summary>
-        public string[] Labels;
+        public string[] Labels { get; set; }
+
         /// <summary>
         /// The chart series
         /// </summary>
-        public string[] Series;
+        public string[] Series { get; set; }
     }
 }

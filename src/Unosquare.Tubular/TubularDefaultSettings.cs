@@ -8,6 +8,6 @@
         /// <summary>
         /// Defines if the timezone offset should used
         /// </summary>
-        public static bool AdjustTimezoneOffset = true;
+        public static bool AdjustTimezoneOffset { get; set; } = true;
     }
 }

@@ -16,22 +16,25 @@
         /// <summary>
         /// Creates a single serie chart from a IQueryable
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TR"></typeparam>
-        /// <param name="datasource"></param>
-        /// <param name="label"></param>
-        /// <param name="value"></param>
-        /// <param name="serieName"></param>
-        /// <param name="aggregation"></param>
-        /// <returns></returns>
-        public static SingleSerieChartResponse<TR> ProvideSingleSerieChartResponse<T, TR>(this IQueryable<T> datasource,
-            Expression<Func<T, string>> label, Expression<Func<T, TR>> value, string serieName = null,
+        /// <typeparam name="T">The type of object to query</typeparam>
+        /// <typeparam name="TR">The type of the result.</typeparam>
+        /// <param name="datasource">The datasource.</param>
+        /// <param name="label">The label.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="serieName">Name of the serie.</param>
+        /// <param name="aggregation">The aggregation.</param>
+        /// <returns>A response with single serie for a Tubular Chart</returns>
+        public static SingleSerieChartResponse<TR> ProvideSingleSerieChartResponse<T, TR>(
+            this IQueryable<T> datasource,
+            Expression<Func<T, string>> label, 
+            Expression<Func<T, TR>> value, 
+            string serieName = null,
             AggregationFunction aggregation = AggregationFunction.Sum)
         {
-            var labelExpression = (label.Body as MemberExpression) ??
-                                  ((MemberExpression) ((UnaryExpression) label.Body).Operand);
-            var valueExpression = (value.Body as MemberExpression) ??
-                                  ((MemberExpression) ((UnaryExpression) value.Body).Operand);
+            var labelExpression = label.Body as MemberExpression ??
+                                  (MemberExpression) ((UnaryExpression) label.Body).Operand;
+            var valueExpression = value.Body as MemberExpression ??
+                                  (MemberExpression) ((UnaryExpression) value.Body).Operand;
 
             var dataSelector = GenerateDataSelector(aggregation, valueExpression);
 
@@ -47,42 +50,33 @@
             };
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static string GenerateDataSelector(AggregationFunction aggregation, MemberExpression valueExpression)
-        {
-            if (aggregation == AggregationFunction.Count || aggregation == AggregationFunction.DistinctCount)
-            {
-                // TODO: DISTINCT is tricky and Ricky is a friend of mine
-                return "COUNT()";
-            }
-
-            return $"{aggregation.ToString().ToUpper()}(it.{valueExpression.Member.Name})";
-        }
-
         /// <summary>
         /// Creates a multiple series chart from a IQueryable
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TR"></typeparam>
-        /// <param name="datasource"></param>
-        /// <param name="label"></param>
-        /// <param name="serie"></param>
-        /// <param name="value"></param>
-        /// <param name="aggregation"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The type of object to query</typeparam>
+        /// <typeparam name="TR">The type of the result.</typeparam>
+        /// <param name="datasource">The datasource.</param>
+        /// <param name="label">The label.</param>
+        /// <param name="serie">The serie.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="aggregation">The aggregation.</param>
+        /// <returns>A response with multiple series for a Tubular Chart</returns>
         public static MultipleSerieChartResponse<TR> ProvideMultipleSerieChartResponse<T, TR>(
-            this IQueryable<T> datasource, Expression<Func<T, string>> label, Expression<Func<T, string>> serie,
-            Expression<Func<T, TR>> value, AggregationFunction aggregation = AggregationFunction.Sum)
+            this IQueryable<T> datasource, 
+            Expression<Func<T, string>> label, 
+            Expression<Func<T, string>> serie,
+            Expression<Func<T, TR>> value, 
+            AggregationFunction aggregation = AggregationFunction.Sum)
         {
             // Series are filters
-            var labelExpression = (label.Body as MemberExpression) ??
-                                  ((MemberExpression) ((UnaryExpression) label.Body).Operand);
+            var labelExpression = label.Body as MemberExpression ??
+                                  (MemberExpression) ((UnaryExpression) label.Body).Operand;
 
-            var serieExpression = (serie.Body as MemberExpression) ??
-                                  ((MemberExpression) ((UnaryExpression) serie.Body).Operand);
+            var serieExpression = serie.Body as MemberExpression ??
+                                  (MemberExpression) ((UnaryExpression) serie.Body).Operand;
 
-            var valueExpression = (value.Body as MemberExpression) ??
-                                  ((MemberExpression) ((UnaryExpression) value.Body).Operand);
+            var valueExpression = value.Body as MemberExpression ??
+                                  (MemberExpression) ((UnaryExpression) value.Body).Operand;
 
             var dataSelector = GenerateDataSelector(aggregation, valueExpression);
 
@@ -126,6 +120,18 @@
                 Labels = labels.ToArray(),
                 Series = series.ToArray()
             };
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static string GenerateDataSelector(AggregationFunction aggregation, MemberExpression valueExpression)
+        {
+            if (aggregation == AggregationFunction.Count || aggregation == AggregationFunction.DistinctCount)
+            {
+                // TODO: DISTINCT is tricky and Ricky is a friend of mine
+                return "COUNT()";
+            }
+
+            return $"{aggregation.ToString().ToUpper()}(it.{valueExpression.Member.Name})";
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Unosquare.Tubular.GenericModels
+﻿namespace Unosquare.Tubular.GenericModels
 {
+    using System;
+
     /// <summary>
     /// Represents a basic generic API Result object
     /// </summary>
@@ -11,6 +11,7 @@ namespace Unosquare.Tubular.GenericModels
         /// The OK status
         /// </summary>
         public const string OkStatus = "OK";
+        
         /// <summary>
         /// The error status
         /// </summary>
@@ -35,7 +36,7 @@ namespace Unosquare.Tubular.GenericModels
         /// Create a new valid result with an optional message.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// <returns></returns>
+        /// <returns>An ApiResult with status OK</returns>
         public static ApiResult Ok(string message = null)
         {
             return new ApiResult { Status = OkStatus, Message = message };
@@ -45,7 +46,7 @@ namespace Unosquare.Tubular.GenericModels
         /// Create a new invalid result with an exception.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        /// <returns></returns>
+        /// <returns>An ApiResult with status Error</returns>
         public static ApiResult Error(Exception ex)
         {
             return new ApiResult { Status = ErrorStatus, Message = ex.Message };
