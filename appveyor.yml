@@ -1,4 +1,5 @@
 version: '1.0.{build}'
+image: Visual Studio 2017
 configuration:
 - Release
 platform: Any CPU
@@ -23,7 +24,7 @@ before_build:
             git checkout $env:APPVEYOR_REPO_BRANCH -q
             cinst docfx -y
         }
-- appveyor-retry dotnet restore .\Unosquare.Tubular.sln -v Minimal
+- appveyor-retry dotnet restore -v Minimal
 - mkdir tools
 - nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
 - nuget install coveralls.net -Version 0.7.0 -OutputDirectory tools
