@@ -2,11 +2,13 @@ language: csharp
 solution: Unosquare.Tubular.sln
 notifications:
   slack: unolabs:cbusXPH6pBwZ35rVDzi4k4ve
+dotnet: 2.0.0
 mono: latest
 sudo: required
 install:
   - nuget install NUnit.ConsoleRunner -OutputDirectory testrunner
   - msbuild /t:Restore
+  - dotnet restore
 script:
   - msbuild /p:Configuration=Release Unosquare.Tubular.sln
-  - mono --debug ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe --process=Single ./test/Unosquare.Tubular.Tests/bin/Release/Unosquare.Tubular.Tests.dll
+  - dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj
