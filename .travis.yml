@@ -6,9 +6,6 @@ dotnet: 2.0.0
 mono: latest
 sudo: required
 install:
-  - nuget install NUnit.ConsoleRunner -OutputDirectory testrunner
-  - msbuild /t:Restore
   - dotnet restore
 script:
-  - msbuild /p:Configuration=Release Unosquare.Tubular.sln
-  - dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj
+  - dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj -f netcoreapp1.1
