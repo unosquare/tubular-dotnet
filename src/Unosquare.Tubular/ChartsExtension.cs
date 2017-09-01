@@ -32,9 +32,9 @@
             AggregationFunction aggregation = AggregationFunction.Sum)
         {
             var labelExpression = label.Body as MemberExpression ??
-                                  (MemberExpression) ((UnaryExpression) label.Body).Operand;
+                                  (MemberExpression)((UnaryExpression) label.Body).Operand;
             var valueExpression = value.Body as MemberExpression ??
-                                  (MemberExpression) ((UnaryExpression) value.Body).Operand;
+                                  (MemberExpression)((UnaryExpression) value.Body).Operand;
 
             var dataSelector = GenerateDataSelector(aggregation, valueExpression);
 

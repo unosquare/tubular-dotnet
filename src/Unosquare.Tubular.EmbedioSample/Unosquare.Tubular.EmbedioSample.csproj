@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyTitle>Tubular with EmbedIO webserver sample</AssemblyTitle>
+    <TargetFrameworks>netcoreapp1.1;net452</TargetFrameworks>
+    <AssemblyName>Unosquare.Tubular.EmbedioSample</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Unosquare.Tubular.EmbedioSample</PackageId>
+    <RuntimeIdentifiers>win8-x64;ubuntu.14.04-x64;osx.10.11-x64</RuntimeIdentifiers>
+    <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">1.1.2</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="html\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Unosquare.Tubular\Unosquare.Tubular.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EmbedIO" Version="1.6.10" />
+    <PackageReference Include="Unosquare.Swan" Version="0.14.7" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
