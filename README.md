@@ -32,9 +32,7 @@ You can access to global settings by using the static object `TubularDefaultSett
 
 ## Building C# Library
 
-Depending in your environment you must use the solution **Unosquare.Tubular.sln** if you want to build with `dotnet` or **Unosquare.Tubular.Lib.sln** if you use `msbuild` or `xbuild`.
-
-In other words, use first solution file for VS2015 with .NET Core support or the second one for any other environment.
+To build the solution you need VS2017 with .NET Core support.
 
 ## Sample
 
