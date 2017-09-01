@@ -243,7 +243,6 @@
             var aggregateColumns = columns.Where(c => c.Aggregate != AggregationFunction.None).ToArray();
             var payload = new Dictionary<string, object>(aggregateColumns.Length);
 
-#if NET452
             Action<GridColumn, Func<IQueryable<double>, double>, Func<IQueryable<decimal>, decimal>, Func<IQueryable<int>, int>, Func<IQueryable<string>, string>, Func<IQueryable<DateTime>, DateTime>> aggregate =
                 (column, doubleF, decimalF, intF, stringF, dateF) =>
                 {
@@ -278,14 +277,12 @@
                     }
                 };
 
-#endif
             foreach (var column in aggregateColumns)
             {
                 try
                 {
                     switch (column.Aggregate)
                     {
-#if NET452
                         case AggregationFunction.Sum:
                             aggregate(column, x => x.Sum(), x => x.Sum(), x => x.Sum(), null, null);
 
@@ -302,7 +299,7 @@
                             aggregate(column, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min());
 
                             break;
-#endif
+
                         case AggregationFunction.Count:
                             payload.Add(column.Name, subset.Select(column.Name).Count());
                             break;
