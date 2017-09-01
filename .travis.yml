@@ -6,7 +6,7 @@ mono: latest
 sudo: required
 install:
   - nuget install NUnit.ConsoleRunner -OutputDirectory testrunner
-  - nuget restore Unosquare.Tubular.sln
+  - msbuild /t:Restore
 script:
   - msbuild /p:Configuration=Release Unosquare.Tubular.sln
   - mono --debug ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe --process=Single ./test/Unosquare.Tubular.Tests/bin/Release/Unosquare.Tubular.Tests.dll

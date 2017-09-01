@@ -37,78 +37,17 @@
         /// <returns>A subset</returns>
         public delegate IQueryable ProcessResponseSubset(IQueryable dataSource);
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Dictionary<string, PropertyInfo> ExtractProperties(Type t)
-        {
-            return TypePropertyCache.GetOrAdd(t, GetTypeProperties);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Dictionary<string, PropertyInfo> GetTypeProperties(Type t)
-        {
-            return t.GetProperties()
-                .Where(p => Common.PrimitiveTypes.Contains(p.PropertyType) && p.CanRead)
-                .ToDictionary(k => k.Name, v => v);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Dictionary<GridColumn, PropertyInfo> MapColumnsToProperties(GridColumn[] columns,
-            Dictionary<string, PropertyInfo> properties)
-        {
-            var columnMap = new Dictionary<GridColumn, PropertyInfo>(columns.Length);
-
-            foreach (var column in columns)
-            {
-                if (properties.ContainsKey(column.Name))
-                    columnMap[column] = properties[column.Name];
-            }
-
-            return columnMap;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static List<List<object>> CreateGridPayload(IQueryable subset,
-            Dictionary<GridColumn, PropertyInfo> columnMap, int initialCapacity, int timezoneOffset)
-        {
-            var payload = new List<List<object>>(initialCapacity);
-
-            foreach (var item in subset)
-            {
-                var payloadItem = new List<object>(columnMap.Keys.Count);
-
-                foreach (var column in columnMap.Select(m => new {Value = m.Value.GetValue(item), m.Key}))
-                {
-                    if (column.Value is DateTime)
-                    {
-                        if (column.Key.DataType == DataType.DateTimeUtc ||
-                            TubularDefaultSettings.AdjustTimezoneOffset == false)
-                            payloadItem.Add((DateTime) column.Value);
-                        else
-                            payloadItem.Add(((DateTime) column.Value).AddMinutes(-timezoneOffset));
-                    }
-                    else
-                    {
-                        payloadItem.Add(column.Value);
-                    }
-                }
-
-                payload.Add(payloadItem);
-            }
-
-            return payload;
-        }
-
         /// <summary>
         /// Adjust a timezone data in a object
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="timezoneOffset">The timezone offset.</param>
-        /// <returns></returns>
+        /// <returns>The same object with DateTime properties adjusted to the timezone specified.</returns>
         public static object AdjustTimeZone(object data, int timezoneOffset)
         {
             var dateTimeProperties = data.GetType()
-                    .GetProperties()
-                    .Where(x => x.PropertyType == typeof(DateTime) || x.PropertyType == typeof(DateTime?));
+                .GetProperties()
+                .Where(x => x.PropertyType == typeof(DateTime) || x.PropertyType == typeof(DateTime?));
 
             foreach (var prop in dateTimeProperties)
             {
@@ -118,32 +57,14 @@
             return data;
         }
 
-        private static void AdjustTimeZoneForProperty(object data, int timezoneOffset, PropertyInfo prop)
-        {
-            DateTime value;
-            if (prop.PropertyType == typeof(DateTime?))
-            {
-                var nullableValue = (DateTime?) prop.GetValue(data);
-                if (!nullableValue.HasValue) return;
-                value = nullableValue.Value;
-            }
-            else
-            {
-                value = (DateTime) prop.GetValue(data);
-            }
-
-            value = value.AddMinutes(-timezoneOffset);
-            prop.SetValue(data, value);
-        }
-
 #if NET452
-/// <summary>
-/// Checks the datetime properties in an object and adjust the timezone.
-/// </summary>
-/// <param name="request">The Http Request</param>
-/// <param name="data">The output object</param>
-/// <param name="fromLocal">Set if the adjustment is from local time</param>
-/// <returns></returns>
+        /// <summary>
+        /// Checks the datetime properties in an object and adjust the timezone.
+        /// </summary>
+        /// <param name="request">The Http Request</param>
+        /// <param name="data">The output object</param>
+        /// <param name="fromLocal">Set if the adjustment is from local time</param>
+        /// <returns>The same object with DateTime properties adjusted to the timezone specified.</returns>
         public static object AdjustObjectTimeZone(this HttpRequestMessage request, object data, bool fromLocal = false)
         {
             var query = request.RequestUri.Query;
@@ -221,7 +142,7 @@
 
                 if (totalPages > 0)
                 {
-                    response.CurrentPage = request.Skip/pageSize + 1;
+                    response.CurrentPage = (request.Skip/pageSize) + 1;
 
                     if (request.Skip > 0) subset = subset.Skip(request.Skip);
                 }
@@ -235,6 +156,89 @@
 
             response.Payload = CreateGridPayload(subset, columnMap, pageSize, request.TimezoneOffset);
             return response;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static Dictionary<string, PropertyInfo> ExtractProperties(Type t)
+        {
+            return TypePropertyCache.GetOrAdd(t, GetTypeProperties);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static Dictionary<string, PropertyInfo> GetTypeProperties(Type t)
+        {
+            return t.GetProperties()
+                .Where(p => Common.PrimitiveTypes.Contains(p.PropertyType) && p.CanRead)
+                .ToDictionary(k => k.Name, v => v);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static Dictionary<GridColumn, PropertyInfo> MapColumnsToProperties(
+            GridColumn[] columns,
+            Dictionary<string, PropertyInfo> properties)
+        {
+            var columnMap = new Dictionary<GridColumn, PropertyInfo>(columns.Length);
+
+            foreach (var column in columns)
+            {
+                if (properties.ContainsKey(column.Name))
+                    columnMap[column] = properties[column.Name];
+            }
+
+            return columnMap;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static List<List<object>> CreateGridPayload(
+            IQueryable subset,
+            Dictionary<GridColumn, PropertyInfo> columnMap, 
+            int initialCapacity, 
+            int timezoneOffset)
+        {
+            var payload = new List<List<object>>(initialCapacity);
+
+            foreach (var item in subset)
+            {
+                var payloadItem = new List<object>(columnMap.Keys.Count);
+
+                foreach (var column in columnMap.Select(m => new { Value = m.Value.GetValue(item), m.Key }))
+                {
+                    if (column.Value is DateTime)
+                    {
+                        if (column.Key.DataType == DataType.DateTimeUtc ||
+                            TubularDefaultSettings.AdjustTimezoneOffset == false)
+                            payloadItem.Add((DateTime)column.Value);
+                        else
+                            payloadItem.Add(((DateTime)column.Value).AddMinutes(-timezoneOffset));
+                    }
+                    else
+                    {
+                        payloadItem.Add(column.Value);
+                    }
+                }
+
+                payload.Add(payloadItem);
+            }
+
+            return payload;
+        }
+
+        private static void AdjustTimeZoneForProperty(object data, int timezoneOffset, PropertyInfo prop)
+        {
+            DateTime value;
+            if (prop.PropertyType == typeof(DateTime?))
+            {
+                var nullableValue = (DateTime?)prop.GetValue(data);
+                if (!nullableValue.HasValue) return;
+                value = nullableValue.Value;
+            }
+            else
+            {
+                value = (DateTime)prop.GetValue(data);
+            }
+
+            value = value.AddMinutes(-timezoneOffset);
+            prop.SetValue(data, value);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -404,12 +408,16 @@
                             searchLambda.AppendFormat(
                                 column.Filter.Operator == CompareOperators.Equals
                                     ? "({0} >= @{1} && {0} <= @{2}) &&"
-                                    : "({0} < @{1} || {0} > @{2}) &&", column.Name,
-                                searchParamArgs.Count, searchParamArgs.Count + 1);
+                                    : "({0} < @{1} || {0} > @{2}) &&", 
+                                column.Name,
+                                searchParamArgs.Count, 
+                                searchParamArgs.Count + 1);
                         }
                         else
                         {
-                            searchLambda.AppendFormat("{0} {2} @{1} &&", column.Name, searchParamArgs.Count,
+                            searchLambda.AppendFormat("{0} {2} @{1} &&", 
+                                column.Name, 
+                                searchParamArgs.Count,
                                 GetSqlOperator(column.Filter.Operator));
                         }
 
@@ -439,6 +447,7 @@
                                         .Date.AddDays(1)
                                         .AddMinutes(-1).ToString(DateTimeFormat));
                                 }
+
                                 break;
                             case DataType.Boolean:
                                 searchParamArgs.Add(bool.Parse(column.Filter.Text));
