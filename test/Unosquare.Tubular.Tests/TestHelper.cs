@@ -61,7 +61,8 @@
         [Test]
         public void SimpleFilter()
         {
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Id > 95);
+            var filter = 95;
+            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Id > filter);
             var data = dataSource.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
@@ -69,7 +70,7 @@
                 Take = PageSize,
                 Skip = 0,
                 Search = new Filter(),
-                Columns = Thing.GetColumnsWithIdFilter()
+                Columns = Thing.GetColumnsWithIdFilter(filter.ToString(), CompareOperators.Gt)
             };
 
             var response = request.CreateGridDataResponse(dataSource);
