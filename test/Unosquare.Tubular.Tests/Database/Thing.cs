@@ -70,19 +70,69 @@
             };
         }
 
-        public static GridColumn[] GetColumnsWithIdFilter()
+        public static GridColumn[] GetColumnsWithIdFilter(string filter, CompareOperators oper)
         {
             return new[]
             {
                 new GridColumn
                 {
                     Name = "Id",
-                    Filter = new Filter() {Text = "95", Operator = CompareOperators.Gt},
+                    Filter = new Filter() {Text = filter, Operator = oper},
                     DataType = Tubular.DataType.Numeric
                 },
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
                 new GridColumn {Name = "Bool"}
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithColorFilter(string filter, CompareOperators oper)
+        {
+            return new[]
+            {
+                new GridColumn { Name = "Id" },
+                new GridColumn { Name = "Name" },
+                new GridColumn { Name = "Date" },
+                new GridColumn { Name = "Bool" },
+                new GridColumn
+                {
+                    Name = "Color",
+                    Filter = new Filter() { Text = filter, Operator = oper },
+                    DataType = Tubular.DataType.String
+                }
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithBetweenFilter(string a, string b)
+        {
+            return new[]
+            {
+                new GridColumn
+                {
+                    Name = "Id",
+                    Filter = new Filter() {Text = a, Name = b, Operator = CompareOperators.Between},
+                    DataType = Tubular.DataType.Numeric
+                },
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"},
+                new GridColumn {Name = "Bool"}
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithMultipleFilter(string [] arguments, CompareOperators oper)
+        {
+            return new[]
+            {
+                new GridColumn { Name = "Id" },
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"},
+                new GridColumn {Name = "Bool"},
+                 new GridColumn
+                {
+                    Name = "Color",
+                    Filter = new Filter() { Argument = arguments, Operator = oper },
+                    DataType = Tubular.DataType.String
+                }
             };
         }
     }
