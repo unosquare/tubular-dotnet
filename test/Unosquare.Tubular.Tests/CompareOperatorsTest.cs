@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.Tubular.Tests
 {
     using NUnit.Framework;
+    using System;
     using System.Linq;
     using Unosquare.Tubular.ObjectModel;
     using Unosquare.Tubular.Tests.Database;
@@ -372,6 +373,50 @@
                 Skip = 0,
                 Search = new Filter(),
                 Columns = Thing.GetColumnsWithMultipleFilter(filters, CompareOperators.Multiple)
+            };
+
+            var response = request.CreateGridDataResponse(dataSource);
+
+            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+
+            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+        }
+
+        [Test]
+        public void DateEqualFilterTest()
+        {
+            var filter = DateTime.UtcNow.Date.ToString();
+            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Date.Date.ToString() == filter);
+            var data = dataSource.Take(PageSize).ToList();
+
+            var request = new GridDataRequest()
+            {
+                Take = PageSize,
+                Skip = 0,
+                Search = new Filter(),
+                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, Tubular.DataType.Date)
+            };
+
+            var response = request.CreateGridDataResponse(dataSource);
+
+            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+
+            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+        }
+
+        [Test]
+        public void DecimalNumberFilterTest()
+        {
+            var filter = 10.100m;
+            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.DecimalNumber == filter);
+            var data = dataSource.Take(PageSize).ToList();
+
+            var request = new GridDataRequest()
+            {
+                Take = PageSize,
+                Skip = 0,
+                Search = new Filter(),
+                Columns = Thing.GetColumnsWithNumberFilter(filter.ToString(), CompareOperators.Equals)
             };
 
             var response = request.CreateGridDataResponse(dataSource);
