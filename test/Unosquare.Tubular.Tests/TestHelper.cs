@@ -267,7 +267,6 @@
                 response.FilteredRecordCount, "Total filtered rows matching");
         }
 
-#if NET452
         [Test]
         public void TestSimpleAggregate()
         {
@@ -331,7 +330,6 @@
             Assert.AreEqual(dataSource.Select(x => x.Date).Distinct().Count(), (int) response.AggregationPayload["Date"],
                 "Date same distinct count");
         }
-#endif
 
         class MyDateClass
         {
