@@ -10,13 +10,14 @@
     class CompareOperatorsTest
     {
         private const int PageSize = 20;
+        private readonly IQueryable<Thing> dataSource = SampleEntities.GenerateData().AsQueryable();
 
         [Test]
         public void EqualsFilterTest()
         {
             var filter = "blue";
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Color.Equals(filter));
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Color.Equals(filter));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -30,23 +31,23 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
-        public void BetwenFilterTest()
+        public void BetweenFilterTest()
         {
             var a = 10;
-            var b = 30;
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Id >= a && x.Id <= b);
-            var data = dataSource.Take(PageSize).ToList();
+            var b = new string[] { "30" };
+            var filterCount = dataSource.Where(x => x.Id >= a && x.Id <= int.Parse(b[0]));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
                 Take = PageSize,
                 Skip = 0,
                 Search = new Filter(),
-                Columns = Thing.GetColumnsWithBetweenFilter(a.ToString(), b.ToString())
+                Columns = Thing.GetColumnsWithBetweenFilter(a.ToString(), b)
             };
 
             var response = request.CreateGridDataResponse(dataSource);
@@ -55,15 +56,15 @@
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void ContainsFilterTest()
         {
             var filter = "l";
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Color.Contains(filter));
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Color.Contains(filter));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -79,15 +80,15 @@
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void EndsWithFilterTest()
         {
             var filter = "ow";
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Color.EndsWith(filter));
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Color.EndsWith(filter));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -103,15 +104,15 @@
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void GtFilterTest()
         {
             var filter = 20;
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Id > filter);
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Id > filter);
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -127,15 +128,15 @@
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void GteFilterTest()
         {
             var filter = 20;
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Id >= filter);
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Id >= filter);
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -151,15 +152,15 @@
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void LtFilterTest()
         {
             var filter = 20;
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Id < filter);
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Id < filter);
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -175,15 +176,15 @@
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void LteFilterTest()
         {
             var filter = 20;
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Id <= filter);
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Id <= filter);
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -199,15 +200,15 @@
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void NotContainsFilterTest()
         {
             var filter = "l";
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => !x.Color.Contains(filter));
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => !x.Color.Contains(filter));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -223,15 +224,15 @@
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void NotEndsWithFilterTest()
         {
             var filter = "ow";
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => !x.Color.EndsWith(filter));
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => !x.Color.EndsWith(filter));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -247,15 +248,15 @@
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void NotEqualsFilterTest()
         {
             var filter = "blue";
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => !x.Color.Equals(filter));
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => !x.Color.Equals(filter));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -269,15 +270,15 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void NotStartsWithFilterTest()
         {
             var filter = "blue";
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => !x.Color.StartsWith(filter));
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => !x.Color.StartsWith(filter));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -291,15 +292,15 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void StartsWithFilterTest()
         {
             var filter = "blue";
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Color.StartsWith(filter));
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Color.StartsWith(filter));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -313,14 +314,13 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void NoneFilterTest()
         {
             var filter = string.Empty;
-            var dataSource = SampleEntities.GenerateData().AsQueryable();
             var data = dataSource.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
@@ -342,7 +342,6 @@
         public void AutoFilterTest()
         {
             var filter = string.Empty;
-            var dataSource = SampleEntities.GenerateData().AsQueryable();
             var data = dataSource.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
@@ -364,8 +363,8 @@
         public void MultipleFilterTest()
         {
             var filters = new[] { "blue", "red" };
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Color.Equals(filters[0]) && x.Color.Equals(filters[1]));
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Color.Equals(filters[0]) || x.Color.Equals(filters[1]));
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -379,15 +378,15 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void DateEqualFilterTest()
         {
             var filter = DateTime.UtcNow.Date.ToString();
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Date.Date.ToString() == filter);
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Date.Date.ToString() == filter);
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -401,15 +400,15 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
         public void DecimalNumberFilterTest()
         {
             var filter = 10.100m;
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.DecimalNumber == filter);
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.DecimalNumber == filter);
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -423,7 +422,7 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
     }
 }

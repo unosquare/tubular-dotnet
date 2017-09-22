@@ -9,11 +9,11 @@
     class AggregationTest
     {
         private const int PageSize = 20;
+        private readonly IQueryable<Thing> dataSource = SampleEntities.GenerateData().AsQueryable();
 
         [Test]
         public void SumAggregationTest()
         {
-            var dataSource = SampleEntities.GenerateData().AsQueryable();
             var data = dataSource.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
@@ -36,7 +36,6 @@
         [Test]
         public void AverageAggregationTest()
         {
-            var dataSource = SampleEntities.GenerateData().AsQueryable();
             var data = dataSource.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
@@ -59,7 +58,6 @@
         [Test]
         public void MaxAggregationTest()
         {
-            var dataSource = SampleEntities.GenerateData().AsQueryable();
             var data = dataSource.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
@@ -81,7 +79,6 @@
         [Test]
         public void MinAggregationTest()
         {
-            var dataSource = SampleEntities.GenerateData().AsQueryable();
             var data = dataSource.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
@@ -103,7 +100,6 @@
         [Test]
         public void CountAggregationTest()
         {
-            var dataSource = SampleEntities.GenerateData().AsQueryable();
             var data = dataSource.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
