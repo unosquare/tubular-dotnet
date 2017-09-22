@@ -62,8 +62,9 @@
         public void SimpleFilter()
         {
             var filter = 95;
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Id > filter);
-            var data = dataSource.Take(PageSize).ToList();
+            var dataSource = SampleEntities.GenerateData().AsQueryable();
+            var filterCount = dataSource.Where(x => x.Id > filter);
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
@@ -77,7 +78,7 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]

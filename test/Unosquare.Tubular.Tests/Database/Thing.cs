@@ -103,14 +103,14 @@
             };
         }
 
-        public static GridColumn[] GetColumnsWithBetweenFilter(string a, string b)
+        public static GridColumn[] GetColumnsWithBetweenFilter(string filter, string[] arguments)
         {
             return new[]
             {
                 new GridColumn
                 {
                     Name = "Id",
-                    Filter = new Filter() {Text = a, Name = b, Operator = CompareOperators.Between},
+                    Filter = new Filter() {Text = filter, Argument = arguments, Operator = CompareOperators.Between},
                     DataType = Tubular.DataType.Numeric
                 },
                 new GridColumn {Name = "Name"},
