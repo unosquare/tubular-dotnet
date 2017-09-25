@@ -6,6 +6,11 @@
     using ObjectModel;
     using Database;
     using System;
+#if NET452
+    using System.Net.Http;
+    using static Unosquare.Tubular.Extensions;
+    using System.Diagnostics;
+#endif
 
     [TestFixture]
     public class TestHelper
@@ -356,5 +361,52 @@
 
             Assert.IsNull(actual.NullableDate, "Nullable date adjusted");
         }
+
+        //[Test]
+        //public void EqualsFilterTest()
+        //{
+        //    var filter = "blue";
+        //    var dataSource = SampleEntities.GenerateData().AsQueryable();
+        //    var data = dataSource.Take(PageSize).ToList();
+        //    var dataSubset = ;
+        //    var preProccess = new ProcessResponseSubset(dataSubset);
+
+        //    var request = new GridDataRequest()
+        //    {
+        //        Take = PageSize,
+        //        Skip = 0,
+        //        Search = new Filter(),
+        //        Columns = Thing.GetColumnsWithColorFilter(filter, CompareOperators.None)
+        //    };
+
+        //    var response = request.CreateGridDataResponse(dataSource);
+
+        //    Assert.AreEqual(data.Count, response.Payload.Count, "Same length");            
+        //}
+
+
+
+#if NET452
+        [Test]
+        public void AdjustObjectTimeZoneTest()
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://test/things");
+            var dataSource = SampleEntities.GenerateData().AsQueryable();
+
+            var response = (IQueryable < Thing > )request.AdjustObjectTimeZone(dataSource);
+
+            Assert.AreEqual(dataSource.Select(x => x.Date), response.Select(x => x.Date));
+
+            Trace.Write(response.Select(x => x.Date));
+            Trace.WriteLine(response.Select(x => x.Date));
+
+            foreach (var date in dataSource)
+                date.Date.ToUniversalTime();
+
+             response = (IQueryable<Thing>)request.AdjustObjectTimeZone(dataSource, true);
+
+            Assert.AreEqual(dataSource.Select(x => x.Date), response.Select(x => x.Date));
+        }
+#endif
     }
 }
