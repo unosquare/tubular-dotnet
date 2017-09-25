@@ -375,23 +375,31 @@
         }
 
         [Test]
-        public void EqualsFilterTest()
+        public void ProcessResponseSubsetTest()
         {
             var filter = "blue";
             var dataSource = SampleEntities.GenerateData().AsQueryable();
-            var data = dataSource.Take(PageSize).ToList();
+            var filterCount = dataSource.Where(x => x.Color == filter);
+            var data = filterCount.Take(PageSize).ToList();
             
             var request = new GridDataRequest()
             {
                 Take = PageSize,
                 Skip = 0,
                 Search = new Filter(),
-                Columns = Thing.GetColumnsWithColorFilter(filter, CompareOperators.None)
+                Columns = Thing.GetColumnsWithColorFilter(filter, CompareOperators.Equals)
             };
 
             var response = request.CreateGridDataResponse(dataSource, FormatOutput);
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+
+            foreach (var item in response.Payload)
+                Assert.AreNotEqual(filter, item[4], "Diferent color");
+
+            foreach(var item in response.Payload)
+                Assert.AreEqual("darkblue", item[4], "Same color");
+
         }
     }
 }
