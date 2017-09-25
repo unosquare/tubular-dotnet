@@ -22,8 +22,8 @@
                     Bool = (i % 2) == 0,
                     DecimalNumber = (i % 3 == 0) ? 10.100m : 20.2002m,
                     Number = rand.NextDouble() * 20,
-                    Category = category[rand.Next(0, category.Length - 1)],
-                    Color = colors[rand.Next(0, colors.Length - 1)],
+                    Category = category[rand.Next(0, category.Length)],
+                    Color = colors[rand.Next(0, colors.Length)],
                 });
             }
             return data;

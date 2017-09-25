@@ -70,14 +70,14 @@
             };
         }
 
-        public static GridColumn[] GetColumnsWithIdFilter()
+        public static GridColumn[] GetColumnsWithIdFilter(string filter, CompareOperators oper)
         {
             return new[]
             {
                 new GridColumn
                 {
                     Name = "Id",
-                    Filter = new Filter() {Text = "95", Operator = CompareOperators.Gt},
+                    Filter = new Filter() {Text = filter, Operator = oper},
                     DataType = Tubular.DataType.Numeric
                 },
                 new GridColumn {Name = "Name"},
@@ -85,5 +85,114 @@
                 new GridColumn {Name = "Bool"}
             };
         }
+
+        public static GridColumn[] GetColumnsWithColorFilter(string filter, CompareOperators oper)
+        {
+            return new[]
+            {
+                new GridColumn {Name = "Id"},
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"},
+                new GridColumn {Name = "Bool"},
+                new GridColumn
+                {
+                    Name = "Color",
+                    Filter = new Filter() { Text = filter, Operator = oper },
+                    DataType = Tubular.DataType.String
+                }
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithBetweenFilter(string filter, string[] arguments)
+        {
+            return new[]
+            {
+                new GridColumn
+                {
+                    Name = "Id",
+                    Filter = new Filter() {Text = filter, Argument = arguments, Operator = CompareOperators.Between},
+                    DataType = Tubular.DataType.Numeric
+                },
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"},
+                new GridColumn {Name = "Bool"}
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithMultipleFilter(string [] arguments, CompareOperators oper)
+        {
+            return new[]
+            {
+                new GridColumn {Name = "Id"},
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"},
+                new GridColumn {Name = "Bool"},
+                 new GridColumn
+                {
+                    Name = "Color",
+                    Filter = new Filter() { Argument = arguments, Operator = oper },
+                    DataType = Tubular.DataType.String
+                }
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithDateFilter(string filter, CompareOperators oper, Tubular.DataType dataType)
+        {
+            return new[]
+            {
+                new GridColumn {Name = "Id"},
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"},
+                new GridColumn {Name = "Bool"},
+                new GridColumn
+                {
+                    Name = "Date",
+                    Filter = new Filter() {Text = filter, Operator = oper},
+                    DataType = dataType
+                }
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithNumberFilter(string filter, CompareOperators oper)
+        {
+            return new[]
+            {
+                new GridColumn {Name = "Id"},
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"},
+                new GridColumn {Name = "Bool"},
+                new GridColumn
+                {
+                    Name = "DecimalNumber",
+                    Filter = new Filter() {Text = filter, Operator = oper},
+                    DataType = Tubular.DataType.Numeric
+                }
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithAggregateDouble(AggregationFunction aggregation)            
+        {
+            return new[]
+            {
+                new GridColumn {Name = "Id"},
+                new GridColumn {Name = "Number", Aggregate = aggregation},
+                new GridColumn {Name = "DecimalNumber" },
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"}
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithAggregateInt(AggregationFunction aggregation)
+        {
+            return new[]
+            {
+                new GridColumn {Name = "Id", Aggregate = aggregation},
+                new GridColumn {Name = "Number"},
+                new GridColumn {Name = "DecimalNumber" },
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"}
+            };
+        }
+
     }
 }

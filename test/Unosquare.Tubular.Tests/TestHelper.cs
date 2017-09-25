@@ -61,22 +61,24 @@
         [Test]
         public void SimpleFilter()
         {
-            var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Id > 95);
-            var data = dataSource.Take(PageSize).ToList();
+            var filter = 95;
+            var dataSource = SampleEntities.GenerateData().AsQueryable();
+            var filterCount = dataSource.Where(x => x.Id > filter);
+            var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
             {
                 Take = PageSize,
                 Skip = 0,
                 Search = new Filter(),
-                Columns = Thing.GetColumnsWithIdFilter()
+                Columns = Thing.GetColumnsWithIdFilter(filter.ToString(), CompareOperators.Gt)
             };
 
             var response = request.CreateGridDataResponse(dataSource);
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
 
         [Test]
@@ -266,7 +268,6 @@
                 response.FilteredRecordCount, "Total filtered rows matching");
         }
 
-#if NET452
         [Test]
         public void TestSimpleAggregate()
         {
@@ -330,7 +331,6 @@
             Assert.AreEqual(dataSource.Select(x => x.Date).Distinct().Count(), (int) response.AggregationPayload["Date"],
                 "Date same distinct count");
         }
-#endif
 
         class MyDateClass
         {
@@ -355,6 +355,51 @@
             actual = (MyDateClass) Extensions.AdjustTimeZone(date, offset);
 
             Assert.IsNull(actual.NullableDate, "Nullable date adjusted");
+        }
+
+        private static IQueryable FormatOutput(IQueryable q)
+        {
+            var list = new List<Thing>();
+
+            foreach (var i in q)
+            {
+                var item = i as Thing;
+
+                if (item?.Color == "blue")
+                    item.Color = "darkblue";
+
+                list.Add(item);
+            }
+
+            return list.AsQueryable();
+        }
+
+        [Test]
+        public void ProcessResponseSubsetTest()
+        {
+            var filter = "blue";
+            var dataSource = SampleEntities.GenerateData().AsQueryable();
+            var filterCount = dataSource.Where(x => x.Color == filter);
+            var data = filterCount.Take(PageSize).ToList();
+            
+            var request = new GridDataRequest()
+            {
+                Take = PageSize,
+                Skip = 0,
+                Search = new Filter(),
+                Columns = Thing.GetColumnsWithColorFilter(filter, CompareOperators.Equals)
+            };
+
+            var response = request.CreateGridDataResponse(dataSource, FormatOutput);
+
+            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+
+            foreach (var item in response.Payload)
+                Assert.AreNotEqual(filter, item[4], "Diferent color");
+
+            foreach(var item in response.Payload)
+                Assert.AreEqual("darkblue", item[4], "Same color");
+
         }
     }
 }
