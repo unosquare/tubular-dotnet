@@ -5,7 +5,6 @@
     <AssemblyName>Unosquare.Tubular.Tests</AssemblyName>
     <PackageId>Unosquare.Tubular.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <DebugType>Full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
