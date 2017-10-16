@@ -385,7 +385,6 @@
         public void DateEqualFilterTest()
         {
             var filter = DateTime.UtcNow.Date.ToString();
-            Assert.IsTrue(false, "OHHH" + filter + " - " + dataSource.FirstOrDefault()?.Date.Date.ToString());
 
             var filterCount = dataSource.Where(x => x.Date.Date.ToString() == filter);
             var data = filterCount.Take(PageSize).ToList();
