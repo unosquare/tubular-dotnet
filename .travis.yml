@@ -3,7 +3,6 @@ solution: Unosquare.Tubular.sln
 notifications:
   slack: unolabs:cbusXPH6pBwZ35rVDzi4k4ve
 dotnet: 2.0.0
-mono: latest
 sudo: required
 install:
   - dotnet restore
