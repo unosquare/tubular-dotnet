@@ -142,7 +142,6 @@
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
-                new GridColumn {Name = "Date"},
                 new GridColumn {Name = "Bool"},
                 new GridColumn
                 {
