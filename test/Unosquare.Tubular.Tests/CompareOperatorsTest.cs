@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.Tubular.Tests
 {
+    using Microsoft.CSharp.RuntimeBinder;
     using NUnit.Framework;
     using System;
     using System.Collections.Generic;
@@ -402,13 +403,14 @@
 
             var response = request.CreateGridDataResponse(dataSource);
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+            Assert.AreEqual(data.Count, response.Payload.Count, "Response date: " + response.Payload.FirstOrDefault()?[3] +
+            "Filter date: " + filterCount.FirstOrDefault().Date);
 
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");                        
         }
 
         [Test]
-        public void DateComparatorTests()
+        public void DateComparatorTest()
         {
             var filter = DateTime.Now.Date.ToString();
 
@@ -421,11 +423,18 @@
                 Search = new Filter(),
                 Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, Tubular.DataType.Date)
             };
+            
+            try
+            {
+                var response = CompareDates(request, dataSource);
 
-            var response = CompareDates(request, dataSource);
-
-            Assert.AreEqual(filterCount.Count(), response.Count(), "Response date: " + response.FirstOrDefault().Date +
-                "Filter date: " + filterCount.FirstOrDefault().Date);
+                Assert.AreEqual(filterCount.Count(), response.Count(), "Response date: " + response.FirstOrDefault().Date +
+                    "Filter date: " + filterCount.FirstOrDefault().Date);
+            }
+            catch (RuntimeBinderException ex)
+            {
+                Assert.IsNull(ex, ex.Message);
+            }
 
         }
 
