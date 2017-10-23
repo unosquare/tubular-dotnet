@@ -424,17 +424,12 @@
                 Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, Tubular.DataType.Date)
             };
             
-            try
-            {
                 var response = CompareDates(request, dataSource);
+            
+            Aseert.IsTrue(response.Any());
 
                 Assert.AreEqual(filterCount.Count(), response.Count(), "Response date: " + response.FirstOrDefault().Date +
                     "Filter date: " + filterCount.FirstOrDefault().Date);
-            }
-            catch (RuntimeBinderException ex)
-            {
-                Assert.IsNull(ex, ex.Message);
-            }
 
         }
 
