@@ -20,7 +20,7 @@
     /// </summary>
     public static class Extensions
     {
-        private const string DateTimeFormat = "yyyy-MM-dd hh:mm:ss.f";
+        private const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss.f";
         private const string DateFormat = "yyyy-MM-dd";
 
 #if NET452
