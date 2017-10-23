@@ -1,12 +1,9 @@
 ﻿namespace Unosquare.Tubular.Tests
 {
-    using Microsoft.CSharp.RuntimeBinder;
     using NUnit.Framework;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Dynamic.Core;
-    using System.Text;
     using Unosquare.Tubular.ObjectModel;
     using Unosquare.Tubular.Tests.Database;
 
@@ -407,31 +404,7 @@
             "Filter date: " + filterCount.FirstOrDefault()?.Date);
 
             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");                        
-        }
-
-        [Test]
-        public void DateComparatorTest()
-        {
-            var filter = DateTime.Now.Date.ToString();
-
-            var filterCount = dataSource.Where(x => x.Date.Date.ToString() == filter);
-
-            var request = new GridDataRequest()
-            {
-                Take = PageSize,
-                Skip = 0,
-                Search = new Filter(),
-                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, Tubular.DataType.Date)
-            };
-            
-                var response = CompareDates(request, dataSource);
-            
-                Assert.IsTrue(response.Any());
-
-                Assert.AreEqual(filterCount.Count(), response.Count(), "Response date: " + response.FirstOrDefault()?.Date +
-                    "Filter date: " + filterCount.FirstOrDefault()?.Date);
-
-        }
+        }      
 
         [Test]
         public void DecimalNumberFilterTest()
@@ -453,77 +426,6 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
-
-        private IQueryable CompareDates(GridDataRequest request, IQueryable subset)
-        {
-            var searchLambda = new StringBuilder();
-            var searchParamArgs = new List<object>();
-            var DateTimeFormat = "yyyy-MM-dd hh:mm:ss.f";
-            var DateFormat = "yyyy-MM-dd";
-
-            foreach (var column in
-                request.Columns.Where(x => x.Filter != null)
-                 .Where(
-                        column => !string.IsNullOrWhiteSpace(column.Filter.Text) || column.Filter.Argument != null))
-            {
-                switch (column.Filter.Operator)
-                {
-                    case CompareOperators.Equals:
-                    case CompareOperators.NotEquals:
-                        if (column.DataType == DataType.Date)
-                    {
-                        searchLambda.AppendFormat(
-                            column.Filter.Operator == CompareOperators.Equals
-                                ? "({0} >= @{1} && {0} <= @{2}) &&"
-                                : "({0} < @{1} || {0} > @{2}) &&",
-                            column.Name,
-                            searchParamArgs.Count,
-                            searchParamArgs.Count + 1);
-                    }
-                    else
-                    {
-                        searchLambda.AppendFormat("{0} {2} @{1} &&",
-                            column.Name,
-                            searchParamArgs.Count,
-                            "==");
-                    }
-
-                    switch (column.DataType)
-                    {
-                        case DataType.DateTime:
-                        case DataType.DateTimeUtc:
-                            searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString(DateFormat));
-                            break;
-                        case DataType.Date:
-                            if (TubularDefaultSettings.AdjustTimezoneOffset)
-                            {
-                                searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToUniversalTime().ToString(DateTimeFormat));
-                                searchParamArgs.Add(
-                                    DateTime.Parse(column.Filter.Text)
-                                        .Date.ToUniversalTime()
-                                        .AddDays(1)
-                                        .AddMinutes(-1).ToString(DateTimeFormat));
-                            }
-                            else
-                            {
-                                searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToString(DateTimeFormat));
-                                searchParamArgs.Add(DateTime.Parse(column.Filter.Text)
-                                    .Date.AddDays(1)
-                                    .AddMinutes(-1).ToString(DateTimeFormat));
-                            }
-                            break;
-                    }
-                    break;
-                }
-            }
-
-            if (searchLambda.Length <= 0) return subset;
-
-            subset = subset.Where(searchLambda.Remove(searchLambda.Length - 3, 3).ToString(),
-                searchParamArgs.ToArray());
-
-            return subset;
         }
     }
 }
