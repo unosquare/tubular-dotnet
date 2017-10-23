@@ -14,30 +14,30 @@
 
         static object[] FilterColorCases =
         {
-            // Test, Filter, filterCount, Operator 
-            new object[] { "EqualsFilterTest", "blue", _dataSource.Where(x => x.Color.Equals("blue")), CompareOperators.Equals },
-            new object[] { "ContainsFilterTest", "l", _dataSource.Where(x => x.Color.Contains("l")), CompareOperators.Contains },
-            new object[] { "EndsWithFilterTest", "ow", _dataSource.Where(x => x.Color.EndsWith("ow")), CompareOperators.EndsWith },
-            new object[] { "NotContainsFilterTest", "l", _dataSource.Where(x => !x.Color.Contains("l")), CompareOperators.NotContains },
-            new object[] { "NotEndsWithFilterTest", "ow", _dataSource.Where(x => !x.Color.EndsWith("ow")), CompareOperators.NotEndsWith },
-            new object[] { "NotEqualsFilterTest", "blue", _dataSource.Where(x => !x.Color.Equals("blue")), CompareOperators.NotEquals },
-            new object[] { "NotStartsWithFilterTest", "yell", _dataSource.Where(x => !x.Color.StartsWith("yell")), CompareOperators.NotStartsWith },
-            new object[] { "StartsWithFilterTest", "yell", _dataSource.Where(x => x.Color.StartsWith("yell")), CompareOperators.StartsWith },
-            new object[] { "NoneFilterTest", string.Empty, _dataSource, CompareOperators.None },
-            new object[] { "AutoFilterTest", string.Empty, _dataSource, CompareOperators.Auto }
+            // Filter, filterCount, Operator 
+            new object[] { "blue", _dataSource.Where(x => x.Color.Equals("blue")), CompareOperators.Equals },
+            new object[] { "l", _dataSource.Where(x => x.Color.Contains("l")), CompareOperators.Contains },
+            new object[] { "ow", _dataSource.Where(x => x.Color.EndsWith("ow")), CompareOperators.EndsWith },
+            new object[] { "l", _dataSource.Where(x => !x.Color.Contains("l")), CompareOperators.NotContains },
+            new object[] { "ow", _dataSource.Where(x => !x.Color.EndsWith("ow")), CompareOperators.NotEndsWith },
+            new object[] { "blue", _dataSource.Where(x => !x.Color.Equals("blue")), CompareOperators.NotEquals },
+            new object[] { "yell", _dataSource.Where(x => !x.Color.StartsWith("yell")), CompareOperators.NotStartsWith },
+            new object[] { "yell", _dataSource.Where(x => x.Color.StartsWith("yell")), CompareOperators.StartsWith },
+            new object[] { string.Empty, _dataSource, CompareOperators.None },
+            new object[] { string.Empty, _dataSource, CompareOperators.Auto }
         };
 
         static object[] FilterIdCases =
         {
-            // Test, Filter, filterCount, Operator 
-            new object[] { "GtFilterTest", "20", _dataSource.Where(x => x.Id > 20), CompareOperators.Gt },
-            new object[] { "GteFilterTest", "20", _dataSource.Where(x => x.Id >= 20), CompareOperators.Gte },
-            new object[] { "LtFilterTest", "20", _dataSource.Where(x => x.Id < 20), CompareOperators.Lt },
-            new object[] { "LteFilterTest", "20", _dataSource.Where(x => x.Id <= 20), CompareOperators.Lte },
+            // filterCount, Operator 
+            new object[] { _dataSource.Where(x => x.Id > 20), CompareOperators.Gt },
+            new object[] { _dataSource.Where(x => x.Id >= 20), CompareOperators.Gte },
+            new object[] { _dataSource.Where(x => x.Id < 20), CompareOperators.Lt },
+            new object[] { _dataSource.Where(x => x.Id <= 20), CompareOperators.Lte },
         };
 
         [Test, TestCaseSource("FilterColorCases")]
-        public void FilterColorTests(string test, string filter, IQueryable<Thing> filterCount, CompareOperators compareOperator)
+        public void FilterColorTests(string filter, IQueryable<Thing> filterCount, CompareOperators compareOperator)
         {
             var data = filterCount.Take(PageSize).ToList();
 
@@ -51,7 +51,7 @@
 
             var response = request.CreateGridDataResponse(_dataSource);
 
-            Assert.AreEqual(data.Count, response.Payload.Count, test);
+            Assert.AreEqual(data.Count, response.Payload.Count, $"Test {compareOperator}");
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
@@ -59,7 +59,7 @@
         }
 
         [Test, TestCaseSource("FilterIdCases")]
-        public void FilterIdTests(string test, string filter, IQueryable<Thing> filterCount, CompareOperators compareOperator)
+        public void FilterIdTests(IQueryable<Thing> filterCount, CompareOperators compareOperator)
         {
             var data = filterCount.Take(PageSize).ToList();
 
@@ -68,12 +68,12 @@
                 Take = PageSize,
                 Skip = 0,
                 Search = new Filter(),
-                Columns = Thing.GetColumnsWithIdFilter(filter, compareOperator)
+                Columns = Thing.GetColumnsWithIdFilter("20", compareOperator)
             };
 
             var response = request.CreateGridDataResponse(_dataSource);
 
-            Assert.AreEqual(data.Count, response.Payload.Count, test);
+            Assert.AreEqual(data.Count, response.Payload.Count, $"Test {compareOperator}");
 
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
