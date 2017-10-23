@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Unosquare.Net;
-using Unosquare.Labs.EmbedIO;
-using Unosquare.Labs.EmbedIO.Modules;
-using Unosquare.Tubular.ObjectModel;
-using Unosquare.Swan;
-
-namespace Unosquare.Tubular.EmbedioSample
+﻿namespace Unosquare.Tubular.EmbedioSample
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Labs.EmbedIO;
+    using Labs.EmbedIO.Modules;
+    using ObjectModel;
+    using Swan;
+#if NETCOREAPP2_0
+    using System.Net;
+#else
+    using Net;
+#endif
+
     /// <summary>
     /// A simple model representing a person
     /// </summary>
@@ -32,13 +36,13 @@ namespace Unosquare.Tubular.EmbedioSample
 
         public static List<Person> People = new List<Person>
         {
-            new Person() {Key = 1, Name = "Mario Di Vece", Age = 31, EmailAddress = "mario@unosquare.com"},
-            new Person() {Key = 2, Name = "Geovanni Perez", Age = 31, EmailAddress = "geovanni.perez@unosquare.com"},
-            new Person() {Key = 3, Name = "Luis Gonzalez", Age = 29, EmailAddress = "luis.gonzalez@unosquare.com"},
-            new Person() {Key = 4, Name = "Ricardo Salinas", Age = 22, EmailAddress = "ricardo.salinas@unosquare.com"},
+            new Person {Key = 1, Name = "Mario Di Vece", Age = 31, EmailAddress = "mario@unosquare.com"},
+            new Person {Key = 2, Name = "Geovanni Perez", Age = 31, EmailAddress = "geovanni.perez@unosquare.com"},
+            new Person {Key = 3, Name = "Luis Gonzalez", Age = 29, EmailAddress = "luis.gonzalez@unosquare.com"},
+            new Person {Key = 4, Name = "Ricardo Salinas", Age = 22, EmailAddress = "ricardo.salinas@unosquare.com"}
         };
 
-        [WebApiHandler(HttpVerbs.Post, RelativePath + "people")]
+        [WebApiHandler(Labs.EmbedIO.Constants.HttpVerbs.Post, RelativePath + "people")]
         public bool GetPeople(WebServer server, HttpListenerContext context)
         {
             try

@@ -28,7 +28,7 @@ namespace Unosquare.Tubular.AspNetCoreSample
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
 
-            tokenOptions = new TokenValidationParameters
+            TokenOptions = new TokenValidationParameters
             {
                 // The signing key must match!
                 ValidateIssuerSigningKey = true,
@@ -51,7 +51,7 @@ namespace Unosquare.Tubular.AspNetCoreSample
         }
 
         public IConfigurationRoot Configuration { get; }
-        private TokenValidationParameters tokenOptions { get; set; }
+        private TokenValidationParameters TokenOptions { get; }
 
 
         // This method gets called by the runtime. Use this method to add services to the container
@@ -60,7 +60,7 @@ namespace Unosquare.Tubular.AspNetCoreSample
             services.AddDbContext<SampleDbContext>(
                 options => options.UseSqlServer(Configuration["ConnectionString"]));
 
-            services.AddBearerTokenAuthentication(tokenOptions);
+            services.AddBearerTokenAuthentication(TokenOptions);
 
             // Add framework services.
             services.AddMvc()
@@ -81,18 +81,14 @@ namespace Unosquare.Tubular.AspNetCoreSample
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseBearerTokenAuthentication(tokenOptions, (userName, password, grantType, clientId) =>
+            app.UseBearerTokenAuthentication(TokenOptions, (userName, password, grantType, clientId) =>
             {
                 // TODO: Replace with your implementation
-                if (userName == "Admin" && password == "pass.word")
-                {
+                if (userName != "Admin" || password != "pass.word") return Task.FromResult<ClaimsIdentity>(null);
 
-                    var identity = new ClaimsIdentity();
-                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userName));
-                    return Task.FromResult(identity);
-                }
-
-                return Task.FromResult<ClaimsIdentity>(null);
+                var identity = new ClaimsIdentity();
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userName));
+                return Task.FromResult(identity);
             });
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());

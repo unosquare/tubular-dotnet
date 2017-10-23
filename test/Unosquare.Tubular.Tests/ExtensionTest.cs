@@ -3,9 +3,8 @@
     using NUnit.Framework;
     using System;
     using System.Linq;
-    using Unosquare.Tubular.ObjectModel;
-    using Unosquare.Tubular.Tests.Database;
-    using static Unosquare.Tubular.Extensions;
+    using ObjectModel;
+    using Database;
 
     [TestFixture]
     class ExtensionTest
@@ -17,8 +16,7 @@
         {
             var filters = new[] { "blue", "red" };
             var dataSource = SampleEntities.GenerateData().AsQueryable().Where(x => x.Color.Equals(filters[0]) && x.Color.Equals(filters[1]));
-            var data = dataSource.Take(PageSize).ToList();
-
+            
             var request = new GridDataRequest()
             {
                 Take = PageSize,
@@ -29,7 +27,7 @@
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                var response = request.CreateGridDataResponse(dataSource);
+                request.CreateGridDataResponse(dataSource);
             });
         }
     }
