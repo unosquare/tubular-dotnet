@@ -146,7 +146,7 @@
                 new GridColumn
                 {
                     Name = "Date",
-                    Filter = new Filter() {Text = filter, Operator = oper},
+                    Filter = new Filter() {Text = filter, Operator = oper, },
                     DataType = dataType
                 }
             };
@@ -165,6 +165,22 @@
                     Name = "DecimalNumber",
                     Filter = new Filter() {Text = filter, Operator = oper},
                     DataType = Tubular.DataType.Numeric
+                }
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithBooleanFilter(string filter, CompareOperators oper)
+        {
+            return new[]
+            {
+                new GridColumn {Name = "Id"},
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"},
+                new GridColumn {
+                    Name = "Bool",
+                    
+                    Filter = new Filter() { Text = filter, Operator = oper,  },
+                    DataType = Tubular.DataType.Boolean
                 }
             };
         }
@@ -192,6 +208,5 @@
                 new GridColumn {Name = "Date"}
             };
         }
-
     }
 }

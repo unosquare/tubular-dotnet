@@ -129,10 +129,10 @@
 
         [Test]		
          public void DateEqualFilterTest()
-         {		
-             var filter = DateTime.Now.Date.ToString();		
+         {
+            var filter = DateTime.Now;
  		
-             var filterCount = _dataSource.Where(x => x.Date.Date.ToString() == filter);		
+             var filterCount = _dataSource.Where(x => x.Date.Date.ToString() == filter.Date.ToString());		
              var data = filterCount.Take(PageSize).ToList();		
  		
              var request = new GridDataRequest()
@@ -140,7 +140,7 @@
                  Take = PageSize,		
                  Skip = 0,		
                  Search = new Filter(),		
-                 Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.Date)		
+                 Columns = Thing.GetColumnsWithDateFilter(filter.ToString(), CompareOperators.Equals, DataType.Date)		
              };		
  		
              var response = request.CreateGridDataResponse(_dataSource);		
@@ -149,8 +149,33 @@
                                                                  response.Payload.FirstOrDefault()?[3] +		
                                                                  "Filter date: " + filterCount.FirstOrDefault()?.Date);		
  		
-             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");		
+             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
          }
+
+        [Test]
+        public void DateTimeUTCEqualFilterTest()
+        {
+            var filter = DateTime.UtcNow.ToString();
+
+            var filterCount = _dataSource.Where(x => x.Date.ToString() == filter);
+            var data = filterCount.Take(PageSize).ToList();
+
+            var request = new GridDataRequest()
+            {
+                Take = PageSize,
+                Skip = 0,
+                Search = new Filter(),
+                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.DateTimeUtc)
+            };
+
+            var response = request.CreateGridDataResponse(_dataSource);
+
+            Assert.AreEqual(data.Count, response.Payload.Count, "Response date: " +
+                                                                response.Payload.FirstOrDefault()?[3] +
+                                                                "Filter date: " + filterCount.FirstOrDefault()?.Date);
+
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+        }
 
         [Test]		
          public void MultipleFilterTest()
@@ -173,5 +198,28 @@
  		
              Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");		
          }
+
+        [Test]
+        public void BooleanFilterTests()
+        {
+            var filter = "true";
+            var filterCount = _dataSource.Where(x => x.Bool == bool.Parse(filter));
+            var data = filterCount.Take(PageSize).ToList();
+
+            var request = new GridDataRequest()
+            {
+                Take = PageSize,
+                Skip = 0,
+                Search = new Filter(),
+                Columns = Thing.GetColumnsWithBooleanFilter(filter, CompareOperators.Equals)
+            };
+
+            var response = request.CreateGridDataResponse(_dataSource);
+
+            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+
+            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+
+        }
     }
 }
