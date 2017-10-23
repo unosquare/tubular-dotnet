@@ -404,7 +404,7 @@
             var response = request.CreateGridDataResponse(dataSource);
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Response date: " + response.Payload.FirstOrDefault()?[3] +
-            "Filter date: " + filterCount.FirstOrDefault().Date);
+            "Filter date: " + filterCount.FirstOrDefault()?.Date);
 
             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");                        
         }
@@ -426,10 +426,10 @@
             
                 var response = CompareDates(request, dataSource);
             
-            Aseert.IsTrue(response.Any());
+                Assert.IsTrue(response.Any());
 
-                Assert.AreEqual(filterCount.Count(), response.Count(), "Response date: " + response.FirstOrDefault().Date +
-                    "Filter date: " + filterCount.FirstOrDefault().Date);
+                Assert.AreEqual(filterCount.Count(), response.Count(), "Response date: " + response.FirstOrDefault()?.Date +
+                    "Filter date: " + filterCount.FirstOrDefault()?.Date);
 
         }
 
