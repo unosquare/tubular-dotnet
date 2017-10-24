@@ -20,7 +20,7 @@
 
         public System.DateTime? NullableDate { get; set; }
 
-        public bool Bool { get; set; }
+        public bool IsShipped { get; set; }
 
         public static GridColumn[] GetColumnsWithAggregate()
         {
@@ -42,9 +42,8 @@
                 new GridColumn {Name = "Number", Aggregate = AggregationFunction.DistinctCount},
                 new GridColumn {Name = "DecimalNumber", Aggregate = AggregationFunction.DistinctCount},
                 new GridColumn {Name = "Name", Aggregate = AggregationFunction.DistinctCount},
-                new GridColumn {Name = "Date", Aggregate = AggregationFunction.DistinctCount}
-                // TODO: The Bool is failing with the new Dynamic LINQ
-                //new GridColumn {Name = "Bool", Aggregate = AggregationFunction.DistinctCount}
+                new GridColumn {Name = "Date", Aggregate = AggregationFunction.DistinctCount},
+                new GridColumn {Name = "IsShipped", Aggregate = AggregationFunction.DistinctCount}
             };
         }
 
@@ -55,7 +54,7 @@
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name", Searchable = true},
                 new GridColumn {Name = "Date"},
-                new GridColumn {Name = "Bool"}
+                new GridColumn {Name = "IsShipped"}
             };
         }
 
@@ -66,7 +65,7 @@
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date", Sortable = true, SortDirection = SortDirection.Ascending, SortOrder = 1},
-                new GridColumn {Name = "Bool"}
+                new GridColumn {Name = "IsShipped"}
             };
         }
 
@@ -82,7 +81,7 @@
                 },
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
-                new GridColumn {Name = "Bool"}
+                new GridColumn {Name = "IsShipped"}
             };
         }
 
@@ -93,7 +92,7 @@
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
-                new GridColumn {Name = "Bool"},
+                new GridColumn {Name = "IsShipped"},
                 new GridColumn
                 {
                     Name = "Color",
@@ -115,7 +114,7 @@
                 },
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
-                new GridColumn {Name = "Bool"}
+                new GridColumn {Name = "IsShipped"}
             };
         }
 
@@ -126,7 +125,7 @@
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
-                new GridColumn {Name = "Bool"},
+                new GridColumn {Name = "IsShipped"},
                  new GridColumn
                 {
                     Name = "Color",
@@ -142,12 +141,11 @@
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
-                new GridColumn {Name = "Date"},
-                new GridColumn {Name = "Bool"},
+                new GridColumn {Name = "IsShipped"},
                 new GridColumn
                 {
                     Name = "Date",
-                    Filter = new Filter() {Text = filter, Operator = oper},
+                    Filter = new Filter() {Text = filter, Operator = oper, },
                     DataType = dataType
                 }
             };
@@ -160,12 +158,28 @@
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
-                new GridColumn {Name = "Bool"},
+                new GridColumn {Name = "IsShipped"},
                 new GridColumn
                 {
                     Name = "DecimalNumber",
                     Filter = new Filter() {Text = filter, Operator = oper},
                     DataType = Tubular.DataType.Numeric
+                }
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithBooleanFilter(string filter, CompareOperators oper)
+        {
+            return new[]
+            {
+                new GridColumn {Name = "Id"},
+                new GridColumn {Name = "Name"},
+                new GridColumn {Name = "Date"},
+                new GridColumn {
+                    Name = "IsShipped",
+                    Searchable = false,
+                    Filter = new Filter() { Text = filter, Operator = oper,  },
+                    DataType = Tubular.DataType.Boolean,
                 }
             };
         }
@@ -193,6 +207,5 @@
                 new GridColumn {Name = "Date"}
             };
         }
-
     }
 }

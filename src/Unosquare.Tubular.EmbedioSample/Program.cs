@@ -23,7 +23,7 @@ namespace Unosquare.Tubular.EmbedioSample
         private static void Main(string[] args)
         {
             var url = args.Length > 0 ? args[0] : "http://localhost:9696/";
-            
+
             // Our web server is disposable. Note that if you don't want to use logging,
             // there are alternate constructors that allow you to skip specifying an ILog object.
             using (var server = new WebServer(url))
@@ -39,7 +39,7 @@ namespace Unosquare.Tubular.EmbedioSample
                     UseRamCache = true,
                     DefaultExtension = ".html"
                 });
-                
+
                 // Once we've registered our modules and configured them, we call the RunAsync() method.
                 // This is a non-blocking method (it return immediately) so in this case we avoid
                 // disposing of the object until a key is pressed.

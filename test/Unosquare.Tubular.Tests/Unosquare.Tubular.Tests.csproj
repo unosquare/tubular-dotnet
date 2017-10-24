@@ -5,12 +5,7 @@
     <AssemblyName>Unosquare.Tubular.Tests</AssemblyName>
     <PackageId>Unosquare.Tubular.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <DebugType>Full</DebugType>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Unosquare.Tubular\Unosquare.Tubular.csproj" />

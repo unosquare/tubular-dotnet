@@ -20,7 +20,7 @@
     /// </summary>
     public static class Extensions
     {
-        private const string DateTimeFormat = "yyyy-MM-dd hh:mm:ss.f";
+        private const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss.f";
         private const string DateFormat = "yyyy-MM-dd";
 
 #if NET452
@@ -179,10 +179,9 @@
         {
             var columnMap = new Dictionary<GridColumn, PropertyInfo>(columns.Length);
 
-            foreach (var column in columns)
+            foreach (var column in columns.Where(column => properties.ContainsKey(column.Name)))
             {
-                if (properties.ContainsKey(column.Name))
-                    columnMap[column] = properties[column.Name];
+                columnMap[column] = properties[column.Name];
             }
 
             return columnMap;
@@ -203,13 +202,13 @@
 
                 foreach (var column in columnMap.Select(m => new { Value = m.Value.GetValue(item), m.Key }))
                 {
-                    if (column.Value is DateTime)
+                    if (column.Value is DateTime time)
                     {
                         if (column.Key.DataType == DataType.DateTimeUtc ||
                             TubularDefaultSettings.AdjustTimezoneOffset == false)
-                            payloadItem.Add((DateTime)column.Value);
+                            payloadItem.Add(time);
                         else
-                            payloadItem.Add(((DateTime)column.Value).AddMinutes(-timezoneOffset));
+                            payloadItem.Add(time.AddMinutes(-timezoneOffset));
                     }
                     else
                     {
@@ -247,39 +246,33 @@
             var aggregateColumns = columns.Where(c => c.Aggregate != AggregationFunction.None).ToArray();
             var payload = new Dictionary<string, object>(aggregateColumns.Length);
 
-            Action<GridColumn, Func<IQueryable<double>, double>, Func<IQueryable<decimal>, decimal>, Func<IQueryable<int>, int>, Func<IQueryable<string>, string>, Func<IQueryable<DateTime>, DateTime>> aggregate =
-                (column, doubleF, decimalF, intF, stringF, dateF) =>
+            void Aggregate(GridColumn column, Func<IQueryable<double>, double> doubleF, Func<IQueryable<decimal>, decimal> decimalF, Func<IQueryable<int>, int> intF, Func<IQueryable<string>, string> stringF, Func<IQueryable<DateTime>, DateTime> dateF)
+            {
+                if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(double))
                 {
-                    if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(double))
-                    {
-                        payload.Add(column.Name,
-                            doubleF(subset.Select(column.Name).Cast<double>()));
-                    }
-                    else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(decimal))
-                    {
-                        payload.Add(column.Name,
-                            decimalF(subset.Select(column.Name).Cast<decimal>()));
-                    }
-                    else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(int))
-                    {
-                        payload.Add(column.Name,
-                            intF(subset.Select(column.Name).Cast<int>()));
-                    }
-                    else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(DateTime))
-                    {
-                        if (dateF == null) return;
+                    payload.Add(column.Name, doubleF(subset.Select(column.Name).Cast<double>()));
+                }
+                else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(decimal))
+                {
+                    payload.Add(column.Name, decimalF(subset.Select(column.Name).Cast<decimal>()));
+                }
+                else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(int))
+                {
+                    payload.Add(column.Name, intF(subset.Select(column.Name).Cast<int>()));
+                }
+                else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(DateTime))
+                {
+                    if (dateF == null) return;
 
-                        payload.Add(column.Name,
-                            dateF(subset.Select(column.Name).Cast<DateTime>()));
-                    }
-                    else
-                    {
-                        if (stringF == null) return;
+                    payload.Add(column.Name, dateF(subset.Select(column.Name).Cast<DateTime>()));
+                }
+                else
+                {
+                    if (stringF == null) return;
 
-                        payload.Add(column.Name,
-                            stringF(subset.Select(column.Name).Cast<string>()));
-                    }
-                };
+                    payload.Add(column.Name, stringF(subset.Select(column.Name).Cast<string>()));
+                }
+            }
 
             foreach (var column in aggregateColumns)
             {
@@ -288,19 +281,19 @@
                     switch (column.Aggregate)
                     {
                         case AggregationFunction.Sum:
-                            aggregate(column, x => x.Sum(), x => x.Sum(), x => x.Sum(), null, null);
+                            Aggregate(column, x => x.Sum(), x => x.Sum(), x => x.Sum(), null, null);
 
                             break;
                         case AggregationFunction.Average:
-                            aggregate(column, x => x.Average(), x => x.Average(), x => x.Sum() / x.Count(), null, null);
+                            Aggregate(column, x => x.Average(), x => x.Average(), x => x.Sum() / x.Count(), null, null);
 
                             break;
                         case AggregationFunction.Max:
-                            aggregate(column, x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max());
+                            Aggregate(column, x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max());
 
                             break;
                         case AggregationFunction.Min:
-                            aggregate(column, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min());
+                            Aggregate(column, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min());
 
                             break;
 
@@ -401,6 +394,7 @@
                 {
                     case CompareOperators.Equals:
                     case CompareOperators.NotEquals:
+
                         if (string.IsNullOrWhiteSpace(column.Filter.Text)) continue;
 
                         if (column.DataType == DataType.Date)
