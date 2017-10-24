@@ -10,6 +10,7 @@
     class CompareOperatorsTest
     {
         private const int PageSize = 20;
+
         private static readonly IQueryable<Thing> _dataSource = SampleEntities.GenerateData().AsQueryable();
 
         static object[] FilterColorCases =
@@ -39,20 +40,6 @@
         [Test, TestCaseSource("FilterColorCases")]
         public void FilterColorTests(string filter, IQueryable<Thing> filterCount, CompareOperators compareOperator)
         {
-            var data = filterCount.Take(PageSize).ToList();
-
-            var request = new GridDataRequest()
-            {
-                Take = PageSize,
-                Skip = 0,
-                Search = new Filter(),
-                Columns = Thing.GetColumnsWithColorFilter(filter, compareOperator)
-            };
-
-            var response = request.CreateGridDataResponse(_dataSource);
-
-            Assert.AreEqual(data.Count, response.Payload.Count, $"Test {compareOperator}");
-
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
@@ -158,6 +145,7 @@
             var filter = DateTime.UtcNow.ToString();
 
             var filterCount = _dataSource.Where(x => x.Date.ToString() == filter);
+
             var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
@@ -165,6 +153,7 @@
                 Take = PageSize,
                 Skip = 0,
                 Search = new Filter(),
+
                 Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.DateTimeUtc)
             };
 
@@ -204,6 +193,7 @@
         {
             var filter = "true";
             var filterCount = _dataSource.Where(x => x.IsShipped == bool.Parse(filter));
+
             var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()
@@ -211,6 +201,7 @@
                 Take = PageSize,
                 Skip = 0,
                 Search = new Filter(),
+
                 Columns = Thing.GetColumnsWithBooleanFilter(filter, CompareOperators.Equals)
             };
 
@@ -219,6 +210,7 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+
 
         }
     }
