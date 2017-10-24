@@ -40,6 +40,20 @@
         [Test, TestCaseSource("FilterColorCases")]
         public void FilterColorTests(string filter, IQueryable<Thing> filterCount, CompareOperators compareOperator)
         {
+            var data = filterCount.Take(PageSize).ToList();
+
+            var request = new GridDataRequest()		
+            {		
+                Take = PageSize,		
+                Skip = 0,		
+                Search = new Filter(),		
+                Columns = Thing.GetColumnsWithColorFilter(filter, compareOperator)		
+            };		
+ 		
+            var response = request.CreateGridDataResponse(_dataSource);
+
+            Assert.AreEqual(data.Count, response.Payload.Count, $"Test {compareOperator}");
+
             Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
