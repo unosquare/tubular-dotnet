@@ -330,6 +330,8 @@
                 "Name same distinct count");
             Assert.AreEqual(dataSource.Select(x => x.Date).Distinct().Count(), (int) response.AggregationPayload["Date"],
                 "Date same distinct count");
+            Assert.AreEqual(dataSource.Select(x => x.IsShipped).Distinct().Count(), (int)response.AggregationPayload["IsShipped"],
+                "IsShipped same distinct count");
         }
 
         class MyDateClass
