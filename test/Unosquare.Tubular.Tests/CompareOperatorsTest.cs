@@ -203,7 +203,7 @@
         public void BooleanFilterTests()
         {
             var filter = "true";
-            var filterCount = _dataSource.Where(x => x.Bool == bool.Parse(filter));
+            var filterCount = _dataSource.Where(x => x.IsShipped == bool.Parse(filter));
             var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest()

@@ -394,6 +394,7 @@
                 {
                     case CompareOperators.Equals:
                     case CompareOperators.NotEquals:
+
                         if (string.IsNullOrWhiteSpace(column.Filter.Text)) continue;
 
                         if (column.DataType == DataType.Date)
