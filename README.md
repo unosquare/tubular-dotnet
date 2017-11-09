@@ -13,7 +13,7 @@ Now you can use Javascript as backend using [Tubular Node.js module](https://git
 
 Please visit the <a href="http://unosquare.github.io/tubular" target="_blank">Tubular GitHub Page</a> to learn how quickly you can start coding. Don't forget to check out the Tubular Generator which quickly turns models into an awesome UIs!
 
-## NuGet Installation [![NuGet version](https://badge.fury.io/nu/tubular.svg)](http://badge.fury.io/nu/tubular)
+## NuGet Installation [![NuGet version](https://badge.fury.io/nu/Tubular.ServerSide.svg)](https://badge.fury.io/nu/Tubular.ServerSide)
 
 The same Nuget contains `.NET Framework 4.5.2` and `.NET Standard 2.0` targets.
 
