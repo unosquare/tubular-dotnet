@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.Tubular.Tests.Database
 {
+    using System;
     using ObjectModel;
 
     public class Thing
@@ -16,9 +17,9 @@
 
         public string Color { get; set; }
 
-        public System.DateTime Date { get; set; }
+        public DateTime Date { get; set; }
 
-        public System.DateTime? NullableDate { get; set; }
+        public DateTime? NullableDate { get; set; }
 
         public bool IsShipped { get; set; }
 
@@ -77,7 +78,7 @@
                 {
                     Name = "Id",
                     Filter = new Filter() {Text = filter, Operator = oper},
-                    DataType = Tubular.DataType.Numeric
+                    DataType = DataType.Numeric
                 },
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
@@ -96,8 +97,8 @@
                 new GridColumn
                 {
                     Name = "Color",
-                    Filter = new Filter() { Text = filter, Operator = oper },
-                    DataType = Tubular.DataType.String
+                    Filter = new Filter() {Text = filter, Operator = oper},
+                    DataType = DataType.String
                 }
             };
         }
@@ -110,7 +111,7 @@
                 {
                     Name = "Id",
                     Filter = new Filter() {Text = filter, Argument = arguments, Operator = CompareOperators.Between},
-                    DataType = Tubular.DataType.Numeric
+                    DataType = DataType.Numeric
                 },
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
@@ -118,7 +119,7 @@
             };
         }
 
-        public static GridColumn[] GetColumnsWithMultipleFilter(string [] arguments, CompareOperators oper)
+        public static GridColumn[] GetColumnsWithMultipleFilter(string[] arguments, CompareOperators oper)
         {
             return new[]
             {
@@ -126,16 +127,17 @@
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
                 new GridColumn {Name = "IsShipped"},
-                 new GridColumn
+                new GridColumn
                 {
                     Name = "Color",
-                    Filter = new Filter() { Argument = arguments, Operator = oper },
-                    DataType = Tubular.DataType.String
+                    Filter = new Filter() {Argument = arguments, Operator = oper},
+                    DataType = DataType.String
                 }
             };
         }
 
-        public static GridColumn[] GetColumnsWithDateFilter(string filter, CompareOperators oper, Tubular.DataType dataType)
+        public static GridColumn[] GetColumnsWithDateFilter(string filter, CompareOperators oper,
+            DataType dataType)
         {
             return new[]
             {
@@ -145,7 +147,7 @@
                 new GridColumn
                 {
                     Name = "Date",
-                    Filter = new Filter() {Text = filter, Operator = oper, },
+                    Filter = new Filter() {Text = filter, Operator = oper,},
                     DataType = dataType
                 }
             };
@@ -163,7 +165,7 @@
                 {
                     Name = "DecimalNumber",
                     Filter = new Filter() {Text = filter, Operator = oper},
-                    DataType = Tubular.DataType.Numeric
+                    DataType = DataType.Numeric
                 }
             };
         }
@@ -175,22 +177,23 @@
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"},
-                new GridColumn {
+                new GridColumn
+                {
                     Name = "IsShipped",
                     Searchable = false,
-                    Filter = new Filter() { Text = filter, Operator = oper,  },
-                    DataType = Tubular.DataType.Boolean,
+                    Filter = new Filter() {Text = filter, Operator = oper,},
+                    DataType = DataType.Boolean,
                 }
             };
         }
 
-        public static GridColumn[] GetColumnsWithAggregateDouble(AggregationFunction aggregation)            
+        public static GridColumn[] GetColumnsWithAggregateDouble(AggregationFunction aggregation)
         {
             return new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Number", Aggregate = aggregation},
-                new GridColumn {Name = "DecimalNumber" },
+                new GridColumn {Name = "DecimalNumber"},
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"}
             };
@@ -202,9 +205,31 @@
             {
                 new GridColumn {Name = "Id", Aggregate = aggregation},
                 new GridColumn {Name = "Number"},
-                new GridColumn {Name = "DecimalNumber" },
+                new GridColumn {Name = "DecimalNumber"},
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"}
+            };
+        }
+
+        public static GridColumn[] GetColumnsWithAggregateDoubleAndInvalidDate(AggregationFunction aggregation)
+        {
+            return new[]
+            {
+                new GridColumn {Name = "Id"},
+                new GridColumn {Name = "Number"},
+                new GridColumn {Name = "DecimalNumber", Aggregate = aggregation, DataType = DataType.Numeric },
+                new GridColumn {Name = "Name"},
+                new GridColumn
+                {
+                    Name = "Date",
+                    Filter = new Filter
+                    {
+                        Argument = new[] {DateTime.Now.ToShortDateString()},
+                        HasFilter = true,
+                        Text = DateTime.Now.ToShortDateString(),
+                        Operator = CompareOperators.Equals
+                    }
+                }
             };
         }
     }

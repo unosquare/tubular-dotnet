@@ -2,8 +2,8 @@
 {
     using NUnit.Framework;
     using System.Linq;
-    using Unosquare.Tubular.ObjectModel;
-    using Unosquare.Tubular.Tests.Database;
+    using ObjectModel;
+    using Database;
 
     [TestFixture]
     class AggregationTest
@@ -16,7 +16,7 @@
         {
             var data = dataSource.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -29,8 +29,7 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             Assert.AreEqual(dataSource.Sum(x => x.Number), response.AggregationPayload["Number"],
-               "Same sum number");
-
+                "Same sum number");
         }
 
         [Test]
@@ -38,7 +37,7 @@
         {
             var data = dataSource.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -50,8 +49,8 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(dataSource.Sum(x => x.Number)/dataSource.Count(), response.AggregationPayload["Number"],
-               "Same average number");
+            Assert.AreEqual(dataSource.Sum(x => x.Number) / dataSource.Count(), response.AggregationPayload["Number"],
+                "Same average number");
 
         }
 
@@ -60,7 +59,7 @@
         {
             var data = dataSource.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -73,7 +72,7 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             Assert.AreEqual(dataSource.Max(x => x.Id), response.AggregationPayload["Id"],
-               "Same max number");
+                "Same max number");
         }
 
         [Test]
@@ -81,7 +80,7 @@
         {
             var data = dataSource.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -94,7 +93,7 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             Assert.AreEqual(dataSource.Min(x => x.Id), response.AggregationPayload["Id"],
-               "Same min number");
+                "Same min number");
         }
 
         [Test]
@@ -102,7 +101,7 @@
         {
             var data = dataSource.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -115,7 +114,26 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             Assert.AreEqual(dataSource.Count(), response.AggregationPayload["Number"],
-               "Same count number");
+                "Same count number");
+        }
+        
+        [Test]
+        public void EmptySetSumAggregation_ReturnsSumZero()
+        {
+            var request = new GridDataRequest
+            {
+                Take = PageSize,
+                Skip = 0,
+                Search = new Filter { Text = string.Empty, Operator = CompareOperators.None },
+                Columns = Thing.GetColumnsWithAggregateDoubleAndInvalidDate(AggregationFunction.Sum),
+                TimezoneOffset = 360
+            };
+
+            var response = request.CreateGridDataResponse(dataSource);
+
+            Assert.AreEqual(0, response.Payload.Count, "Same length");
+            Assert.IsTrue(response.AggregationPayload.Any());
+            Assert.AreEqual(0, response.AggregationPayload.First().Value, "Sum zero");
         }
     }
 }
