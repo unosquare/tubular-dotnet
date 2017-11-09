@@ -246,7 +246,7 @@
             var aggregateColumns = columns.Where(c => c.Aggregate != AggregationFunction.None).ToArray();
             var payload = new Dictionary<string, object>(aggregateColumns.Length);
 
-            void Aggregate(GridColumn column, Func<IQueryable<double>, double> doubleF, Func<IQueryable<decimal>, decimal> decimalF, Func<IQueryable<int>, int> intF, Func<IQueryable<string>, string> stringF, Func<IQueryable<DateTime>, DateTime> dateF)
+            void Aggregate(GridColumn column, Func<IQueryable<double>, double> doubleF, Func<IQueryable<decimal?>, decimal?> decimalF, Func<IQueryable<int>, int> intF, Func<IQueryable<string>, string> stringF, Func<IQueryable<DateTime>, DateTime> dateF)
             {
                 if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(double))
                 {
@@ -254,7 +254,7 @@
                 }
                 else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(decimal))
                 {
-                    payload.Add(column.Name, decimalF(subset.Select(column.Name).Cast<decimal>()));
+                    payload.Add(column.Name, decimalF(subset.Select(column.Name).Cast<decimal?>()) ?? 0);
                 }
                 else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(int))
                 {
