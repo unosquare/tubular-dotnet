@@ -30,9 +30,17 @@ nav {
 .doc {
     position: fixed !important;
     width: 120px;
-    height: 60px;
+    height: 70px;
 }
 
 .sideaffix {
     margin-top: 80px;
 }
+
+div#toc li {
+    padding-bottom: 6px;
+ }
+
+ .top-sep {
+     margin-top: 10px;
+ }
