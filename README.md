@@ -23,7 +23,7 @@ PM> Install-Package Tubular.ServerSide
 
 ## Global Settings
 
-You can access to global settings by using the static object `TubularDefaultSettings` and setup common behavior in Tubular. The settings included are:
+You can access global settings by using the static object `TubularDefaultSettings` and setup common behavior in Tubular. The settings included are:
 
 <table>
     <tr><th>Setting</th><th>Default value</th><th>Notes</th></tr>
