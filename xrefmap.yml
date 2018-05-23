@@ -65,6 +65,7 @@ references:
   name: ProvideMultipleSerieChartResponse
   href: api/Unosquare.Tubular.ChartsExtension.html#Unosquare_Tubular_ChartsExtension_ProvideMultipleSerieChartResponse_
   commentId: Overload:Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse
+  isSpec: "True"
   fullName: Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse
   nameWithType: ChartsExtension.ProvideMultipleSerieChartResponse
 - uid: Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse``2(IQueryable{``0},Expression{System.Func{``0,System.String}},Expression{System.Func{``0,System.String}},Expression{System.Func{``0,``1}},Unosquare.Tubular.AggregationFunction)
@@ -80,6 +81,7 @@ references:
   name: ProvideSingleSerieChartResponse
   href: api/Unosquare.Tubular.ChartsExtension.html#Unosquare_Tubular_ChartsExtension_ProvideSingleSerieChartResponse_
   commentId: Overload:Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse
+  isSpec: "True"
   fullName: Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse
   nameWithType: ChartsExtension.ProvideSingleSerieChartResponse
 - uid: Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse``2(IQueryable{``0},Expression{System.Func{``0,System.String}},Expression{System.Func{``0,``1}},System.String,Unosquare.Tubular.AggregationFunction)
@@ -263,6 +265,7 @@ references:
   name: AdjustTimeZone
   href: api/Unosquare.Tubular.Extensions.html#Unosquare_Tubular_Extensions_AdjustTimeZone_
   commentId: Overload:Unosquare.Tubular.Extensions.AdjustTimeZone
+  isSpec: "True"
   fullName: Unosquare.Tubular.Extensions.AdjustTimeZone
   nameWithType: Extensions.AdjustTimeZone
 - uid: Unosquare.Tubular.Extensions.CreateGridDataResponse(Unosquare.Tubular.ObjectModel.GridDataRequest,IQueryable,Unosquare.Tubular.Extensions.ProcessResponseSubset)
@@ -275,6 +278,7 @@ references:
   name: CreateGridDataResponse
   href: api/Unosquare.Tubular.Extensions.html#Unosquare_Tubular_Extensions_CreateGridDataResponse_
   commentId: Overload:Unosquare.Tubular.Extensions.CreateGridDataResponse
+  isSpec: "True"
   fullName: Unosquare.Tubular.Extensions.CreateGridDataResponse
   nameWithType: Extensions.CreateGridDataResponse
 - uid: Unosquare.Tubular.Extensions.ProcessResponseSubset
@@ -305,6 +309,7 @@ references:
   name: AffectedCount
   href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_AffectedCount_
   commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.AffectedCount
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.ApiResult.AffectedCount
   nameWithType: ApiResult.AffectedCount
 - uid: Unosquare.Tubular.GenericModels.ApiResult.Error(System.Exception)
@@ -317,6 +322,7 @@ references:
   name: Error
   href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Error_
   commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.Error
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.ApiResult.Error
   nameWithType: ApiResult.Error
 - uid: Unosquare.Tubular.GenericModels.ApiResult.ErrorStatus
@@ -335,6 +341,7 @@ references:
   name: Message
   href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Message_
   commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.Message
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.ApiResult.Message
   nameWithType: ApiResult.Message
 - uid: Unosquare.Tubular.GenericModels.ApiResult.Ok(System.String)
@@ -347,6 +354,7 @@ references:
   name: Ok
   href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Ok_
   commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.Ok
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.ApiResult.Ok
   nameWithType: ApiResult.Ok
 - uid: Unosquare.Tubular.GenericModels.ApiResult.OkStatus
@@ -365,6 +373,7 @@ references:
   name: Status
   href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Status_
   commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.Status
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.ApiResult.Status
   nameWithType: ApiResult.Status
 - uid: Unosquare.Tubular.GenericModels.AppModule
@@ -383,6 +392,7 @@ references:
   name: IsRoot
   href: api/Unosquare.Tubular.GenericModels.AppModule.html#Unosquare_Tubular_GenericModels_AppModule_IsRoot_
   commentId: Overload:Unosquare.Tubular.GenericModels.AppModule.IsRoot
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.AppModule.IsRoot
   nameWithType: AppModule.IsRoot
 - uid: Unosquare.Tubular.GenericModels.AppModule.Menus
@@ -395,6 +405,7 @@ references:
   name: Menus
   href: api/Unosquare.Tubular.GenericModels.AppModule.html#Unosquare_Tubular_GenericModels_AppModule_Menus_
   commentId: Overload:Unosquare.Tubular.GenericModels.AppModule.Menus
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.AppModule.Menus
   nameWithType: AppModule.Menus
 - uid: Unosquare.Tubular.GenericModels.Menu
@@ -413,6 +424,7 @@ references:
   name: Icon
   href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_Icon_
   commentId: Overload:Unosquare.Tubular.GenericModels.Menu.Icon
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.Menu.Icon
   nameWithType: Menu.Icon
 - uid: Unosquare.Tubular.GenericModels.Menu.IsFunction
@@ -425,6 +437,7 @@ references:
   name: IsFunction
   href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_IsFunction_
   commentId: Overload:Unosquare.Tubular.GenericModels.Menu.IsFunction
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.Menu.IsFunction
   nameWithType: Menu.IsFunction
 - uid: Unosquare.Tubular.GenericModels.Menu.IsSeparator
@@ -437,6 +450,7 @@ references:
   name: IsSeparator
   href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_IsSeparator_
   commentId: Overload:Unosquare.Tubular.GenericModels.Menu.IsSeparator
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.Menu.IsSeparator
   nameWithType: Menu.IsSeparator
 - uid: Unosquare.Tubular.GenericModels.Menu.IsVisible
@@ -449,6 +463,7 @@ references:
   name: IsVisible
   href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_IsVisible_
   commentId: Overload:Unosquare.Tubular.GenericModels.Menu.IsVisible
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.Menu.IsVisible
   nameWithType: Menu.IsVisible
 - uid: Unosquare.Tubular.GenericModels.Menu.Name
@@ -461,6 +476,7 @@ references:
   name: Name
   href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_Name_
   commentId: Overload:Unosquare.Tubular.GenericModels.Menu.Name
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.Menu.Name
   nameWithType: Menu.Name
 - uid: Unosquare.Tubular.GenericModels.Menu.TemplateUrl
@@ -473,6 +489,7 @@ references:
   name: TemplateUrl
   href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_TemplateUrl_
   commentId: Overload:Unosquare.Tubular.GenericModels.Menu.TemplateUrl
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.Menu.TemplateUrl
   nameWithType: Menu.TemplateUrl
 - uid: Unosquare.Tubular.GenericModels.Menu.Url
@@ -485,6 +502,7 @@ references:
   name: Url
   href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_Url_
   commentId: Overload:Unosquare.Tubular.GenericModels.Menu.Url
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.Menu.Url
   nameWithType: Menu.Url
 - uid: Unosquare.Tubular.GenericModels.Menu.UrlLink
@@ -497,6 +515,7 @@ references:
   name: UrlLink
   href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_UrlLink_
   commentId: Overload:Unosquare.Tubular.GenericModels.Menu.UrlLink
+  isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.Menu.UrlLink
   nameWithType: Menu.UrlLink
 - uid: Unosquare.Tubular.ObjectModel
@@ -521,6 +540,7 @@ references:
   name: Filter
   href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter__ctor_
   commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.#ctor
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.Filter.Filter
   nameWithType: Filter.Filter
 - uid: Unosquare.Tubular.ObjectModel.Filter.Argument
@@ -533,6 +553,7 @@ references:
   name: Argument
   href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Argument_
   commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.Argument
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.Filter.Argument
   nameWithType: Filter.Argument
 - uid: Unosquare.Tubular.ObjectModel.Filter.HasFilter
@@ -545,6 +566,7 @@ references:
   name: HasFilter
   href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_HasFilter_
   commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.HasFilter
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.Filter.HasFilter
   nameWithType: Filter.HasFilter
 - uid: Unosquare.Tubular.ObjectModel.Filter.Name
@@ -557,6 +579,7 @@ references:
   name: Name
   href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Name_
   commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.Name
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.Filter.Name
   nameWithType: Filter.Name
 - uid: Unosquare.Tubular.ObjectModel.Filter.Operator
@@ -569,6 +592,7 @@ references:
   name: Operator
   href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Operator_
   commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.Operator
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.Filter.Operator
   nameWithType: Filter.Operator
 - uid: Unosquare.Tubular.ObjectModel.Filter.OptionsUrl
@@ -581,6 +605,7 @@ references:
   name: OptionsUrl
   href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_OptionsUrl_
   commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.OptionsUrl
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.Filter.OptionsUrl
   nameWithType: Filter.OptionsUrl
 - uid: Unosquare.Tubular.ObjectModel.Filter.Text
@@ -593,6 +618,7 @@ references:
   name: Text
   href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Text_
   commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.Text
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.Filter.Text
   nameWithType: Filter.Text
 - uid: Unosquare.Tubular.ObjectModel.GridColumn
@@ -611,6 +637,7 @@ references:
   name: Aggregate
   href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Aggregate_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Aggregate
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridColumn.Aggregate
   nameWithType: GridColumn.Aggregate
 - uid: Unosquare.Tubular.ObjectModel.GridColumn.DataType
@@ -623,6 +650,7 @@ references:
   name: DataType
   href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_DataType_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.DataType
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridColumn.DataType
   nameWithType: GridColumn.DataType
 - uid: Unosquare.Tubular.ObjectModel.GridColumn.Filter
@@ -635,6 +663,7 @@ references:
   name: Filter
   href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Filter_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Filter
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridColumn.Filter
   nameWithType: GridColumn.Filter
 - uid: Unosquare.Tubular.ObjectModel.GridColumn.Label
@@ -647,6 +676,7 @@ references:
   name: Label
   href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Label_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Label
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridColumn.Label
   nameWithType: GridColumn.Label
 - uid: Unosquare.Tubular.ObjectModel.GridColumn.Name
@@ -659,6 +689,7 @@ references:
   name: Name
   href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Name_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Name
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridColumn.Name
   nameWithType: GridColumn.Name
 - uid: Unosquare.Tubular.ObjectModel.GridColumn.Searchable
@@ -671,6 +702,7 @@ references:
   name: Searchable
   href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Searchable_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Searchable
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridColumn.Searchable
   nameWithType: GridColumn.Searchable
 - uid: Unosquare.Tubular.ObjectModel.GridColumn.Sortable
@@ -683,6 +715,7 @@ references:
   name: Sortable
   href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Sortable_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Sortable
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridColumn.Sortable
   nameWithType: GridColumn.Sortable
 - uid: Unosquare.Tubular.ObjectModel.GridColumn.SortDirection
@@ -695,6 +728,7 @@ references:
   name: SortDirection
   href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_SortDirection_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.SortDirection
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridColumn.SortDirection
   nameWithType: GridColumn.SortDirection
 - uid: Unosquare.Tubular.ObjectModel.GridColumn.SortOrder
@@ -707,6 +741,7 @@ references:
   name: SortOrder
   href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_SortOrder_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.SortOrder
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridColumn.SortOrder
   nameWithType: GridColumn.SortOrder
 - uid: Unosquare.Tubular.ObjectModel.GridDataRequest
@@ -725,6 +760,7 @@ references:
   name: Columns
   href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Columns_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Columns
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Columns
   nameWithType: GridDataRequest.Columns
 - uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Counter
@@ -737,6 +773,7 @@ references:
   name: Counter
   href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Counter_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Counter
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Counter
   nameWithType: GridDataRequest.Counter
 - uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Search
@@ -749,6 +786,7 @@ references:
   name: Search
   href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Search_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Search
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Search
   nameWithType: GridDataRequest.Search
 - uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Skip
@@ -761,6 +799,7 @@ references:
   name: Skip
   href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Skip_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Skip
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Skip
   nameWithType: GridDataRequest.Skip
 - uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Take
@@ -773,6 +812,7 @@ references:
   name: Take
   href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Take_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Take
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Take
   nameWithType: GridDataRequest.Take
 - uid: Unosquare.Tubular.ObjectModel.GridDataRequest.TimezoneOffset
@@ -785,6 +825,7 @@ references:
   name: TimezoneOffset
   href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_TimezoneOffset_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.TimezoneOffset
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.TimezoneOffset
   nameWithType: GridDataRequest.TimezoneOffset
 - uid: Unosquare.Tubular.ObjectModel.GridDataResponse
@@ -803,6 +844,7 @@ references:
   name: AggregationPayload
   href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_AggregationPayload_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.AggregationPayload
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.AggregationPayload
   nameWithType: GridDataResponse.AggregationPayload
 - uid: Unosquare.Tubular.ObjectModel.GridDataResponse.Counter
@@ -815,6 +857,7 @@ references:
   name: Counter
   href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_Counter_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.Counter
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.Counter
   nameWithType: GridDataResponse.Counter
 - uid: Unosquare.Tubular.ObjectModel.GridDataResponse.CurrentPage
@@ -827,6 +870,7 @@ references:
   name: CurrentPage
   href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_CurrentPage_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.CurrentPage
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.CurrentPage
   nameWithType: GridDataResponse.CurrentPage
 - uid: Unosquare.Tubular.ObjectModel.GridDataResponse.FilteredRecordCount
@@ -839,6 +883,7 @@ references:
   name: FilteredRecordCount
   href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_FilteredRecordCount_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.FilteredRecordCount
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.FilteredRecordCount
   nameWithType: GridDataResponse.FilteredRecordCount
 - uid: Unosquare.Tubular.ObjectModel.GridDataResponse.Payload
@@ -851,6 +896,7 @@ references:
   name: Payload
   href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_Payload_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.Payload
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.Payload
   nameWithType: GridDataResponse.Payload
 - uid: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalPages
@@ -863,6 +909,7 @@ references:
   name: TotalPages
   href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_TotalPages_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.TotalPages
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalPages
   nameWithType: GridDataResponse.TotalPages
 - uid: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalRecordCount
@@ -875,6 +922,7 @@ references:
   name: TotalRecordCount
   href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_TotalRecordCount_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.TotalRecordCount
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalRecordCount
   nameWithType: GridDataResponse.TotalRecordCount
 - uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1
@@ -898,6 +946,7 @@ references:
   name: AdjustTimezoneOffset
   href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_AdjustTimezoneOffset_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.AdjustTimezoneOffset
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.AdjustTimezoneOffset
   fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).AdjustTimezoneOffset
   nameWithType: GridDataUpdateRow<T>.AdjustTimezoneOffset
@@ -914,6 +963,7 @@ references:
   name: New
   href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_New_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.New
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.New
   fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).New
   nameWithType: GridDataUpdateRow<T>.New
@@ -930,6 +980,7 @@ references:
   name: Old
   href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_Old_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.Old
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.Old
   fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).Old
   nameWithType: GridDataUpdateRow<T>.Old
@@ -946,6 +997,7 @@ references:
   name: TimezoneOffset
   href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_TimezoneOffset_
   commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.TimezoneOffset
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.TimezoneOffset
   fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).TimezoneOffset
   nameWithType: GridDataUpdateRow<T>.TimezoneOffset
@@ -971,6 +1023,7 @@ references:
   name: Data
   href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Data_
   commentId: Overload:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Data
   fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Data
   nameWithType: MultipleSerieChartResponse<T>.Data
@@ -987,6 +1040,7 @@ references:
   name: Labels
   href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Labels_
   commentId: Overload:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Labels
   fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Labels
   nameWithType: MultipleSerieChartResponse<T>.Labels
@@ -1003,6 +1057,7 @@ references:
   name: Series
   href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Series_
   commentId: Overload:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Series
   fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Series
   nameWithType: MultipleSerieChartResponse<T>.Series
@@ -1028,6 +1083,7 @@ references:
   name: Data
   href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Data_
   commentId: Overload:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Data
   fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Data
   nameWithType: SingleSerieChartResponse<T>.Data
@@ -1044,6 +1100,7 @@ references:
   name: Labels
   href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Labels_
   commentId: Overload:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Labels
   fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Labels
   nameWithType: SingleSerieChartResponse<T>.Labels
@@ -1060,6 +1117,7 @@ references:
   name: SerieName
   href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_SerieName_
   commentId: Overload:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName
+  isSpec: "True"
   fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.SerieName
   fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).SerieName
   nameWithType: SingleSerieChartResponse<T>.SerieName
@@ -1104,5 +1162,6 @@ references:
   name: AdjustTimezoneOffset
   href: api/Unosquare.Tubular.TubularDefaultSettings.html#Unosquare_Tubular_TubularDefaultSettings_AdjustTimezoneOffset_
   commentId: Overload:Unosquare.Tubular.TubularDefaultSettings.AdjustTimezoneOffset
+  isSpec: "True"
   fullName: Unosquare.Tubular.TubularDefaultSettings.AdjustTimezoneOffset
   nameWithType: TubularDefaultSettings.AdjustTimezoneOffset
