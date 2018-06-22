@@ -7,18 +7,13 @@
     [TestFixture]
     public class ChartFixture
     {
-        IQueryable<Thing> sut;
         private const string ColorTest = "red";
 
-        [SetUp]
-        public void SetUp()
-        {
-            sut = SampleEntities.GenerateData().AsQueryable();
-        }
-        
         [Test]
         public void GetSingleSerieChart()
         {
+            var sut = SampleEntities.GenerateData().AsQueryable();
+
             var chartObj = sut.ProvideSingleSerieChartResponse(
                 label: x => x.Color,
                 value: x => x.DecimalNumber);

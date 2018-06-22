@@ -1,16 +1,16 @@
 ﻿namespace Unosquare.Tubular.Tests
 {
     using NUnit.Framework;
-    using Unosquare.Tubular.GenericModels;
+    using GenericModels;
 
     [TestFixture]
-    class ApiResultTest
+    public class ApiResultTest
     {
         [Test]
         public void AffectedCountTests()
         {
             var api = new ApiResult();
-            var affectedCount = 1000;
+            const int affectedCount = 1000;
 
             api.AffectedCount = affectedCount;
 
@@ -18,21 +18,19 @@
         }
 
         [Test]
-        public void OKTes()
+        public void OKTest()
         {
-            var apiOK = new ApiResult();
-            var message = "This is a OK message";
+            const string message = "This is a OK message";
 
             var result = ApiResult.Ok(message);
 
-            Assert.AreEqual("OK", result.Status);
+            Assert.AreEqual("Ok", result.Status);
             Assert.AreEqual(message, result.Message);
         }
 
         [Test]
-        public void ErrorTes()
+        public void ErrorTest()
         {
-            var apiOK = new ApiResult();
             var ex = new System.Exception("This is a Error message");
 
             var result = ApiResult.Error(ex);

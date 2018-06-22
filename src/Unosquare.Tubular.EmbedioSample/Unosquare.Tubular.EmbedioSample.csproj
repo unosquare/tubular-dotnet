@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EmbedIO" Version="1.10.0" />
-    <PackageReference Include="Unosquare.Swan" Version="0.17.1" />
+    <PackageReference Include="EmbedIO" Version="1.13.1" />
+    <PackageReference Include="Unosquare.Swan" Version="0.30.1" />
   </ItemGroup>
 
 </Project>
