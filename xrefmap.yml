@@ -325,12 +325,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.ApiResult.Error
   nameWithType: ApiResult.Error
-- uid: Unosquare.Tubular.GenericModels.ApiResult.ErrorStatus
-  name: ErrorStatus
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_ErrorStatus
-  commentId: F:Unosquare.Tubular.GenericModels.ApiResult.ErrorStatus
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.ErrorStatus
-  nameWithType: ApiResult.ErrorStatus
 - uid: Unosquare.Tubular.GenericModels.ApiResult.Message
   name: Message
   href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Message
@@ -357,12 +351,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.Tubular.GenericModels.ApiResult.Ok
   nameWithType: ApiResult.Ok
-- uid: Unosquare.Tubular.GenericModels.ApiResult.OkStatus
-  name: OkStatus
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_OkStatus
-  commentId: F:Unosquare.Tubular.GenericModels.ApiResult.OkStatus
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.OkStatus
-  nameWithType: ApiResult.OkStatus
 - uid: Unosquare.Tubular.GenericModels.ApiResult.Status
   name: Status
   href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Status
