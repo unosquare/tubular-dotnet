@@ -8,9 +8,6 @@
                     when('/', {
                         templateUrl: '/ui/app/common/view.html',
                         title: 'A Sample Data Grid!'
-                    }).when('/format', {
-                        templateUrl: '/ui/app/common/viewformat.html',
-                        title: 'Charts and grid'
                     }).when('/form/:param', {
                         templateUrl: '/ui/app/common/form.html',
                         title: 'This is a form!'
@@ -47,14 +44,14 @@
             }
         ])
         .controller('tubularSampleCtrl', [
-            '$scope', '$location', 'toastr', 'tubularHttp', 'tubularConfig',
-            function ($scope, $location, toastr, tubularHttp, tubularConfig) {
+            '$scope', '$location', 'toastr', '$http', 'tubularConfig',
+            function ($scope, $location, toastr, $http, tubularConfig) {
                 var me = this;
 
                 tubularConfig.webApi.requireAuthentication(false);
-                tubularHttp.get('api/orders/cities').then(function (data) {
+                $http.get('api/orders/cities').then(function (response) {
                     $scope.cities = [];
-                    angular.forEach(data, function (value) {
+                    angular.forEach(response.data, function (value) {
                         $scope.cities.push(value.Key);
                     });
                 });
@@ -101,26 +98,6 @@
                 $scope.$on('tbForm_OnCancel', function () {
                     $location.path('/');
                 });
-
-                $scope.chartClick = function (points) {
-                    angular.forEach(points, function (point) {
-                        toastr.success(points[0]._chart.config.data.datasets[point._datasetIndex].label);
-                    });
-                };
-
-                $scope.pieClick = function (points) {
-                    angular.forEach(points, function (point) {
-                        toastr.success(point._model.label + ': ' + point._model.y);
-                    });
-                };
-
-                $scope.highchartClick = function (event) {
-                    toastr.success(event.point.category + '-' + event.point.series.name + ': ' + event.point.y);
-                };
-
-                $scope.highpieClick = function (event) {
-                    toastr.success(event.point.name + ': ' + event.point.y);
-                };
             }
         ]).controller('loginCtrl',
             function ($scope, $location, tubularHttp, $uibModal, $routeParams, toastr) {
@@ -152,18 +129,8 @@
     angular.module('app', [
         'ngAnimate',
         'tubular',
-        'tubular-chart.directives',
-        'tubular-hchart.directives',
         'toastr',
         'app.routes',
         'app.controllers'
-    ]).run([
-        'tubularTranslate', function (tubularTranslate) {
-            // Uncomment if you want to start with Spanish
-            //tubularTranslate.setLanguage('es');
-            // I need to check this
-            tubularTranslate.addTranslation('es', 'UI_LANG', 'English').addTranslation('en', 'UI_LANG', 'Español');
-            // console.log(tubularTranslate.translationTable);
-        }
     ]);
 })(angular);
