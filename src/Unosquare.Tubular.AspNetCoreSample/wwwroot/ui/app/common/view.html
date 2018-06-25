@@ -38,24 +38,24 @@
                             </tb-column>
                             <tb-column name="OrderId" label="Order ID" sortable="true" sort-order="1" class="column-sm" 
                                        sort-direction="Ascending" is-key="true">
-                                <tb-column-header>ID</tb-column-header>
+                                <tb-column-header>{{label}}</tb-column-header>
                             </tb-column>
-                            <tb-column name="CustomerName" label="Customer" searchable="true" sortable="true" aggregate="distinctcount">
-                                <tb-column-filter title="Filter Customer" column-selector="true"
-                                                  Text="{{sample.Filter}}" Operator="NotEquals"></tb-column-filter>
+                            <tb-column name="CustomerName" searchable="true" sortable="true" aggregate="DistinctCount">
                                 <tb-column-header>
                                     <span>{{label}}</span>
                                 </tb-column-header>
+                                <tb-column-filter title="Filter Customer" column-selector="true"
+                                                  Text="{{sample.Filter}}" Operator="NotEquals"></tb-column-filter>
                             </tb-column>
-                            <tb-column name="ShipperCity" label="Shipping City" sortable="true" searchable="true" aggregate="count">
+                            <tb-column name="ShipperCity" sortable="true" searchable="true" aggregate="Count">
                                 <tb-column-header>{{label}}</tb-column-header>
                                 <tb-column-options-filter options-url="/api/orders/cities"></tb-column-options-filter>
                             </tb-column>
-                            <tb-column name="Amount" column-type="numeric" sortable="true" aggregate="sum">
+                            <tb-column name="Amount" column-type="numeric" sortable="true" aggregate="Sum">
                                 <tb-column-header>{{label}}</tb-column-header>
                                 <tb-column-filter></tb-column-filter>
                             </tb-column>
-                            <tb-column name="ShippedDate" label="Date" column-type="datetimeutc" class="column-md">
+                            <tb-column name="ShippedDate" column-type="datetimeutc" class="column-md">
                                 <tb-column-header>{{sample.ColumnName}}</tb-column-header>
                                 <tb-column-date-time-filter></tb-column-date-time-filter>
                             </tb-column>
@@ -63,7 +63,7 @@
                                 <tb-column-header>Shipped?</tb-column-header>
                                 <tb-column-filter></tb-column-filter>
                             </tb-column>
-                            <tb-column name="OrderType" column-type="numeric" sortable="true" aggregate="count">
+                            <tb-column name="OrderType" column-type="numeric" sortable="true" aggregate="Count">
                                 <tb-column-header>{{label}}</tb-column-header>
                                 <tb-column-filter></tb-column-filter>
                             </tb-column>
@@ -95,12 +95,10 @@
                                     </tb-simple-editor>
                                 </tb-cell-template>
                                 <tb-cell-template class="cell-menu">
-                                    <tb-typeahead-editor name="ShipperCity"
-                                                         value="$component.tempRow.ShipperCity"
-                                                         required="true"
-                                                         options="cities">
-                                    </tb-typeahead-editor>
-
+                                    <tb-dropdown-editor is-editing="row.$isEditing" name="ShipperCity"
+                                                        option-label="Label" option-key="Key"
+                                                        options-url="api/orders/cities">
+                                    </tb-dropdown-editor>
                                 </tb-cell-template>
                                 <tb-cell-template>
                                     <tb-numeric-editor value="$component.tempRow.Amount" format="C"

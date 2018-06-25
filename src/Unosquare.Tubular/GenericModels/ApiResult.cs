@@ -8,16 +8,6 @@
     public class ApiResult
     {
         /// <summary>
-        /// The OK status
-        /// </summary>
-        public const string OkStatus = "OK";
-        
-        /// <summary>
-        /// The error status
-        /// </summary>
-        public const string ErrorStatus = "Error";
-
-        /// <summary>
         /// Gets or sets the status.
         /// </summary>
         public string Status { get; set; }
@@ -37,19 +27,13 @@
         /// </summary>
         /// <param name="message">The message.</param>
         /// <returns>An ApiResult with status OK</returns>
-        public static ApiResult Ok(string message = null)
-        {
-            return new ApiResult { Status = OkStatus, Message = message };
-        }
+        public static ApiResult Ok(string message = null) => new ApiResult { Status = nameof(Ok), Message = message };
 
         /// <summary>
         /// Create a new invalid result with an exception.
         /// </summary>
         /// <param name="ex">The ex.</param>
         /// <returns>An ApiResult with status Error</returns>
-        public static ApiResult Error(Exception ex)
-        {
-            return new ApiResult { Status = ErrorStatus, Message = ex.Message };
-        }
+        public static ApiResult Error(Exception ex) => new ApiResult { Status = nameof(Error), Message = ex.Message };
     }
 }

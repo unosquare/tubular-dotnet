@@ -7,7 +7,7 @@
     using Labs.EmbedIO.Modules;
     using ObjectModel;
     using Swan;
-#if NETCOREAPP2_0
+#if NETCOREAPP2_1
     using System.Net;
 #else
     using Net;
