@@ -180,9 +180,9 @@
                                 <tb-cell-template class="text-right">
                                     <b>{{$component.aggregationFunctions.Amount | currency}}</b>
                                 </tb-cell-template>
-                                <tb-cell-template></tb-cell-template>
-                                <tb-cell-template></tb-cell-template>
-                                <tb-cell-template>
+                                <tb-cell-template column-name="ShippedDate"></tb-cell-template>
+                                <tb-cell-template column-name="IsShipped"></tb-cell-template>
+                                <tb-cell-template column-name="OrderType">
                                     <b>COUNT {{$component.aggregationFunctions.OrderType}}</b>
                                 </tb-cell-template>
                             </tb-row-template>
