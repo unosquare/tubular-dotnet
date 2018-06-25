@@ -95,12 +95,10 @@
                                     </tb-simple-editor>
                                 </tb-cell-template>
                                 <tb-cell-template class="cell-menu">
-                                    <tb-typeahead-editor name="ShipperCity"
-                                                         value="$component.tempRow.ShipperCity"
-                                                         required="true"
-                                                         options="cities">
-                                    </tb-typeahead-editor>
-
+                                    <tb-dropdown-editor is-editing="row.$isEditing" name="ShipperCity"
+                                                        option-label="Label" option-key="Key"
+                                                        options-url="api/orders/cities">
+                                    </tb-dropdown-editor>
                                 </tb-cell-template>
                                 <tb-cell-template>
                                     <tb-numeric-editor value="$component.tempRow.Amount" format="C"
