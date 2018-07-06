@@ -9,7 +9,7 @@ namespace Unosquare.Tubular.Tests
     using Database;
 
     [TestFixture]
-    class CompareOperatorsTest
+    public class CompareOperatorsTest
     {
         private const int PageSize = 20;
 
@@ -44,7 +44,7 @@ namespace Unosquare.Tubular.Tests
         {
             var data = filterCount.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -66,7 +66,7 @@ namespace Unosquare.Tubular.Tests
         {
             var data = filterCount.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -91,7 +91,7 @@ namespace Unosquare.Tubular.Tests
             var filterCount = DataSource.Where(x => x.Id >= a && x.Id <= int.Parse(b[0]));
             var data = filterCount.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -115,7 +115,7 @@ namespace Unosquare.Tubular.Tests
             var filterCount = DataSource.Where(x => x.DecimalNumber == filter);
             var data = filterCount.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -140,7 +140,7 @@ namespace Unosquare.Tubular.Tests
                 filter.Date.ToString(CultureInfo.InvariantCulture));
             var data = filterCount.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -158,7 +158,7 @@ namespace Unosquare.Tubular.Tests
         }
 
         [Test]
-        public void DateTimeUTCEqualFilterTest()
+        public void DateTimeUtcEqualFilterTest()
         {
             var filter = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
 
@@ -166,7 +166,7 @@ namespace Unosquare.Tubular.Tests
 
             var data = filterCount.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -190,7 +190,7 @@ namespace Unosquare.Tubular.Tests
             var filterCount = DataSource.Where(x => x.Color.Equals(filters[0]) || x.Color.Equals(filters[1]));
             var data = filterCount.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -213,7 +213,7 @@ namespace Unosquare.Tubular.Tests
 
             var data = filterCount.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,

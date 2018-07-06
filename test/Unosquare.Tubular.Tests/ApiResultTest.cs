@@ -18,7 +18,7 @@
         }
 
         [Test]
-        public void OKTest()
+        public void Okest()
         {
             const string message = "This is a OK message";
 

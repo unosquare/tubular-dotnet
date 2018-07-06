@@ -34,7 +34,7 @@
     {
         private const string RelativePath = "/api/";
 
-        public static List<Person> People = new List<Person>
+        private static readonly List<Person> People = new List<Person>
         {
             new Person {Key = 1, Name = "Mario Di Vece", Age = 31, EmailAddress = "mario@unosquare.com"},
             new Person {Key = 2, Name = "Geovanni Perez", Age = 31, EmailAddress = "geovanni.perez@unosquare.com"},

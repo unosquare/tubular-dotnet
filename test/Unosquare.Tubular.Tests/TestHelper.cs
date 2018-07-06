@@ -22,7 +22,7 @@
             if (PageSize*page + PageSize < setSize)
                 Assert.AreEqual(data.Count, PageSize, "Set has 10 items");
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = PageSize*page,
@@ -61,12 +61,12 @@
         [Test]
         public void SimpleFilter()
         {
-            var filter = 95;
+            const int filter = 95;
             var dataSource = SampleEntities.GenerateData().AsQueryable();
             var filterCount = dataSource.Where(x => x.Id > filter);
             var data = filterCount.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -87,7 +87,7 @@
             var dataSource = SampleEntities.GenerateData().AsQueryable().OrderBy(x => x.Date);
             var data = dataSource.Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -109,11 +109,11 @@
             var dataSource = SampleEntities.GenerateData().AsQueryable();
             var data = dataSource.Where(x => x.Name.Contains(SearchText)).Take(PageSize).ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter()
+                Search = new Filter
                 {
                     Operator = CompareOperators.Auto,
                     Text = SearchText
@@ -136,7 +136,7 @@
             var dataSource = SampleEntities.GenerateData().AsQueryable();
             var data = dataSource.ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = -1,
                 Skip = 0,
@@ -169,11 +169,11 @@
                     .Take(PageSize)
                     .ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 30,
-                Search = new Filter()
+                Search = new Filter
                 {
                     Operator = CompareOperators.Auto,
                     Text = SearchText
@@ -213,13 +213,13 @@
                 },
                 new GridColumn {Name = "Id"}
             };
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Columns = columns,
                 TimezoneOffset = 300,
                 Take = 100,
                 Skip = 300,
-                Search = new Filter()
+                Search = new Filter
                 {
                     Operator = CompareOperators.Auto,
                     Text = "red"
@@ -247,11 +247,11 @@
                     .Take(PageSize)
                     .ToList();
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter()
+                Search = new Filter
                 {
                     Operator = CompareOperators.Auto,
                     Text = SearchText
@@ -276,7 +276,7 @@
 
             Assert.AreEqual(PageSize, data.Count, "Set has 10 items");
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -307,7 +307,7 @@
 
             Assert.AreEqual(PageSize, data.Count, "Set has 10 items");
 
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,
@@ -334,7 +334,7 @@
                 "IsShipped same distinct count");
         }
 
-        class MyDateClass
+        private class MyDateClass
         {
             public DateTime Date { get; set; }
 
@@ -384,7 +384,7 @@
             var filterCount = dataSource.Where(x => x.Color == filter);
             var data = filterCount.Take(PageSize).ToList();
             
-            var request = new GridDataRequest()
+            var request = new GridDataRequest
             {
                 Take = PageSize,
                 Skip = 0,

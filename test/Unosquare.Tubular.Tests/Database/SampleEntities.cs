@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class SampleEntities
+    public static class SampleEntities
     { 
         public static IEnumerable<Thing> GenerateData(int count = 100)
         {
@@ -13,7 +13,7 @@
             var rand = new Random();
             for (var i = 0; i < count; i++)
             {
-                data.Add(new Thing()
+                data.Add(new Thing
                 {
                     Date = DateTime.UtcNow.AddDays(-i),
                     NullableDate = (i % 2) == 0 ? (DateTime?)null : DateTime.UtcNow.AddDays(-i),
