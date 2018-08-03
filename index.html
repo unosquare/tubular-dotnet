@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>NuGet Installation  | Unosquare Tubular </title>
+    <title>Installation  | Unosquare Tubular </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="NuGet Installation  | Unosquare Tubular ">
-    <meta name="generator" content="docfx 2.37.0.0">
+    <meta name="title" content="Installation  | Unosquare Tubular ">
+    <meta name="generator" content="docfx 2.37.2.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -78,15 +78,11 @@
 <p><img src="http://unosquare.github.io/tubular/assets/tubular.png" alt="Tubular DotNet"></p>
 <p><span class="emoji" shortcode="star">⭐</span> <em>Please star this project if you find it useful!</em></p>
 <p>Tubular provides .NET Framework and .NET Core Library to create <strong>REST service</strong> to use with Tubular Angular Components easily with any WebApi library (ASP.NET Web API for example).</p>
-<p>Now you can use Javascript as backend using <a href="https://github.com/unosquare/tubular-nodejs">Tubular Node.js module</a>.</p>
-<p>Please visit the <a href="http://unosquare.github.io/tubular" target="_blank">Tubular GitHub Page</a> to learn how quickly you can start coding. Don&#39;t forget to check out the Tubular Generator which quickly turns models into an awesome UIs!</p>
-<h2 id="nuget-installation-nuget-versionhttpsbadgefuryionutubularserversidesvghttpsbadgefuryionutubularserverside">NuGet Installation <a href="https://badge.fury.io/nu/Tubular.ServerSide"><img src="https://badge.fury.io/nu/Tubular.ServerSide.svg" alt="NuGet version"></a></h2>
-<p>The same Nuget contains <code>.NET Framework 4.5.2</code> and <code>.NET Standard 2.0</code> targets.</p>
-<pre>
-PM> Install-Package Tubular.ServerSide
-</pre>
-
-<h2 id="global-settings">Global Settings</h2>
+<p>Please visit the <a href="http://unosquare.github.io/tubular">Tubular GitHub Page</a> to learn how quickly you can start coding. See <a href="#related-projects">Related projects</a> below to discover more Tubular libraries and backend solutions.</p>
+<h2 id="installation-nuget-versionhttpsbadgefuryionutubularserversidesvghttpsbadgefuryionutubularserverside">Installation <a href="https://badge.fury.io/nu/Tubular.ServerSide"><img src="https://badge.fury.io/nu/Tubular.ServerSide.svg" alt="NuGet version"></a></h2>
+<p>The same NuGet contains <code>.NET Framework 4.5.2</code> and <code>.NET Standard 2.0</code> framework targets.</p>
+<pre><code>PM&gt; Install-Package Tubular.ServerSide
+</code></pre><h2 id="global-settings">Global Settings</h2>
 <p>You can access global settings by using the static object <code>TubularDefaultSettings</code> and setup common behavior in Tubular. The settings included are:</p>
 <table>
     <tr><th>Setting</th><th>Default value</th><th>Notes</th></tr>
@@ -109,13 +105,73 @@ PM> Install-Package Tubular.ServerSide
             }
         }
     }
-</code></pre><h2 id="boilerplate">Boilerplate</h2>
-<p>We have 3 boilerplates ready to seed your project:</p>
-<ul>
-<li><a href="https://github.com/unosquare/tubular-boilerplate" target="_blank">Simple Boilerplate</a> without server-side. </li>
-<li><a href="https://github.com/unosquare/tubular-boilerplate-csharp">ASP.NET 4.6 Boilerplate</a>.</li>
-<li><a href="https://github.com/unosquare/tubular-aspnet-core-boilerplate">ASP.NET Core Boilerplate</a></li>
-</ul>
+</code></pre><h2 id="related-projects">Related Projects</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Language/tech</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/unosquare/tubular">Tubular for AngularJS (formerly Tubular)</a></td>
+<td>Library</td>
+<td>AngularJs</td>
+<td>Tubular provides a set of directives and services using AngularJS as framework.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unosquare/tubular2">Tubular for Angular6 (formerly Tubular2)</a></td>
+<td>Library</td>
+<td>Angular6</td>
+<td>New Tubular2 with Angular6 (Angular2) and Angular Material 2.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unosquare/tubular-react">Tubular React</a></td>
+<td>Library</td>
+<td>React</td>
+<td>Tubular-React is a DataGrid component using Material-UI</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unosquare/tubular-common">Tubular Common</a></td>
+<td>Library</td>
+<td>Javascript/Typescript</td>
+<td>Tubular Common provides TypeScript and Javascript models and data transformer to use any Tubular DataGrid component with an array of Javascript objects.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unosquare/tubular-dotnet">Tubular Dotnet</a></td>
+<td>Backend library</td>
+<td>C#/.NET Core</td>
+<td>Tubular provides .NET Framework and .NET Core Library to create REST service to use with Tubular Angular Components easily with any WebApi library (ASP.NET Web API for example).</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unosquare/tubular-nodejs">Tubular Nodejs</a></td>
+<td>Backend Library</td>
+<td>Javascript</td>
+<td>Tubular Node.js provides an easy way to integrate Tubular Angular Components easily with any Node.js WebApi library.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unosquare/tubular-boilerplate-csharp">Tubular Boilerplate C#</a></td>
+<td>Boilerplate</td>
+<td>C#</td>
+<td>Tubular Directives Boilerplate (includes AngularJS and Bootstrap)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unosquare/tubular-boilerplate">Tubular Boilerplate</a></td>
+<td>Boilerplate</td>
+<td>Javascript/AngularJS</td>
+<td>Tubular Directives Boilerplate (includes AngularJS and Bootstrap).</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unosquare/tubular-aspnet-core-boilerplate">Tubular ASP.NET Core 2.0 Boilerplate</a></td>
+<td>Boilerplate</td>
+<td>C#/.NET Core</td>
+<td>Tubular Directives Boilerplate (includes AngularJS and Bootstrap).</td>
+</tr>
+</tbody>
+</table>
 </article>
           </div>
           
