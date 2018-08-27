@@ -159,18 +159,12 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Dictionary<string, PropertyInfo> ExtractProperties(Type t)
-        {
-            return TypePropertyCache.GetOrAdd(t, GetTypeProperties);
-        }
+        private static Dictionary<string, PropertyInfo> ExtractProperties(Type t) => TypePropertyCache.GetOrAdd(t, GetTypeProperties);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Dictionary<string, PropertyInfo> GetTypeProperties(Type t)
-        {
-            return t.GetProperties()
-                .Where(p => Common.PrimitiveTypes.Contains(p.PropertyType) && p.CanRead)
-                .ToDictionary(k => k.Name, v => v);
-        }
+        private static Dictionary<string, PropertyInfo> GetTypeProperties(Type t) => t.GetProperties()
+            .Where(p => Common.PrimitiveTypes.Contains(p.PropertyType) && p.CanRead)
+            .ToDictionary(k => k.Name, v => v);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Dictionary<GridColumn, PropertyInfo> MapColumnsToProperties(
@@ -252,19 +246,21 @@
             {
                 try
                 {
-                    if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(double))
+                    var propertyType = subset.ElementType.GetProperty(column.Name).PropertyType;
+
+                    if (propertyType == typeof(double))
                     {
                         payload.Add(column.Name, doubleF(subset.Select(column.Name).Cast<double>()));
                     }
-                    else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(decimal))
+                    else if (propertyType == typeof(decimal))
                     {
                         payload.Add(column.Name, decimalF(subset.Select(column.Name).Cast<decimal>()));
                     }
-                    else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(int))
+                    else if (propertyType == typeof(int))
                     {
                         payload.Add(column.Name, intF(subset.Select(column.Name).Cast<int>()));
                     }
-                    else if (subset.ElementType.GetProperty(column.Name).PropertyType == typeof(DateTime))
+                    else if (propertyType == typeof(DateTime))
                     {
                         if (dateF == null) return;
 
@@ -280,13 +276,8 @@
                 catch (InvalidOperationException ex)
                 {
                     // EF6 can't materialize a no-nullable value aggregate function returning NULL, so the logic path is return the ONLY value ZERO
-                    if (ex.Source == "EntityFramework")
-                    {
-                        payload.Add(column.Name, 0);
-                        return;
-                    }
-
-                    throw;
+                    if (ex.Source != "EntityFramework") throw;
+                    payload.Add(column.Name, 0);
                 }
             }
 
@@ -368,33 +359,30 @@
             var searchParamArgs = new List<object>();
             var searchValue = isDbQuery ? request.Search.Text : request.Search.Text.ToLowerInvariant();
 
-            switch (request.Search.Operator)
+            if (request.Search.Operator == CompareOperators.Auto)
             {
-                case CompareOperators.Auto:
-                    var filter = string.Empty;
-                    var values = new List<object>();
+                var filter = string.Empty;
+                var values = new List<object>();
 
-                    if (request.Columns.Any(x => x.Searchable))
-                        filter = "(";
+                if (request.Columns.Any(x => x.Searchable))
+                    filter = "(";
 
-                    foreach (var column in request.Columns.Where(x => x.Searchable))
-                    {
-                        filter += string.Format(isDbQuery
+                foreach (var column in request.Columns.Where(x => x.Searchable))
+                {
+                    filter += string.Format(isDbQuery
                             ? "{0}.Contains(@{1}) ||"
-                            : "({0} != null && {0}.ToLowerInvariant().Contains(@{1})) ||", 
-                            column.Name, 
-                            values.Count);
+                            : "({0} != null && {0}.ToLowerInvariant().Contains(@{1})) ||",
+                        column.Name,
+                        values.Count);
 
-                        values.Add(searchValue);
-                    }
+                    values.Add(searchValue);
+                }
 
-                    if (string.IsNullOrEmpty(filter) == false)
-                    {
-                        searchLambda.Append(filter.Remove(filter.Length - 3, 3) + ") &&");
-                        searchParamArgs.AddRange(values);
-                    }
-
-                    break;
+                if (string.IsNullOrEmpty(filter) == false)
+                {
+                    searchLambda.Append(filter.Remove(filter.Length - 3, 3) + ") &&");
+                    searchParamArgs.AddRange(values);
+                }
             }
 
             // Perform Filtering
