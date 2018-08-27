@@ -27,11 +27,10 @@ before_build:
 - appveyor-retry dotnet restore .\Unosquare.Tubular.sln -v Minimal
 - mkdir tools
 - nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
-- nuget install coveralls.net -Version 0.7.0 -OutputDirectory tools
 build_script:
 - msbuild /p:Configuration=%CONFIGURATION%
 test_script:
-- tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"%ProgramFiles%\dotnet\dotnet.exe" -targetargs:"test test\Unosquare.Tubular.Tests -c %CONFIGURATION% -f net452" -output:coverage.xml -filter:"+[Unosquare.Tubular*]* -[Unosquare.Tubular.Tests*]*" -register:userdotnet
+- dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude=[NUnit3.TestAdapter]* test\Unosquare.Tubular.Tests -c %CONFIGURATION% -f net452
 - tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
 after_build:
 - ps: |

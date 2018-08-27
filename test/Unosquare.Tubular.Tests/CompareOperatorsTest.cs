@@ -1,9 +1,8 @@
-﻿using System.Globalization;
-
-namespace Unosquare.Tubular.Tests
+﻿namespace Unosquare.Tubular.Tests
 {
     using NUnit.Framework;
     using System;
+    using System.Globalization;
     using System.Linq;
     using ObjectModel;
     using Database;
@@ -87,7 +86,7 @@ namespace Unosquare.Tubular.Tests
         public void BetweenFilterTest()
         {
             const int a = 10;
-            var b = new[] {"30"};
+            var b = new[] { "30" };
             var filterCount = DataSource.Where(x => x.Id >= a && x.Id <= int.Parse(b[0]));
             var data = filterCount.Take(PageSize).ToList();
 
@@ -186,7 +185,7 @@ namespace Unosquare.Tubular.Tests
         [Test]
         public void MultipleFilterTest()
         {
-            var filters = new[] {"blue", "red"};
+            var filters = new[] { "blue", "red" };
             var filterCount = DataSource.Where(x => x.Color.Equals(filters[0]) || x.Color.Equals(filters[1]));
             var data = filterCount.Take(PageSize).ToList();
 
