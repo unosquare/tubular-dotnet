@@ -46,7 +46,7 @@ namespace Unosquare.Tubular.EmbedioSample
                 server.RunAsync();
 
                 // Fire up the browser to show the content if we are debugging!
-#if DEBUG && NET452
+#if DEBUG
                 var browser = new System.Diagnostics.Process()
                 {
                     StartInfo = new System.Diagnostics.ProcessStartInfo(url) {UseShellExecute = true}
