@@ -7,4 +7,4 @@ sudo: required
 install:
   - dotnet restore
 script:
-  - dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj -f netcoreapp2.0
+  - dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj -f netcoreapp2.1
