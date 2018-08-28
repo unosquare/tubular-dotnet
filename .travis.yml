@@ -2,8 +2,15 @@ language: csharp
 solution: Unosquare.Tubular.sln
 notifications:
   slack: unolabs:cbusXPH6pBwZ35rVDzi4k4ve
+mono: none
 dotnet: 2.1.300
-sudo: required
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: false
+    - os: osx
+      osx_image: xcode9.1
 install:
   - dotnet restore
 script:
