@@ -1,5 +1,7 @@
 version: '1.0.{build}'
-image: Visual Studio 2017
+image: 
+- Visual Studio 2017
+- Ubuntu
 configuration:
 - Release
 platform: Any CPU
@@ -18,22 +20,22 @@ environment:
        secure: HzWdswNyfQbQ0vLk9IQyO+Ei9mxoPYp9rvv6HPhtC9J/Fm7EHRzyV953pbPRXI9I
 before_build:
 - ps: |
-        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
         {
             git checkout $env:APPVEYOR_REPO_BRANCH -q
             cinst docfx -y
         }
-- appveyor-retry dotnet restore .\Unosquare.Tubular.sln -v Minimal
-- mkdir tools
-- nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
+- dotnet restore Unosquare.Tubular.sln -v Minimal
+- cmd: mkdir tools
+- cmd: nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
 build_script:
 - msbuild /p:Configuration=%CONFIGURATION%
 test_script:
 - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude=[NUnit3.TestAdapter]* test\Unosquare.Tubular.Tests -c %CONFIGURATION% -f net452
-- tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i test\Unosquare.Tubular.Tests\coverage.opencover.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
+- cmd: tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i test\Unosquare.Tubular.Tests\coverage.opencover.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
 after_build:
 - ps: |
-        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
         {
             git config --global credential.helper store
             Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
