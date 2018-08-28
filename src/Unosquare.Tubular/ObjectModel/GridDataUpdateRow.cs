@@ -31,7 +31,7 @@
         public void AdjustTimezoneOffset()
         {
             // Send Timezone in negative to revert local
-            New = (T) Extensions.AdjustTimeZone(New, -TimezoneOffset);
+            New = (T) New.AdjustTimeZone(-TimezoneOffset);
         }
     }
 }

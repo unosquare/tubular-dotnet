@@ -12,13 +12,15 @@
         [Test]
         public void GetSingleSerieChart()
         {
-            var sut = SampleEntities.GenerateData().AsQueryable();
+            var sut = SampleEntities.GenerateData().ToList();
 
-            var chartObj = sut.ProvideSingleSerieChartResponse(
-                label: x => x.Color,
-                value: x => x.DecimalNumber);
+            var chartObj = sut.AsQueryable()
+                .ProvideSingleSerieChartResponse(
+                    label: x => x.Color,
+                    value: x => x.DecimalNumber);
 
-            var query = sut.Where(x => x.Color == ColorTest).Sum(x => x.DecimalNumber);
+            var query = sut.Where(x => x.Color == ColorTest)
+                .Sum(x => x.DecimalNumber);
 
             Assert.IsNotNull(chartObj);
 

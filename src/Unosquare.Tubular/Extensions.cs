@@ -1,9 +1,7 @@
 ﻿namespace Unosquare.Tubular
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Linq;
     using System.Linq.Dynamic.Core;
     using System.Reflection;
@@ -27,9 +25,6 @@
         private static readonly Regex TimezoneOffset = new Regex(@"timezoneOffset=(\d[^&]*)");
 #endif
 
-        private static readonly ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>> TypePropertyCache =
-            new ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>>();
-
         /// <summary>
         /// Delegates a process to format a subset response
         /// </summary>
@@ -43,15 +38,13 @@
         /// <param name="data">The data.</param>
         /// <param name="timezoneOffset">The timezone offset.</param>
         /// <returns>The same object with DateTime properties adjusted to the timezone specified.</returns>
-        public static object AdjustTimeZone(object data, int timezoneOffset)
+        public static object AdjustTimeZone(this object data, int timezoneOffset)
         {
-            var dateTimeProperties = data.GetType()
-                .GetProperties()
-                .Where(x => x.PropertyType == typeof(DateTime) || x.PropertyType == typeof(DateTime?));
+            var dateTimeProperties = data.GetType().GetDateProperties();
 
             foreach (var prop in dateTimeProperties)
             {
-                AdjustTimeZoneForProperty(data, timezoneOffset, prop);
+                data.AdjustTimeZoneForProperty(timezoneOffset, prop);
             }
 
             return data;
@@ -77,7 +70,7 @@
             var timeDiff = int.Parse(match.Groups[1].Value);
             if (fromLocal) timeDiff *= -1;
 
-            return AdjustTimeZone(data, timeDiff);
+            return data.AdjustTimeZone(timeDiff);
         }
 #endif
 
@@ -90,11 +83,11 @@
         /// <param name="preProcessSubset">The subset's process delegate</param>
         /// <returns>A grid response</returns>
         public static GridDataResponse CreateGridDataResponse(
-            this GridDataRequest request, 
+            this GridDataRequest request,
             IQueryable dataSource,
             ProcessResponseSubset preProcessSubset = null)
         {
-            if (request?.Columns == null || request.Columns.Any() == false)
+            if (request?.Columns.Any() != true)
                 throw new ArgumentNullException(nameof(request));
 
             var response = new GridDataResponse
@@ -104,17 +97,19 @@
                 FilteredRecordCount = dataSource.Count()
             };
 
-            var properties = ExtractProperties(dataSource.ElementType);
+            var properties = dataSource.ElementType.ExtractProperties();
             var columnMap = MapColumnsToProperties(request.Columns, properties);
 
             var subset = FilterResponse(request, dataSource, response);
-            
+
             // Perform Sorting
-            var orderingExpression = request.Columns.Where(x => x.SortOrder > 0).OrderBy(x => x.SortOrder)
+            var orderingExpression = request.Columns.Where(x => x.SortOrder > 0)
+                .OrderBy(x => x.SortOrder)
                 .Aggregate(string.Empty,
                     (current, column) =>
                         current +
-                        (column.Name + " " + (column.SortDirection == SortDirection.Ascending ? "ASC" : "DESC") + ", "));
+                        (column.Name + " " + (column.SortDirection == SortDirection.Ascending ? "ASC" : "DESC") +
+                         ", "));
 
             // Apply the sorting expression if supplied
             subset = !string.IsNullOrWhiteSpace(orderingExpression)
@@ -138,11 +133,11 @@
             else
             {
                 var filteredCount = subset.Count();
-                var totalPages = response.TotalPages = filteredCount/pageSize;
+                var totalPages = response.TotalPages = filteredCount / pageSize;
 
                 if (totalPages > 0)
                 {
-                    response.CurrentPage = (request.Skip/pageSize) + 1;
+                    response.CurrentPage = (request.Skip / pageSize) + 1;
 
                     if (request.Skip > 0) subset = subset.Skip(request.Skip);
                 }
@@ -157,14 +152,6 @@
             response.Payload = CreateGridPayload(subset, columnMap, pageSize, request.TimezoneOffset);
             return response;
         }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Dictionary<string, PropertyInfo> ExtractProperties(Type t) => TypePropertyCache.GetOrAdd(t, GetTypeProperties);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Dictionary<string, PropertyInfo> GetTypeProperties(Type t) => t.GetProperties()
-            .Where(p => Common.PrimitiveTypes.Contains(p.PropertyType) && p.CanRead)
-            .ToDictionary(k => k.Name, v => v);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Dictionary<GridColumn, PropertyInfo> MapColumnsToProperties(
@@ -184,8 +171,8 @@
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static List<List<object>> CreateGridPayload(
             IQueryable subset,
-            Dictionary<GridColumn, PropertyInfo> columnMap, 
-            int initialCapacity, 
+            Dictionary<GridColumn, PropertyInfo> columnMap,
+            int initialCapacity,
             int timezoneOffset)
         {
             var payload = new List<List<object>>(initialCapacity);
@@ -194,7 +181,7 @@
             {
                 var payloadItem = new List<object>(columnMap.Keys.Count);
 
-                foreach (var column in columnMap.Select(m => new { Value = m.Value.GetValue(item), m.Key }))
+                foreach (var column in columnMap.Select(m => new {Value = m.Value.GetValue(item), m.Key}))
                 {
                     if (column.Value is DateTime time)
                     {
@@ -216,18 +203,18 @@
             return payload;
         }
 
-        private static void AdjustTimeZoneForProperty(object data, int timezoneOffset, PropertyInfo prop)
+        private static void AdjustTimeZoneForProperty(this object data, int timezoneOffset, PropertyInfo prop)
         {
             DateTime value;
             if (prop.PropertyType == typeof(DateTime?))
             {
-                var nullableValue = (DateTime?)prop.GetValue(data);
+                var nullableValue = (DateTime?) prop.GetValue(data);
                 if (!nullableValue.HasValue) return;
                 value = nullableValue.Value;
             }
             else
             {
-                value = (DateTime)prop.GetValue(data);
+                value = (DateTime) prop.GetValue(data);
             }
 
             value = value.AddMinutes(-timezoneOffset);
@@ -237,8 +224,8 @@
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Dictionary<string, object> AggregateSubset(GridColumn[] columns, IQueryable subset)
         {
-            var aggregateColumns = columns.Where(c => c.Aggregate != AggregationFunction.None).ToArray();
-            var payload = new Dictionary<string, object>(aggregateColumns.Length);
+            var aggregateColumns = columns.Where(c => c.Aggregate != AggregationFunction.None);
+            var payload = new Dictionary<string, object>(aggregateColumns.Count());
 
             void Aggregate(GridColumn column, Func<IQueryable<double>, double> doubleF,
                 Func<IQueryable<decimal>, decimal> decimalF, Func<IQueryable<int>, int> intF,
@@ -246,7 +233,7 @@
             {
                 try
                 {
-                    var propertyType = subset.ElementType.GetProperty(column.Name).PropertyType;
+                    var propertyType = subset.ElementType.ExtractPropertyType(column.Name);
 
                     if (propertyType == typeof(double))
                     {
@@ -351,8 +338,7 @@
 
         private static IQueryable FilterResponse(GridDataRequest request, IQueryable subset, GridDataResponse response)
         {
-            var isDbQuery = subset.GetType().GetTypeInfo().IsGenericType &&
-                            subset.GetType().GetInterfaces().Any(y => y == typeof(IListSource));
+            var isDbQuery = subset.GetType().IsDbQuery();
 
             // Perform Searching
             var searchLambda = new StringBuilder();
@@ -361,15 +347,15 @@
 
             if (request.Search.Operator == CompareOperators.Auto)
             {
-                var filter = string.Empty;
+                var filter = new StringBuilder();
                 var values = new List<object>();
 
                 if (request.Columns.Any(x => x.Searchable))
-                    filter = "(";
+                    filter.Append("(");
 
                 foreach (var column in request.Columns.Where(x => x.Searchable))
                 {
-                    filter += string.Format(isDbQuery
+                    filter.AppendFormat(isDbQuery
                             ? "{0}.Contains(@{1}) ||"
                             : "({0} != null && {0}.ToLowerInvariant().Contains(@{1})) ||",
                         column.Name,
@@ -378,7 +364,7 @@
                     values.Add(searchValue);
                 }
 
-                if (string.IsNullOrEmpty(filter) == false)
+                if (filter.Length > 0)
                 {
                     searchLambda.Append(filter.Remove(filter.Length - 3, 3) + ") &&");
                     searchParamArgs.AddRange(values);
@@ -386,11 +372,9 @@
             }
 
             // Perform Filtering
-            foreach (
-                var column in
-                request.Columns.Where(x => x.Filter != null)
-                    .Where(
-                        column => !string.IsNullOrWhiteSpace(column.Filter.Text) || column.Filter.Argument != null))
+            foreach (var column in request.Columns
+                .Where(x => x.Filter != null)
+                .Where(column => !string.IsNullOrWhiteSpace(column.Filter.Text) || column.Filter.Argument != null))
             {
                 column.Filter.HasFilter = true;
 
@@ -406,15 +390,15 @@
                             searchLambda.AppendFormat(
                                 column.Filter.Operator == CompareOperators.Equals
                                     ? "({0} >= @{1} && {0} <= @{2}) &&"
-                                    : "({0} < @{1} || {0} > @{2}) &&", 
+                                    : "({0} < @{1} || {0} > @{2}) &&",
                                 column.Name,
-                                searchParamArgs.Count, 
+                                searchParamArgs.Count,
                                 searchParamArgs.Count + 1);
                         }
                         else
                         {
-                            searchLambda.AppendFormat("{0} {2} @{1} &&", 
-                                column.Name, 
+                            searchLambda.AppendFormat("{0} {2} @{1} &&",
+                                column.Name,
                                 searchParamArgs.Count,
                                 GetSqlOperator(column.Filter.Operator));
                         }
@@ -431,7 +415,8 @@
                             case DataType.Date:
                                 if (TubularDefaultSettings.AdjustTimezoneOffset)
                                 {
-                                    searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToUniversalTime().ToString(DateTimeFormat));
+                                    searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToUniversalTime()
+                                        .ToString(DateTimeFormat));
                                     searchParamArgs.Add(
                                         DateTime.Parse(column.Filter.Text)
                                             .Date.ToUniversalTime()
@@ -440,7 +425,8 @@
                                 }
                                 else
                                 {
-                                    searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToString(DateTimeFormat));
+                                    searchParamArgs.Add(
+                                        DateTime.Parse(column.Filter.Text).Date.ToString(DateTimeFormat));
                                     searchParamArgs.Add(DateTime.Parse(column.Filter.Text)
                                         .Date.AddDays(1)
                                         .AddMinutes(-1).ToString(DateTimeFormat));
@@ -514,8 +500,8 @@
                     case CompareOperators.Gt:
                     case CompareOperators.Lte:
                     case CompareOperators.Lt:
-                        searchLambda.AppendFormat("{0} {2} @{1} &&", 
-                            column.Name, 
+                        searchLambda.AppendFormat("{0} {2} @{1} &&",
+                            column.Name,
                             searchParamArgs.Count,
                             GetSqlOperator(column.Filter.Operator));
 
@@ -543,9 +529,9 @@
                     case CompareOperators.Between:
                         if (column.Filter.Argument == null || column.Filter.Argument.Length == 0) continue;
 
-                        searchLambda.AppendFormat("(({0} >= @{1}) &&  ({0} <= @{2})) &&", 
+                        searchLambda.AppendFormat("(({0} >= @{1}) &&  ({0} <= @{2})) &&",
                             column.Name,
-                            searchParamArgs.Count, 
+                            searchParamArgs.Count,
                             searchParamArgs.Count + 1);
 
                         if (column.DataType == DataType.Numeric)
@@ -565,7 +551,8 @@
 
             if (searchLambda.Length <= 0) return subset;
 
-            subset = subset.Where(searchLambda.Remove(searchLambda.Length - 3, 3).ToString(),
+            subset = subset.Where(
+                searchLambda.Remove(searchLambda.Length - 3, 3).ToString(),
                 searchParamArgs.ToArray());
 
             if (subset != null)

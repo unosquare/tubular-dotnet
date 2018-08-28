@@ -12,7 +12,7 @@
     {
         private const int PageSize = 20;
 
-        private static readonly IQueryable<Thing> DataSource = SampleEntities.GenerateData().AsQueryable();
+        private static readonly IQueryable<Thing> DataSource = SampleEntities.GenerateData().ToList().AsQueryable();
 
         private static readonly object[] FilterColorCases =
         {
@@ -110,7 +110,7 @@
         [Test]
         public void DecimalNumberFilterTest()
         {
-            const decimal filter = 10.100m;
+            const decimal filter = 1.101m;
             var filterCount = DataSource.Where(x => x.DecimalNumber == filter);
             var data = filterCount.Take(PageSize).ToList();
 
@@ -186,7 +186,8 @@
         public void MultipleFilterTest()
         {
             var filters = new[] { "blue", "red" };
-            var filterCount = DataSource.Where(x => x.Color.Equals(filters[0]) || x.Color.Equals(filters[1]));
+            var sut = DataSource.ToList();
+            var filterCount = sut.Where(x => x.Color.Equals(filters[0]) || x.Color.Equals(filters[1]));
             var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest
@@ -197,7 +198,7 @@
                 Columns = Thing.GetColumnsWithMultipleFilter(filters, CompareOperators.Multiple)
             };
 
-            var response = request.CreateGridDataResponse(DataSource);
+            var response = request.CreateGridDataResponse(sut.AsQueryable());
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
