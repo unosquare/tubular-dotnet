@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net452;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net452;netcoreapp2.1</TargetFrameworks>
     <AssemblyName>Unosquare.Tubular.Tests</AssemblyName>
     <PackageId>Unosquare.Tubular.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
