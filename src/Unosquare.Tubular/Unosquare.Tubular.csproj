@@ -4,7 +4,7 @@
     <Copyright>Unosquare 2016-2017</Copyright>
     <DebugType>Full</DebugType>
     <AssemblyTitle>Unosquare Tubular</AssemblyTitle>
-    <VersionPrefix>1.4.6</VersionPrefix>
+    <VersionPrefix>1.5.0</VersionPrefix>
     <TargetFrameworks>netstandard1.5;net452</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Tubular</AssemblyName>
