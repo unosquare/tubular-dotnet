@@ -29,9 +29,10 @@ before_build:
 - cmd: mkdir tools
 - cmd: nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
 build_script:
-- msbuild /p:Configuration=%CONFIGURATION%
+- cmd: msbuild /p:Configuration=%CONFIGURATION%
 test_script:
-- dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude=[NUnit3.TestAdapter]* test\Unosquare.Tubular.Tests -c %CONFIGURATION% -f net452
+- dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude=[NUnit3.TestAdapter]* test/Unosquare.Tubular.Tests -c %CONFIGURATION%
+- cmd: dir test\Unosquare.Tubular.Tests\
 - cmd: tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i test\Unosquare.Tubular.Tests\coverage.opencover.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
 after_build:
 - ps: |
