@@ -1,9 +1,8 @@
-﻿using System.Globalization;
-
-namespace Unosquare.Tubular.Tests
+﻿namespace Unosquare.Tubular.Tests
 {
     using NUnit.Framework;
     using System;
+    using System.Globalization;
     using System.Linq;
     using ObjectModel;
     using Database;
@@ -13,7 +12,7 @@ namespace Unosquare.Tubular.Tests
     {
         private const int PageSize = 20;
 
-        private static readonly IQueryable<Thing> DataSource = SampleEntities.GenerateData().AsQueryable();
+        private static readonly IQueryable<Thing> DataSource = SampleEntities.GenerateData().ToList().AsQueryable();
 
         private static readonly object[] FilterColorCases =
         {
@@ -87,7 +86,7 @@ namespace Unosquare.Tubular.Tests
         public void BetweenFilterTest()
         {
             const int a = 10;
-            var b = new[] {"30"};
+            var b = new[] { "30" };
             var filterCount = DataSource.Where(x => x.Id >= a && x.Id <= int.Parse(b[0]));
             var data = filterCount.Take(PageSize).ToList();
 
@@ -111,7 +110,7 @@ namespace Unosquare.Tubular.Tests
         [Test]
         public void DecimalNumberFilterTest()
         {
-            const decimal filter = 10.100m;
+            const decimal filter = 1.101m;
             var filterCount = DataSource.Where(x => x.DecimalNumber == filter);
             var data = filterCount.Take(PageSize).ToList();
 
@@ -131,36 +130,9 @@ namespace Unosquare.Tubular.Tests
         }
 
         [Test]
-        public void DateEqualFilterTest()
+        public void DateTimeEqualFilterTest()
         {
-            var filter = DateTime.Now;
-
-            var filterCount = DataSource.Where(x =>
-                x.Date.Date.ToString(CultureInfo.InvariantCulture) ==
-                filter.Date.ToString(CultureInfo.InvariantCulture));
-            var data = filterCount.Take(PageSize).ToList();
-
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Search = new Filter(),
-                Columns = Thing.GetColumnsWithDateFilter(filter.ToString(), CompareOperators.Equals, DataType.Date)
-            };
-
-            var response = request.CreateGridDataResponse(DataSource);
-
-            Assert.AreEqual(data.Count, response.Payload.Count, "Response date: " +
-                                                                response.Payload.FirstOrDefault()?[3] +
-                                                                "Filter date: " + filterCount.FirstOrDefault()?.Date);
-
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
-
-        [Test]
-        public void DateTimeUtcEqualFilterTest()
-        {
-            var filter = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
+            var filter = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture);
 
             var filterCount = DataSource.Where(x => x.Date.ToString(CultureInfo.InvariantCulture) == filter);
 
@@ -171,14 +143,12 @@ namespace Unosquare.Tubular.Tests
                 Take = PageSize,
                 Skip = 0,
                 Search = new Filter(),
-                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.DateTimeUtc)
+                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.DateTime)
             };
 
             var response = request.CreateGridDataResponse(DataSource);
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Response date: " +
-                                                                response.Payload.FirstOrDefault()?[3] +
-                                                                "Filter date: " + filterCount.FirstOrDefault()?.Date);
+            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
@@ -186,8 +156,9 @@ namespace Unosquare.Tubular.Tests
         [Test]
         public void MultipleFilterTest()
         {
-            var filters = new[] {"blue", "red"};
-            var filterCount = DataSource.Where(x => x.Color.Equals(filters[0]) || x.Color.Equals(filters[1]));
+            var filters = new[] { "blue", "red" };
+            var sut = DataSource.ToList();
+            var filterCount = sut.Where(x => x.Color.Equals(filters[0]) || x.Color.Equals(filters[1]));
             var data = filterCount.Take(PageSize).ToList();
 
             var request = new GridDataRequest
@@ -198,7 +169,7 @@ namespace Unosquare.Tubular.Tests
                 Columns = Thing.GetColumnsWithMultipleFilter(filters, CompareOperators.Multiple)
             };
 
-            var response = request.CreateGridDataResponse(DataSource);
+            var response = request.CreateGridDataResponse(sut.AsQueryable());
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 

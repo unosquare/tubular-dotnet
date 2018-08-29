@@ -37,8 +37,10 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
             Assert.AreEqual(data.First().Id, response.Payload.First().First(), "Same first item");
 
-            Assert.AreEqual(ignoreTimezone ? data.First().Date : data.First().Date.AddMinutes(-timezoneOffset),
-                response.Payload.First()[2], "Same date at first item");
+            Assert.That(
+                ignoreTimezone ? data.First().Date : data.First().Date.AddMinutes(-timezoneOffset), 
+                Is.EqualTo(response.Payload.First()[2]).Within(10).Seconds, 
+                "Same date at first item");
 
             Assert.AreEqual(dataSource.Count(), response.TotalRecordCount, "Total rows matching");
         }
@@ -295,7 +297,8 @@
                 "Same average decimal number");
             Assert.AreEqual(dataSource.Max(x => x.Name), response.AggregationPayload["Name"],
                 "Same max name");
-            Assert.AreEqual(dataSource.Min(x => x.Date), response.AggregationPayload["Date"],
+            Assert.That(dataSource.Min(x => x.Date), 
+                Is.EqualTo(response.AggregationPayload["Date"]).Within(10).Seconds,
                 "Same min date");
         }
         
