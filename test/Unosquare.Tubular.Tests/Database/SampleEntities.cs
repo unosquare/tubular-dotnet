@@ -11,12 +11,13 @@
         public static IEnumerable<Thing> GenerateData(int count = 100)
         {
             var rand = new Random();
+            var nowBase = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, 0, 0, 0);
 
             for (var i = 0; i < count; i++)
             {
                 yield return new Thing
                 {
-                    Date = DateTime.UtcNow.AddDays(-i),
+                    Date = nowBase.AddDays(-i),
                     NullableDate = (i % 2) == 0 ? (DateTime?)null : DateTime.UtcNow.AddDays(-i),
                     Id = i,
                     Name = "Name - " + i,

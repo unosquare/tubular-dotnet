@@ -224,9 +224,9 @@
                     Name = "Date",
                     Filter = new Filter
                     {
-                        Argument = new[] {DateTime.Now.ToShortDateString()},
+                        Argument = new[] {DateTime.Now.AddDays(1).ToShortDateString()},
                         HasFilter = true,
-                        Text = DateTime.Now.ToShortDateString(),
+                        Text = DateTime.Now.AddDays(1).ToShortDateString(),
                         Operator = CompareOperators.Equals
                     }
                 }

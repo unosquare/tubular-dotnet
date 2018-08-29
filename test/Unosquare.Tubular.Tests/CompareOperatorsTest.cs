@@ -130,36 +130,9 @@
         }
 
         [Test]
-        public void DateEqualFilterTest()
+        public void DateTimeEqualFilterTest()
         {
-            var filter = DateTime.Now;
-
-            var filterCount = DataSource.Where(x =>
-                x.Date.Date.ToString(CultureInfo.InvariantCulture) ==
-                filter.Date.ToString(CultureInfo.InvariantCulture));
-            var data = filterCount.Take(PageSize).ToList();
-
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Search = new Filter(),
-                Columns = Thing.GetColumnsWithDateFilter(filter.ToString(), CompareOperators.Equals, DataType.Date)
-            };
-
-            var response = request.CreateGridDataResponse(DataSource);
-
-            Assert.AreEqual(data.Count, response.Payload.Count, "Response date: " +
-                                                                response.Payload.FirstOrDefault()?[3] +
-                                                                "Filter date: " + filterCount.FirstOrDefault()?.Date);
-
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
-
-        [Test]
-        public void DateTimeUtcEqualFilterTest()
-        {
-            var filter = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
+            var filter = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture);
 
             var filterCount = DataSource.Where(x => x.Date.ToString(CultureInfo.InvariantCulture) == filter);
 
@@ -170,14 +143,12 @@
                 Take = PageSize,
                 Skip = 0,
                 Search = new Filter(),
-                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.DateTimeUtc)
+                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.DateTime)
             };
 
             var response = request.CreateGridDataResponse(DataSource);
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Response date: " +
-                                                                response.Payload.FirstOrDefault()?[3] +
-                                                                "Filter date: " + filterCount.FirstOrDefault()?.Date);
+            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
         }
