@@ -75,10 +75,10 @@
 #endif
 
         /// <summary>
-        /// Generates a GridDataReponse using the GridDataRequest and an IQueryable source,
+        /// Generates a GridDataResponse using the GridDataRequest and an IQueryable source,
         /// like a DataSet in Entity Framework.
         /// </summary>
-        /// <param name="request">The Tubular's grid request</param>
+        /// <param name="request">The Tubular Grid Request</param>
         /// <param name="dataSource">The IQueryable source</param>
         /// <param name="preProcessSubset">The subset's process delegate</param>
         /// <returns>A grid response</returns>
@@ -133,13 +133,19 @@
             else
             {
                 var filteredCount = subset.Count();
-                var totalPages = response.TotalPages = filteredCount / pageSize;
+                var totalPages = filteredCount / pageSize;
 
                 if (totalPages > 0)
                 {
+                    response.TotalPages = totalPages;
                     response.CurrentPage = (request.Skip / pageSize) + 1;
 
                     if (request.Skip > 0) subset = subset.Skip(request.Skip);
+                }
+                else
+                {
+                    response.TotalPages = 1;
+                    response.CurrentPage = 1;
                 }
 
                 subset = subset.Take(pageSize);
@@ -181,7 +187,7 @@
             {
                 var payloadItem = new List<object>(columnMap.Keys.Count);
 
-                foreach (var column in columnMap.Select(m => new {Value = m.Value.GetValue(item), m.Key}))
+                foreach (var column in columnMap.Select(m => new { Value = m.Value.GetValue(item), m.Key }))
                 {
                     if (column.Value is DateTime time)
                     {
@@ -208,13 +214,13 @@
             DateTime value;
             if (prop.PropertyType == typeof(DateTime?))
             {
-                var nullableValue = (DateTime?) prop.GetValue(data);
+                var nullableValue = (DateTime?)prop.GetValue(data);
                 if (!nullableValue.HasValue) return;
                 value = nullableValue.Value;
             }
             else
             {
-                value = (DateTime) prop.GetValue(data);
+                value = (DateTime)prop.GetValue(data);
             }
 
             value = value.AddMinutes(-timezoneOffset);

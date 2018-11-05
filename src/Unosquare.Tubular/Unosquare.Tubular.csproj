@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Copyright>Unosquare 2016-2017</Copyright>
+    <Copyright>Unosquare 2016-2018</Copyright>
     <DebugType>Full</DebugType>
     <AssemblyTitle>Unosquare Tubular</AssemblyTitle>
     <VersionPrefix>1.5.0</VersionPrefix>

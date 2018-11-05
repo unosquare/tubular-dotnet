@@ -10,22 +10,22 @@
     [TestFixture]
     public class TestHelper
     {
-        private const int PageSize = 20;
+        private const int PageSize = 10;
         private const string SearchText = "Name - 1";
 
         private static void SimpleListTest(bool ignoreTimezone, int page = 1, int setSize = 445)
         {
             var dataSource = SampleEntities.GenerateData(setSize).AsQueryable();
-            var data = dataSource.Skip(PageSize*page).Take(PageSize).ToList();
+            var data = dataSource.Skip(PageSize * page).Take(PageSize).ToList();
             const int timezoneOffset = 300;
 
-            if (PageSize*page + PageSize < setSize)
+            if (PageSize * page + PageSize < setSize)
                 Assert.AreEqual(data.Count, PageSize, "Set has 10 items");
 
             var request = new GridDataRequest
             {
                 Take = PageSize,
-                Skip = PageSize*page,
+                Skip = PageSize * page,
                 Search = new Filter(),
                 Columns = Thing.GetColumns(),
                 TimezoneOffset = timezoneOffset
@@ -38,8 +38,8 @@
             Assert.AreEqual(data.First().Id, response.Payload.First().First(), "Same first item");
 
             Assert.That(
-                ignoreTimezone ? data.First().Date : data.First().Date.AddMinutes(-timezoneOffset), 
-                Is.EqualTo(response.Payload.First()[2]).Within(10).Seconds, 
+                ignoreTimezone ? data.First().Date : data.First().Date.AddMinutes(-timezoneOffset),
+                Is.EqualTo(response.Payload.First()[2]).Within(10).Seconds,
                 "Same date at first item");
 
             Assert.AreEqual(dataSource.Count(), response.TotalRecordCount, "Total rows matching");
@@ -153,7 +153,7 @@
 
             Assert.AreEqual(dataSource.Count(), response.TotalRecordCount, "Total rows matching");
         }
-        
+
         [Test]
         public void TestListSimpleSearch()
         {
@@ -198,9 +198,9 @@
 
             for (var i = 0; i < 422; i++)
             {
-                dataSource.Add(new Thing {Color = "red"});
-                dataSource.Add(new Thing {Color = "blue"});
-                dataSource.Add(new Thing {Color = "yellow"});
+                dataSource.Add(new Thing { Color = "red" });
+                dataSource.Add(new Thing { Color = "blue" });
+                dataSource.Add(new Thing { Color = "yellow" });
             }
 
             var columns = new[]
@@ -293,15 +293,15 @@
 
             Assert.AreEqual(dataSource.Sum(x => x.Number), response.AggregationPayload["Number"],
                 "Same average number");
-            Assert.AreEqual(dataSource.Sum(x => x.DecimalNumber), (decimal) response.AggregationPayload["DecimalNumber"],
+            Assert.AreEqual(dataSource.Sum(x => x.DecimalNumber), (decimal)response.AggregationPayload["DecimalNumber"],
                 "Same average decimal number");
             Assert.AreEqual(dataSource.Max(x => x.Name), response.AggregationPayload["Name"],
                 "Same max name");
-            Assert.That(dataSource.Min(x => x.Date), 
+            Assert.That(dataSource.Min(x => x.Date),
                 Is.EqualTo(response.AggregationPayload["Date"]).Within(10).Seconds,
                 "Same min date");
         }
-        
+
         [Test]
         public void TestMultipleAggregate()
         {
@@ -323,15 +323,15 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
             Assert.AreEqual(data.First().Id, response.Payload.First().First(), "Same first item");
 
-            Assert.AreEqual(dataSource.Select(x => x.Id).Distinct().Count(), (int) response.AggregationPayload["Id"],
+            Assert.AreEqual(dataSource.Select(x => x.Id).Distinct().Count(), (int)response.AggregationPayload["Id"],
                 "Id same distinct count");
             Assert.AreEqual(dataSource.Select(x => x.Number).Distinct().Count(),
-                (int) response.AggregationPayload["Number"], "Number same distinct count");
+                (int)response.AggregationPayload["Number"], "Number same distinct count");
             Assert.AreEqual(dataSource.Select(x => x.DecimalNumber).Distinct().Count(),
-                (int) response.AggregationPayload["DecimalNumber"], "DecimalNumber same distinct count");
-            Assert.AreEqual(dataSource.Select(x => x.Name).Distinct().Count(), (int) response.AggregationPayload["Name"],
+                (int)response.AggregationPayload["DecimalNumber"], "DecimalNumber same distinct count");
+            Assert.AreEqual(dataSource.Select(x => x.Name).Distinct().Count(), (int)response.AggregationPayload["Name"],
                 "Name same distinct count");
-            Assert.AreEqual(dataSource.Select(x => x.Date).Distinct().Count(), (int) response.AggregationPayload["Date"],
+            Assert.AreEqual(dataSource.Select(x => x.Date).Distinct().Count(), (int)response.AggregationPayload["Date"],
                 "Date same distinct count");
             Assert.AreEqual(dataSource.Select(x => x.IsShipped).Distinct().Count(), (int)response.AggregationPayload["IsShipped"],
                 "IsShipped same distinct count");
@@ -349,15 +349,15 @@
         {
             const int offset = 30;
             var now = DateTime.Now;
-            var date = new MyDateClass {Date = now, NullableDate = now};
-            var actual = (MyDateClass) Extensions.AdjustTimeZone(date, offset);
+            var date = new MyDateClass { Date = now, NullableDate = now };
+            var actual = (MyDateClass)Extensions.AdjustTimeZone(date, offset);
 
             Assert.AreEqual(now.AddMinutes(-offset), actual.Date, "Non-nullable date adjusted");
             Assert.IsNotNull(actual.NullableDate);
             Assert.AreEqual(now.AddMinutes(-offset), actual.NullableDate.Value, "Nullable date with value adjusted");
 
-            date = new MyDateClass {Date = now, NullableDate = null};
-            actual = (MyDateClass) Extensions.AdjustTimeZone(date, offset);
+            date = new MyDateClass { Date = now, NullableDate = null };
+            actual = (MyDateClass)Extensions.AdjustTimeZone(date, offset);
 
             Assert.IsNull(actual.NullableDate, "Nullable date adjusted");
         }
@@ -386,7 +386,7 @@
             var dataSource = SampleEntities.GenerateData().AsQueryable();
             var filterCount = dataSource.Where(x => x.Color == filter);
             var data = filterCount.Take(PageSize).ToList();
-            
+
             var request = new GridDataRequest
             {
                 Take = PageSize,
@@ -402,7 +402,7 @@
             foreach (var item in response.Payload)
                 Assert.AreNotEqual(filter, item[4], "Diferent color");
 
-            foreach(var item in response.Payload)
+            foreach (var item in response.Payload)
                 Assert.AreEqual("darkblue", item[4], "Same color");
 
         }
