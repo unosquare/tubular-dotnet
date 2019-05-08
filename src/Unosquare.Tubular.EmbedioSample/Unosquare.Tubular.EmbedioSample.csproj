@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <AssemblyTitle>Tubular with EmbedIO webserver sample</AssemblyTitle>
-    <TargetFrameworks>netcoreapp2.1;net46</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <PackageId>Unosquare.Tubular.EmbedioSample</PackageId>
   </PropertyGroup>
@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EmbedIO" Version="1.13.1" />
-    <PackageReference Include="Unosquare.Swan" Version="0.30.1" />
+    <PackageReference Include="EmbedIO" Version="2.7.2" />
+    <PackageReference Include="Unosquare.Swan" Version="1.1.4" />
   </ItemGroup>
 
 </Project>

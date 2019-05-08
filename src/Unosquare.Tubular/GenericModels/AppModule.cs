@@ -3,14 +3,14 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// Represents a top menu
+    /// Represents a top menu.
     /// </summary>
     /// <seealso cref="Unosquare.Tubular.GenericModels.Menu" />
     public class AppModule : Menu
     {
         /// <summary>
         /// Gets or sets a value indicating whether this instance is root and
-        /// it doesn't show child menu
+        /// it doesn't show child menu.
         /// </summary>
         public bool IsRoot { get; set; }
 
@@ -21,7 +21,7 @@
     }
 
     /// <summary>
-    /// Represents a application menu
+    /// Represents a application menu.
     /// </summary>
     public class Menu
     {

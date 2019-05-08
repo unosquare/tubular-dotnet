@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,16 +71,13 @@ namespace Unosquare.Tubular.AspNetCoreSample
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
             SampleDbContext dbContext)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             app.UseFallback();
             app.UseJsonExceptionHandler();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseBearerTokenAuthentication(TokenOptions, (userName, password, grantType, clientId) =>
+            app.UseBearerTokenAuthentication(TokenOptions, (provider, userName, password, grantType, clientId) =>
             {
                 // TODO: Replace with your implementation
                 if (userName != "Admin" || password != "pass.word") return Task.FromResult<ClaimsIdentity>(null);

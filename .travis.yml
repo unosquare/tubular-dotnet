@@ -3,15 +3,10 @@ solution: Unosquare.Tubular.sln
 notifications:
   slack: unolabs:cbusXPH6pBwZ35rVDzi4k4ve
 mono: none
-dotnet: 2.1.300
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: false
-    - os: osx
-      osx_image: xcode9.1
+dotnet: 2.2.101
+dist: xenial
+sudo: false
 install:
   - dotnet restore
 script:
-  - dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj -f netcoreapp2.1
+  - dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj

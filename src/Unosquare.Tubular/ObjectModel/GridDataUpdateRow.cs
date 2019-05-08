@@ -6,27 +6,27 @@
     /// The Old property contains the original model and the New property
     /// the changes to commit.
     /// </summary>
-    /// <typeparam name="T">The type of model to update</typeparam>
+    /// <typeparam name="T">The type of model to update.</typeparam>
     public class GridDataUpdateRow<T> 
         where T : class
     {
         /// <summary>
-        /// Original model
+        /// Original model.
         /// </summary>
         public T Old { get; set; }
         
         /// <summary>
-        /// Changed model
+        /// Changed model.
         /// </summary>
         public T New { get; set; }
         
         /// <summary>
-        /// The timezone offset
+        /// The timezone offset.
         /// </summary>
         public int TimezoneOffset { get; set; }
 
         /// <summary>
-        /// Adjust the timezone to UTC
+        /// Adjust the timezone to UTC.
         /// </summary>
         public void AdjustTimezoneOffset()
         {

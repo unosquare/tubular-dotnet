@@ -9,21 +9,21 @@
     using ObjectModel;
 
     /// <summary>
-    /// Extension methods to create chart responses
+    /// Extension methods to create chart responses.
     /// </summary>
     public static class ChartsExtension
     {
         /// <summary>
-        /// Creates a single serie chart from a IQueryable
+        /// Creates a single serie chart from a IQueryable.
         /// </summary>
-        /// <typeparam name="T">The type of object to query</typeparam>
+        /// <typeparam name="T">The type of object to query.</typeparam>
         /// <typeparam name="TR">The type of the result.</typeparam>
         /// <param name="datasource">The datasource.</param>
         /// <param name="label">The label.</param>
         /// <param name="value">The value.</param>
         /// <param name="serieName">Name of the serie.</param>
         /// <param name="aggregation">The aggregation.</param>
-        /// <returns>A response with single serie for a Tubular Chart</returns>
+        /// <returns>A response with single serie for a Tubular Chart.</returns>
         public static SingleSerieChartResponse<TR> ProvideSingleSerieChartResponse<T, TR>(
             this IQueryable<T> datasource,
             Expression<Func<T, string>> label, 
@@ -51,16 +51,16 @@
         }
 
         /// <summary>
-        /// Creates a multiple series chart from a IQueryable
+        /// Creates a multiple series chart from a IQueryable.
         /// </summary>
-        /// <typeparam name="T">The type of object to query</typeparam>
+        /// <typeparam name="T">The type of object to query.</typeparam>
         /// <typeparam name="TR">The type of the result.</typeparam>
         /// <param name="datasource">The datasource.</param>
         /// <param name="label">The label.</param>
         /// <param name="serie">The serie.</param>
         /// <param name="value">The value.</param>
         /// <param name="aggregation">The aggregation.</param>
-        /// <returns>A response with multiple series for a Tubular Chart</returns>
+        /// <returns>A response with multiple series for a Tubular Chart.</returns>
         public static MultipleSerieChartResponse<TR> ProvideMultipleSerieChartResponse<T, TR>(
             this IQueryable<T> datasource, 
             Expression<Func<T, string>> label, 
@@ -118,7 +118,7 @@
             {
                 Data = data.Select(x => x.Cast<TR>().ToArray()).ToArray(),
                 Labels = labels.ToArray(),
-                Series = series.ToArray()
+                Series = series.ToArray(),
             };
         }
 

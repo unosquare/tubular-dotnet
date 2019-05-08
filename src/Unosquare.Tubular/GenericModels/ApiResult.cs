@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Represents a basic generic API Result object
+    /// Represents a basic generic API Result object.
     /// </summary>
     public class ApiResult
     {
@@ -26,14 +26,14 @@
         /// Create a new valid result with an optional message.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// <returns>An ApiResult with status OK</returns>
+        /// <returns>An ApiResult with status OK.</returns>
         public static ApiResult Ok(string message = null) => new ApiResult { Status = nameof(Ok), Message = message };
 
         /// <summary>
         /// Create a new invalid result with an exception.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        /// <returns>An ApiResult with status Error</returns>
+        /// <returns>An ApiResult with status Error.</returns>
         public static ApiResult Error(Exception ex) => new ApiResult { Status = nameof(Error), Message = ex.Message };
     }
 }

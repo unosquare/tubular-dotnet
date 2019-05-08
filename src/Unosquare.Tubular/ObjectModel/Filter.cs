@@ -4,7 +4,7 @@
     /// Represents a Tubular's filter (by column).
     /// 
     /// This object is only used to be serialized/deserialized between
-    /// the API and Tubular
+    /// the API and Tubular.
     /// </summary>
     public class Filter
     {
@@ -20,28 +20,28 @@
         }
 
         /// <summary>
-        /// Filter name
+        /// Filter name.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Filter search text
+        /// Filter search text.
         /// </summary>
         public string Text { get; set; }
 
         /// <summary>
-        /// Filter search params
+        /// Filter search params.
         /// </summary>
         public string[] Argument { get; set; }
 
         /// <summary>
-        /// Filter's operator
+        /// Filter's operator.
         /// </summary>
         public CompareOperators Operator { get; set; }
 
         /// <summary>
         /// Gets or sets the options URL.
-        /// The URL returns a list of Filter objects
+        /// The URL returns a list of Filter objects.
         /// </summary>
         public string OptionsUrl { get; set; }
 

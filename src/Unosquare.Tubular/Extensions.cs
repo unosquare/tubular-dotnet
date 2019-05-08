@@ -14,7 +14,7 @@
 #endif
 
     /// <summary>
-    /// Extensions methods
+    /// Extensions methods.
     /// </summary>
     public static class Extensions
     {
@@ -26,14 +26,14 @@
 #endif
 
         /// <summary>
-        /// Delegates a process to format a subset response
+        /// Delegates a process to format a subset response.
         /// </summary>
-        /// <param name="dataSource">The datasource</param>
-        /// <returns>A subset</returns>
+        /// <param name="dataSource">The datasource.</param>
+        /// <returns>A subset.</returns>
         public delegate IQueryable ProcessResponseSubset(IQueryable dataSource);
 
         /// <summary>
-        /// Adjust a timezone data in a object
+        /// Adjust a timezone data in a object.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="timezoneOffset">The timezone offset.</param>
@@ -78,10 +78,10 @@
         /// Generates a GridDataResponse using the GridDataRequest and an IQueryable source,
         /// like a DataSet in Entity Framework.
         /// </summary>
-        /// <param name="request">The Tubular Grid Request</param>
-        /// <param name="dataSource">The IQueryable source</param>
-        /// <param name="preProcessSubset">The subset's process delegate</param>
-        /// <returns>A grid response</returns>
+        /// <param name="request">The Tubular Grid Request.</param>
+        /// <param name="dataSource">The IQueryable source.</param>
+        /// <param name="preProcessSubset">The subset's process delegate.</param>
+        /// <returns>A grid response.</returns>
         public static GridDataResponse CreateGridDataResponse(
             this GridDataRequest request,
             IQueryable dataSource,
@@ -94,7 +94,7 @@
             {
                 Counter = request.Counter,
                 TotalRecordCount = dataSource.Count(),
-                FilteredRecordCount = dataSource.Count()
+                FilteredRecordCount = dataSource.Count(),
             };
 
             var properties = dataSource.ElementType.ExtractProperties();

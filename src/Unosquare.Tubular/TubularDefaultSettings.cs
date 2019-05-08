@@ -1,12 +1,12 @@
 ﻿namespace Unosquare.Tubular
 {
     /// <summary>
-    /// Tubular default settings
+    /// Tubular default settings.
     /// </summary>
     public static class TubularDefaultSettings
     {
         /// <summary>
-        /// Defines if the timezone offset should used
+        /// Defines if the timezone offset should used.
         /// </summary>
         public static bool AdjustTimezoneOffset { get; set; } = true;
     }

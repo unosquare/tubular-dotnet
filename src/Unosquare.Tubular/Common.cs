@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Enumeration Sort directions
+    /// Enumeration Sort directions.
     /// </summary>
     public enum SortDirection
     {
@@ -20,11 +20,11 @@
         /// <summary>
         /// Descending sorting
         /// </summary>
-        Descending
+        Descending,
     }
 
     /// <summary>
-    /// Enumeration filtering operators
+    /// Enumeration filtering operators.
     /// </summary>
     public enum CompareOperators
     {
@@ -106,11 +106,11 @@
         /// <summary>
         /// Not EndsWith filter
         /// </summary>
-        NotEndsWith
+        NotEndsWith,
     }
 
     /// <summary>
-    /// Supported data types
+    /// Supported data types.
     /// </summary>
     public enum DataType
     {
@@ -142,11 +142,11 @@
         /// <summary>
         /// DataTime UTC type
         /// </summary>
-        DateTimeUtc
+        DateTimeUtc,
     }
 
     /// <summary>
-    /// Aggregation Functions
+    /// Aggregation Functions.
     /// </summary>
     public enum AggregationFunction
     {
@@ -183,16 +183,16 @@
         /// <summary>
         /// Min function
         /// </summary>
-        Min
+        Min,
     }
     
     /// <summary>
-    /// Common properties
+    /// Common properties.
     /// </summary>
     public class Common
     {
         /// <summary>
-        /// Defines primitive types
+        /// Defines primitive types.
         /// </summary>
         public static readonly Type[] PrimitiveTypes =
         {
@@ -228,7 +228,7 @@
             typeof(short?),
             typeof(ushort?),
             typeof(Guid),
-            typeof(Guid?)
+            typeof(Guid?),
         };
     }
 }
