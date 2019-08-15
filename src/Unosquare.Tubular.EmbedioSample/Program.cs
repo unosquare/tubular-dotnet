@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
+using Swan;
 using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Modules;
-using Unosquare.Swan;
 
 namespace Unosquare.Tubular.EmbedioSample
 {
@@ -14,7 +14,7 @@ namespace Unosquare.Tubular.EmbedioSample
         /// <value>
         /// The HTML root path.
         /// </value>
-        public static string HtmlRootPath => Path.Combine(Runtime.EntryAssemblyDirectory, "html");
+        public static string HtmlRootPath => Path.Combine(SwanRuntime.EntryAssemblyDirectory, "html");
 
         /// <summary>
         /// Defines the entry point of the application.
