@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "KiVU13FLVZRLtjLESWUyhw=="
+          "hash": "U9TCx3Z+Atr2Pu4OAwN2UQ=="
         }
       },
       "is_incremental": false,
@@ -74,7 +74,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.AggregationFunction.html",
-          "hash": "o7y3dwd7/ydadHOGDQ30GA=="
+          "hash": "RzU6MzyEuy5fnoroy6MtDw=="
         }
       },
       "is_incremental": false,
@@ -86,7 +86,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.ChartsExtension.html",
-          "hash": "PL+3tAQkX9tFbPYmkgPptg=="
+          "hash": "kJD0GbIc4SoiNNawbNSV5w=="
         }
       },
       "is_incremental": false,
@@ -98,7 +98,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.Common.html",
-          "hash": "xUcOMJ7sbKA9rIvhAf/VyA=="
+          "hash": "EejpP9m/4FgsMMp+xq1nEQ=="
         }
       },
       "is_incremental": false,
@@ -110,7 +110,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.CompareOperators.html",
-          "hash": "PSRg8C05CAhRxXzx9FQNag=="
+          "hash": "EJOWfImpACKYrTzpWPS5DA=="
         }
       },
       "is_incremental": false,
@@ -122,7 +122,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.DataType.html",
-          "hash": "76BuHoeutwMcNhrTrlgNcQ=="
+          "hash": "a5JbSn0xXCdQcne8Zw2pmQ=="
         }
       },
       "is_incremental": false,
@@ -134,7 +134,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.Extensions.ProcessResponseSubset.html",
-          "hash": "Zs7k/0+XOpyr+f/vrSAd9Q=="
+          "hash": "NujUb9Oo637PyfKYuR9ddw=="
         }
       },
       "is_incremental": false,
@@ -146,7 +146,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.Extensions.html",
-          "hash": "ffn0w1ILjsevc79yhq1LRA=="
+          "hash": "vBdKHeJIB/pKuof7rwlTWw=="
         }
       },
       "is_incremental": false,
@@ -158,7 +158,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.GenericModels.ApiResult.html",
-          "hash": "w6hP2MqRpYdtaJ8DsnngNQ=="
+          "hash": "damrx3crrlF9cOffe/oycw=="
         }
       },
       "is_incremental": false,
@@ -170,7 +170,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.GenericModels.AppModule.html",
-          "hash": "fzQ4da+z3aFxfH60ueuqZg=="
+          "hash": "8GYvVOieDc/nQzPecg5zNQ=="
         }
       },
       "is_incremental": false,
@@ -182,7 +182,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.GenericModels.Menu.html",
-          "hash": "EFEgTGU2+2+LtnLgTjuoWg=="
+          "hash": "S4hAyncVvn1P3zCuJrCvBw=="
         }
       },
       "is_incremental": false,
@@ -194,7 +194,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.GenericModels.html",
-          "hash": "Ftesb959bvS+4Bycycwbbw=="
+          "hash": "fWJNApYcq6siOBr+MP5VcA=="
         }
       },
       "is_incremental": false,
@@ -206,7 +206,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.ObjectModel.Filter.html",
-          "hash": "qAEGubf10v3mG4JNQAj7BA=="
+          "hash": "xD7NkI5ZYwwGRWAOvPm4jQ=="
         }
       },
       "is_incremental": false,
@@ -218,7 +218,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.ObjectModel.GridColumn.html",
-          "hash": "qflC5EYS0QoLOePci/4Xdw=="
+          "hash": "T7FVCYMe/9nBe42lX15G5g=="
         }
       },
       "is_incremental": false,
@@ -230,7 +230,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.ObjectModel.GridDataRequest.html",
-          "hash": "I+C51bUj7n2pbwnqYQFkiw=="
+          "hash": "/+r4HdxSveMn4Ir4BJ0Guw=="
         }
       },
       "is_incremental": false,
@@ -242,7 +242,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.ObjectModel.GridDataResponse.html",
-          "hash": "HEC85IiBD25wM2NAAFgHPg=="
+          "hash": "Wm5YVcaEdnJ8i9ryAwgk4g=="
         }
       },
       "is_incremental": false,
@@ -254,7 +254,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html",
-          "hash": "WmI8aQezlN4iyUWQDRxq5w=="
+          "hash": "cm0nlbhJbaVrQUOtJ6u/Lw=="
         }
       },
       "is_incremental": false,
@@ -266,7 +266,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html",
-          "hash": "kY2S5cwc5ujPOog5CBwNgg=="
+          "hash": "aoaBXlB9oEQH9CRtK/lyzg=="
         }
       },
       "is_incremental": false,
@@ -278,7 +278,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html",
-          "hash": "Q9uakYRilSGu93CnRBzVOA=="
+          "hash": "TZm/KvnF1qmO8kQs2QRRLQ=="
         }
       },
       "is_incremental": false,
@@ -290,7 +290,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.ObjectModel.html",
-          "hash": "7DSSP0l9yKnjHp+pefhWWA=="
+          "hash": "R9hQJWm2+w8G3JmMqz2FkQ=="
         }
       },
       "is_incremental": false,
@@ -302,7 +302,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.SortDirection.html",
-          "hash": "Rh6cNNNTJvKcwQBiC//GbQ=="
+          "hash": "BnFDRUFzKtxOqcvuVWeJ+Q=="
         }
       },
       "is_incremental": false,
@@ -314,7 +314,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.TubularDefaultSettings.html",
-          "hash": "MFt8SzOdS5yB4mBRGhs/Pw=="
+          "hash": "iC26ZDI2N92eW6ZSGnpaXQ=="
         }
       },
       "is_incremental": false,
@@ -326,7 +326,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.html",
-          "hash": "HlBdwRT2rBMzKdSseWA21Q=="
+          "hash": "jbDsGmjPtU6yk7RnOjrNAQ=="
         }
       },
       "is_incremental": false,
