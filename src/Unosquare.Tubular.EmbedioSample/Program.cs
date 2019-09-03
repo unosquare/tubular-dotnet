@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
+using EmbedIO;
+using EmbedIO.WebApi;
 using Swan;
-using Unosquare.Labs.EmbedIO;
-using Unosquare.Labs.EmbedIO.Modules;
 
 namespace Unosquare.Tubular.EmbedioSample
 {
@@ -29,16 +29,10 @@ namespace Unosquare.Tubular.EmbedioSample
             using (var server = new WebServer(url))
             {
                 // First, we will configure our web server by adding Modules.
-
-                server.RegisterModule(new WebApiModule());
-                server.Module<WebApiModule>().RegisterController<PeopleController>();
-
-                // Here we setup serving of static files
-                server.RegisterModule(new StaticFilesModule(HtmlRootPath)
-                {
-                    UseRamCache = true,
-                    DefaultExtension = ".html"
-                });
+                server
+                    .WithWebApi("/api", m => m
+                        .WithController<PeopleController>())
+                    .WithStaticFolder("/", HtmlRootPath, true);
 
                 // Once we've registered our modules and configured them, we call the RunAsync() method.
                 // This is a non-blocking method (it return immediately) so in this case we avoid
@@ -46,13 +40,12 @@ namespace Unosquare.Tubular.EmbedioSample
                 server.RunAsync();
 
                 // Fire up the browser to show the content if we are debugging!
-#if DEBUG
-                var browser = new System.Diagnostics.Process()
+                var browser = new System.Diagnostics.Process
                 {
-                    StartInfo = new System.Diagnostics.ProcessStartInfo(url) {UseShellExecute = true}
+                    StartInfo = new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true }
                 };
                 browser.Start();
-#endif
+
                 // Wait for any key to be pressed before disposing of our web server.
                 // In a service we'd manage the lifecycle of of our web server using
                 // something like a BackgroundWorker or a ManualResetEvent.
