@@ -3,7 +3,6 @@
     using NUnit.Framework;
     using System;
     using System.Linq;
-    using ObjectModel;
     using Database;
 
     [TestFixture]

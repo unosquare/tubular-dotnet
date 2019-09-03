@@ -7,11 +7,6 @@
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Text;
-    using ObjectModel;
-#if NET452
-    using System.Text.RegularExpressions;
-    using System.Net.Http;
-#endif
 
     /// <summary>
     /// Extensions methods.
@@ -21,14 +16,10 @@
         private const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss.f";
         private const string DateFormat = "yyyy-MM-dd";
 
-#if NET452
-        private static readonly Regex TimezoneOffset = new Regex(@"timezoneOffset=(\d[^&]*)");
-#endif
-
         /// <summary>
         /// Delegates a process to format a subset response.
         /// </summary>
-        /// <param name="dataSource">The datasource.</param>
+        /// <param name="dataSource">The data source.</param>
         /// <returns>A subset.</returns>
         public delegate IQueryable ProcessResponseSubset(IQueryable dataSource);
 
@@ -49,30 +40,6 @@
 
             return data;
         }
-
-#if NET452
-        /// <summary>
-        /// Checks the datetime properties in an object and adjust the timezone.
-        /// </summary>
-        /// <param name="request">The Http Request</param>
-        /// <param name="data">The output object</param>
-        /// <param name="fromLocal">Set if the adjustment is from local time</param>
-        /// <returns>The same object with DateTime properties adjusted to the timezone specified.</returns>
-        public static object AdjustObjectTimeZone(this HttpRequestMessage request, object data, bool fromLocal = false)
-        {
-            var query = request.RequestUri.Query;
-
-            if (string.IsNullOrWhiteSpace(query)) return data;
-
-            var match = TimezoneOffset.Match(query);
-
-            if (!match.Success) return data;
-            var timeDiff = int.Parse(match.Groups[1].Value);
-            if (fromLocal) timeDiff *= -1;
-
-            return data.AdjustTimeZone(timeDiff);
-        }
-#endif
 
         /// <summary>
         /// Generates a GridDataResponse using the GridDataRequest and an IQueryable source,
@@ -161,10 +128,10 @@
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Dictionary<GridColumn, PropertyInfo> MapColumnsToProperties(
-            GridColumn[] columns,
-            Dictionary<string, PropertyInfo> properties)
+            IReadOnlyCollection<GridColumn> columns,
+            IReadOnlyDictionary<string, PropertyInfo> properties)
         {
-            var columnMap = new Dictionary<GridColumn, PropertyInfo>(columns.Length);
+            var columnMap = new Dictionary<GridColumn, PropertyInfo>(columns.Count);
 
             foreach (var column in columns.Where(column => properties.ContainsKey(column.Name)))
             {
@@ -187,12 +154,11 @@
             {
                 var payloadItem = new List<object>(columnMap.Keys.Count);
 
-                foreach (var column in columnMap.Select(m => new { Value = m.Value.GetValue(item), m.Key }))
+                foreach (var column in columnMap.Select(m => new {Value = m.Value.GetValue(item), m.Key}))
                 {
                     if (column.Value is DateTime time)
                     {
-                        if (column.Key.DataType == DataType.DateTimeUtc ||
-                            TubularDefaultSettings.AdjustTimezoneOffset == false)
+                        if (column.Key.DataType == DataType.DateTimeUtc || !TubularDefaultSettings.AdjustTimezoneOffset)
                             payloadItem.Add(time);
                         else
                             payloadItem.Add(time.AddMinutes(-timezoneOffset));
@@ -214,13 +180,13 @@
             DateTime value;
             if (prop.PropertyType == typeof(DateTime?))
             {
-                var nullableValue = (DateTime?)prop.GetValue(data);
+                var nullableValue = (DateTime?) prop.GetValue(data);
                 if (!nullableValue.HasValue) return;
                 value = nullableValue.Value;
             }
             else
             {
-                value = (DateTime)prop.GetValue(data);
+                value = (DateTime) prop.GetValue(data);
             }
 
             value = value.AddMinutes(-timezoneOffset);
@@ -228,14 +194,17 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Dictionary<string, object> AggregateSubset(GridColumn[] columns, IQueryable subset)
+        private static Dictionary<string, object> AggregateSubset(IEnumerable<GridColumn> columns, IQueryable subset)
         {
             var aggregateColumns = columns.Where(c => c.Aggregate != AggregationFunction.None);
             var payload = new Dictionary<string, object>(aggregateColumns.Count());
 
-            void Aggregate(GridColumn column, Func<IQueryable<double>, double> doubleF,
-                Func<IQueryable<decimal>, decimal> decimalF, Func<IQueryable<int>, int> intF,
-                Func<IQueryable<string>, string> stringF, Func<IQueryable<DateTime>, DateTime> dateF)
+            void Aggregate(GridColumn column, 
+                Func<IQueryable<double>, double> doubleF,
+                Func<IQueryable<decimal>, decimal> decimalF, 
+                Func<IQueryable<int>, int> intF,
+                Func<IQueryable<string>, string> stringF, 
+                Func<IQueryable<DateTime>, DateTime> dateF)
             {
                 try
                 {

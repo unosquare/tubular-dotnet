@@ -1,4 +1,4 @@
-﻿namespace Unosquare.Tubular.ObjectModel
+﻿namespace Unosquare.Tubular
 {
     /// <summary>
     /// Represents a Data Request from a Tubular Grid.

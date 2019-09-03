@@ -1,4 +1,4 @@
-﻿namespace Unosquare.Tubular.ObjectModel
+﻿namespace Unosquare.Tubular
 {
     /// <summary>
     /// Represents a Tubular's filter (by column).
@@ -14,7 +14,6 @@
         public Filter()
         {
             Operator = CompareOperators.None;
-            OptionsUrl = string.Empty;
             Name = string.Empty;
             Text = string.Empty;
         }
@@ -38,12 +37,6 @@
         /// Filter's operator.
         /// </summary>
         public CompareOperators Operator { get; set; }
-
-        /// <summary>
-        /// Gets or sets the options URL.
-        /// The URL returns a list of Filter objects.
-        /// </summary>
-        public string OptionsUrl { get; set; }
 
         /// <summary>
         /// Flags if the Filter is applied.
