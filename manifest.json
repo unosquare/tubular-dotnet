@@ -82,18 +82,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.ChartsExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.Tubular.ChartsExtension.html",
-          "hash": "kJD0GbIc4SoiNNawbNSV5w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "obj/api/Unosquare.Tubular.Common.yml",
       "output": {
         ".html": {
@@ -134,7 +122,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.Extensions.ProcessResponseSubset.html",
-          "hash": "NujUb9Oo637PyfKYuR9ddw=="
+          "hash": "ozgq9ZXaha0LWYq+5HsNOQ=="
         }
       },
       "is_incremental": false,
@@ -146,7 +134,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.Extensions.html",
-          "hash": "vBdKHeJIB/pKuof7rwlTWw=="
+          "hash": "rbnuxb4PrvwRmcLXkEP/0Q=="
         }
       },
       "is_incremental": false,
@@ -154,11 +142,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.GenericModels.ApiResult.yml",
+      "source_relative_path": "obj/api/Unosquare.Tubular.Filter.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Unosquare.Tubular.GenericModels.ApiResult.html",
-          "hash": "damrx3crrlF9cOffe/oycw=="
+          "relative_path": "api/Unosquare.Tubular.Filter.html",
+          "hash": "Bu8nuUHdxJMhSCsbIcZK6Q=="
         }
       },
       "is_incremental": false,
@@ -166,11 +154,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.GenericModels.AppModule.yml",
+      "source_relative_path": "obj/api/Unosquare.Tubular.GridColumn.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Unosquare.Tubular.GenericModels.AppModule.html",
-          "hash": "8GYvVOieDc/nQzPecg5zNQ=="
+          "relative_path": "api/Unosquare.Tubular.GridColumn.html",
+          "hash": "RioieE6L7fj5V1zw+nv8hA=="
         }
       },
       "is_incremental": false,
@@ -178,11 +166,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.GenericModels.Menu.yml",
+      "source_relative_path": "obj/api/Unosquare.Tubular.GridDataRequest.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Unosquare.Tubular.GenericModels.Menu.html",
-          "hash": "S4hAyncVvn1P3zCuJrCvBw=="
+          "relative_path": "api/Unosquare.Tubular.GridDataRequest.html",
+          "hash": "oUaMfIEQVgA2/a8kw62dEg=="
         }
       },
       "is_incremental": false,
@@ -190,107 +178,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.GenericModels.yml",
+      "source_relative_path": "obj/api/Unosquare.Tubular.GridDataResponse.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Unosquare.Tubular.GenericModels.html",
-          "hash": "fWJNApYcq6siOBr+MP5VcA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.ObjectModel.Filter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.Tubular.ObjectModel.Filter.html",
-          "hash": "xD7NkI5ZYwwGRWAOvPm4jQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.ObjectModel.GridColumn.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.Tubular.ObjectModel.GridColumn.html",
-          "hash": "T7FVCYMe/9nBe42lX15G5g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.ObjectModel.GridDataRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.Tubular.ObjectModel.GridDataRequest.html",
-          "hash": "/+r4HdxSveMn4Ir4BJ0Guw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.ObjectModel.GridDataResponse.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.Tubular.ObjectModel.GridDataResponse.html",
-          "hash": "Wm5YVcaEdnJ8i9ryAwgk4g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html",
-          "hash": "cm0nlbhJbaVrQUOtJ6u/Lw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html",
-          "hash": "aoaBXlB9oEQH9CRtK/lyzg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html",
-          "hash": "TZm/KvnF1qmO8kQs2QRRLQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.Tubular.ObjectModel.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.Tubular.ObjectModel.html",
-          "hash": "R9hQJWm2+w8G3JmMqz2FkQ=="
+          "relative_path": "api/Unosquare.Tubular.GridDataResponse.html",
+          "hash": "CrTH9aeB3pTDzrvaGJfEXw=="
         }
       },
       "is_incremental": false,
@@ -326,7 +218,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.html",
-          "hash": "jbDsGmjPtU6yk7RnOjrNAQ=="
+          "hash": "AeGF3OP+A7zzrCZ7+2nYUg=="
         }
       },
       "is_incremental": false,
@@ -338,7 +230,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "kcBgqFpJW8FQxy/bSsbGrw=="
+          "hash": "grRQGHc9drbP287R9RK45Q=="
         }
       },
       "is_incremental": false,
@@ -379,11 +271,10 @@
         "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
-        "ResourceDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 0,
+          "total_file_count": 13,
           "skipped_file_count": 0
         },
         "ConceptualDocumentProcessor": {
@@ -392,17 +283,18 @@
           "total_file_count": 1,
           "skipped_file_count": 0
         },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 22,
           "skipped_file_count": 0
         }
       }

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class MultipleSerieChartResponse&lt;T&gt;
+    <title>Class Filter
    | Unosquare Tubular </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class MultipleSerieChartResponse&lt;T&gt;
+    <meta name="title" content="Class Filter
    | Unosquare Tubular ">
     <meta name="generator" content="docfx 2.45.0.0">
     
@@ -76,18 +76,20 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1">
+            <article class="content wrap" id="_content" data-uid="Unosquare.Tubular.Filter">
   
   
-  <h1 id="Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1" data-uid="Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1" class="text-break">Class MultipleSerieChartResponse&lt;T&gt;
+  <h1 id="Unosquare_Tubular_Filter" data-uid="Unosquare.Tubular.Filter" class="text-break">Class Filter
   </h1>
-  <div class="markdown level0 summary"><p>Represents a multiple serie chart response.</p>
+  <div class="markdown level0 summary"><p>Represents a Tubular&apos;s filter (by column).</p>
+<p>This object is only used to be serialized/deserialized between
+the API and Tubular.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">MultipleSerieChartResponse&lt;T&gt;</span></div>
+    <div class="level1"><span class="xref">Filter</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -113,65 +115,36 @@
       <span class="xref">System.Object.MemberwiseClone()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.Tubular.ObjectModel.html">Unosquare.Tubular.ObjectModel</a></h6>
-  <h5 id="Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_syntax">Syntax</h5>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.Tubular.html">Unosquare.Tubular</a></h6>
+  <h5 id="Unosquare_Tubular_Filter_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MultipleSerieChartResponse&lt;T&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class Filter</code></pre>
   </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>The type of numeric data.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="Unosquare_Tubular_Filter__ctor_" data-uid="Unosquare.Tubular.Filter.#ctor*"></a>
+  <h4 id="Unosquare_Tubular_Filter__ctor" data-uid="Unosquare.Tubular.Filter.#ctor">Filter()</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Unosquare.Tubular.Filter.html">Filter</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Filter()</code></pre>
+  </div>
   <h3 id="properties">Properties
   </h3>
   
   
-  <a id="Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Data_" data-uid="Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Data" data-uid="Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data">Data</h4>
-  <div class="markdown level1 summary"><p>The chart response data.</p>
+  <a id="Unosquare_Tubular_Filter_Argument_" data-uid="Unosquare.Tubular.Filter.Argument*"></a>
+  <h4 id="Unosquare_Tubular_Filter_Argument" data-uid="Unosquare.Tubular.Filter.Argument">Argument</h4>
+  <div class="markdown level1 summary"><p>Filter search params.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T[][] Data { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>T[][]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Labels_" data-uid="Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Labels" data-uid="Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels">Labels</h4>
-  <div class="markdown level1 summary"><p>The chart labels.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] Labels { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string[] Argument { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -190,14 +163,14 @@
   </table>
   
   
-  <a id="Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Series_" data-uid="Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Series" data-uid="Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series">Series</h4>
-  <div class="markdown level1 summary"><p>The chart series.</p>
+  <a id="Unosquare_Tubular_Filter_HasFilter_" data-uid="Unosquare.Tubular.Filter.HasFilter*"></a>
+  <h4 id="Unosquare_Tubular_Filter_HasFilter" data-uid="Unosquare.Tubular.Filter.HasFilter">HasFilter</h4>
+  <div class="markdown level1 summary"><p>Flags if the Filter is applied.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] Series { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool HasFilter { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -209,7 +182,85 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Tubular_Filter_Name_" data-uid="Unosquare.Tubular.Filter.Name*"></a>
+  <h4 id="Unosquare_Tubular_Filter_Name" data-uid="Unosquare.Tubular.Filter.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Filter name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Tubular_Filter_Operator_" data-uid="Unosquare.Tubular.Filter.Operator*"></a>
+  <h4 id="Unosquare_Tubular_Filter_Operator" data-uid="Unosquare.Tubular.Filter.Operator">Operator</h4>
+  <div class="markdown level1 summary"><p>Filter&apos;s operator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CompareOperators Operator { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.Tubular.CompareOperators.html">CompareOperators</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Tubular_Filter_Text_" data-uid="Unosquare.Tubular.Filter.Text*"></a>
+  <h4 id="Unosquare_Tubular_Filter_Text" data-uid="Unosquare.Tubular.Filter.Text">Text</h4>
+  <div class="markdown level1 summary"><p>Filter search text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Text { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
         <td></td>
       </tr>
     </tbody>

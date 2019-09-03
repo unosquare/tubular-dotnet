@@ -55,44 +55,6 @@ references:
   commentId: F:Unosquare.Tubular.AggregationFunction.Sum
   fullName: Unosquare.Tubular.AggregationFunction.Sum
   nameWithType: AggregationFunction.Sum
-- uid: Unosquare.Tubular.ChartsExtension
-  name: ChartsExtension
-  href: api/Unosquare.Tubular.ChartsExtension.html
-  commentId: T:Unosquare.Tubular.ChartsExtension
-  fullName: Unosquare.Tubular.ChartsExtension
-  nameWithType: ChartsExtension
-- uid: Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse*
-  name: ProvideMultipleSerieChartResponse
-  href: api/Unosquare.Tubular.ChartsExtension.html#Unosquare_Tubular_ChartsExtension_ProvideMultipleSerieChartResponse_
-  commentId: Overload:Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse
-  nameWithType: ChartsExtension.ProvideMultipleSerieChartResponse
-- uid: Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse``2(IQueryable{``0},Expression{System.Func{``0,System.String}},Expression{System.Func{``0,System.String}},Expression{System.Func{``0,``1}},Unosquare.Tubular.AggregationFunction)
-  name: ProvideMultipleSerieChartResponse<T, TR>(IQueryable<T>, Expression<Func<T, String>>, Expression<Func<T, String>>, Expression<Func<T, TR>>, AggregationFunction)
-  href: api/Unosquare.Tubular.ChartsExtension.html#Unosquare_Tubular_ChartsExtension_ProvideMultipleSerieChartResponse__2_IQueryable___0__Expression_System_Func___0_System_String___Expression_System_Func___0_System_String___Expression_System_Func___0___1___Unosquare_Tubular_AggregationFunction_
-  commentId: M:Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse``2(IQueryable{``0},Expression{System.Func{``0,System.String}},Expression{System.Func{``0,System.String}},Expression{System.Func{``0,``1}},Unosquare.Tubular.AggregationFunction)
-  name.vb: ProvideMultipleSerieChartResponse(Of T, TR)(IQueryable(Of T), Expression(Of Func(Of T, String)), Expression(Of Func(Of T, String)), Expression(Of Func(Of T, TR)), AggregationFunction)
-  fullName: Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse<T, TR>(IQueryable<T>, Expression<System.Func<T, System.String>>, Expression<System.Func<T, System.String>>, Expression<System.Func<T, TR>>, Unosquare.Tubular.AggregationFunction)
-  fullName.vb: Unosquare.Tubular.ChartsExtension.ProvideMultipleSerieChartResponse(Of T, TR)(IQueryable(Of T), Expression(Of System.Func(Of T, System.String)), Expression(Of System.Func(Of T, System.String)), Expression(Of System.Func(Of T, TR)), Unosquare.Tubular.AggregationFunction)
-  nameWithType: ChartsExtension.ProvideMultipleSerieChartResponse<T, TR>(IQueryable<T>, Expression<Func<T, String>>, Expression<Func<T, String>>, Expression<Func<T, TR>>, AggregationFunction)
-  nameWithType.vb: ChartsExtension.ProvideMultipleSerieChartResponse(Of T, TR)(IQueryable(Of T), Expression(Of Func(Of T, String)), Expression(Of Func(Of T, String)), Expression(Of Func(Of T, TR)), AggregationFunction)
-- uid: Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse*
-  name: ProvideSingleSerieChartResponse
-  href: api/Unosquare.Tubular.ChartsExtension.html#Unosquare_Tubular_ChartsExtension_ProvideSingleSerieChartResponse_
-  commentId: Overload:Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse
-  nameWithType: ChartsExtension.ProvideSingleSerieChartResponse
-- uid: Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse``2(IQueryable{``0},Expression{System.Func{``0,System.String}},Expression{System.Func{``0,``1}},System.String,Unosquare.Tubular.AggregationFunction)
-  name: ProvideSingleSerieChartResponse<T, TR>(IQueryable<T>, Expression<Func<T, String>>, Expression<Func<T, TR>>, String, AggregationFunction)
-  href: api/Unosquare.Tubular.ChartsExtension.html#Unosquare_Tubular_ChartsExtension_ProvideSingleSerieChartResponse__2_IQueryable___0__Expression_System_Func___0_System_String___Expression_System_Func___0___1___System_String_Unosquare_Tubular_AggregationFunction_
-  commentId: M:Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse``2(IQueryable{``0},Expression{System.Func{``0,System.String}},Expression{System.Func{``0,``1}},System.String,Unosquare.Tubular.AggregationFunction)
-  name.vb: ProvideSingleSerieChartResponse(Of T, TR)(IQueryable(Of T), Expression(Of Func(Of T, String)), Expression(Of Func(Of T, TR)), String, AggregationFunction)
-  fullName: Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse<T, TR>(IQueryable<T>, Expression<System.Func<T, System.String>>, Expression<System.Func<T, TR>>, System.String, Unosquare.Tubular.AggregationFunction)
-  fullName.vb: Unosquare.Tubular.ChartsExtension.ProvideSingleSerieChartResponse(Of T, TR)(IQueryable(Of T), Expression(Of System.Func(Of T, System.String)), Expression(Of System.Func(Of T, TR)), System.String, Unosquare.Tubular.AggregationFunction)
-  nameWithType: ChartsExtension.ProvideSingleSerieChartResponse<T, TR>(IQueryable<T>, Expression<Func<T, String>>, Expression<Func<T, TR>>, String, AggregationFunction)
-  nameWithType.vb: ChartsExtension.ProvideSingleSerieChartResponse(Of T, TR)(IQueryable(Of T), Expression(Of Func(Of T, String)), Expression(Of Func(Of T, TR)), String, AggregationFunction)
 - uid: Unosquare.Tubular.Common
   name: Common
   href: api/Unosquare.Tubular.Common.html
@@ -268,11 +230,11 @@ references:
   isSpec: "True"
   fullName: Unosquare.Tubular.Extensions.AdjustTimeZone
   nameWithType: Extensions.AdjustTimeZone
-- uid: Unosquare.Tubular.Extensions.CreateGridDataResponse(Unosquare.Tubular.ObjectModel.GridDataRequest,IQueryable,Unosquare.Tubular.Extensions.ProcessResponseSubset)
+- uid: Unosquare.Tubular.Extensions.CreateGridDataResponse(Unosquare.Tubular.GridDataRequest,IQueryable,Unosquare.Tubular.Extensions.ProcessResponseSubset)
   name: CreateGridDataResponse(GridDataRequest, IQueryable, Extensions.ProcessResponseSubset)
-  href: api/Unosquare.Tubular.Extensions.html#Unosquare_Tubular_Extensions_CreateGridDataResponse_Unosquare_Tubular_ObjectModel_GridDataRequest_IQueryable_Unosquare_Tubular_Extensions_ProcessResponseSubset_
-  commentId: M:Unosquare.Tubular.Extensions.CreateGridDataResponse(Unosquare.Tubular.ObjectModel.GridDataRequest,IQueryable,Unosquare.Tubular.Extensions.ProcessResponseSubset)
-  fullName: Unosquare.Tubular.Extensions.CreateGridDataResponse(Unosquare.Tubular.ObjectModel.GridDataRequest, IQueryable, Unosquare.Tubular.Extensions.ProcessResponseSubset)
+  href: api/Unosquare.Tubular.Extensions.html#Unosquare_Tubular_Extensions_CreateGridDataResponse_Unosquare_Tubular_GridDataRequest_IQueryable_Unosquare_Tubular_Extensions_ProcessResponseSubset_
+  commentId: M:Unosquare.Tubular.Extensions.CreateGridDataResponse(Unosquare.Tubular.GridDataRequest,IQueryable,Unosquare.Tubular.Extensions.ProcessResponseSubset)
+  fullName: Unosquare.Tubular.Extensions.CreateGridDataResponse(Unosquare.Tubular.GridDataRequest, IQueryable, Unosquare.Tubular.Extensions.ProcessResponseSubset)
   nameWithType: Extensions.CreateGridDataResponse(GridDataRequest, IQueryable, Extensions.ProcessResponseSubset)
 - uid: Unosquare.Tubular.Extensions.CreateGridDataResponse*
   name: CreateGridDataResponse
@@ -287,829 +249,394 @@ references:
   commentId: T:Unosquare.Tubular.Extensions.ProcessResponseSubset
   fullName: Unosquare.Tubular.Extensions.ProcessResponseSubset
   nameWithType: Extensions.ProcessResponseSubset
-- uid: Unosquare.Tubular.GenericModels
-  name: Unosquare.Tubular.GenericModels
-  href: api/Unosquare.Tubular.GenericModels.html
-  commentId: N:Unosquare.Tubular.GenericModels
-  fullName: Unosquare.Tubular.GenericModels
-  nameWithType: Unosquare.Tubular.GenericModels
-- uid: Unosquare.Tubular.GenericModels.ApiResult
-  name: ApiResult
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html
-  commentId: T:Unosquare.Tubular.GenericModels.ApiResult
-  fullName: Unosquare.Tubular.GenericModels.ApiResult
-  nameWithType: ApiResult
-- uid: Unosquare.Tubular.GenericModels.ApiResult.AffectedCount
-  name: AffectedCount
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_AffectedCount
-  commentId: P:Unosquare.Tubular.GenericModels.ApiResult.AffectedCount
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.AffectedCount
-  nameWithType: ApiResult.AffectedCount
-- uid: Unosquare.Tubular.GenericModels.ApiResult.AffectedCount*
-  name: AffectedCount
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_AffectedCount_
-  commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.AffectedCount
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.AffectedCount
-  nameWithType: ApiResult.AffectedCount
-- uid: Unosquare.Tubular.GenericModels.ApiResult.Error(System.Exception)
-  name: Error(Exception)
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Error_System_Exception_
-  commentId: M:Unosquare.Tubular.GenericModels.ApiResult.Error(System.Exception)
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.Error(System.Exception)
-  nameWithType: ApiResult.Error(Exception)
-- uid: Unosquare.Tubular.GenericModels.ApiResult.Error*
-  name: Error
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Error_
-  commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.Error
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.Error
-  nameWithType: ApiResult.Error
-- uid: Unosquare.Tubular.GenericModels.ApiResult.Message
-  name: Message
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Message
-  commentId: P:Unosquare.Tubular.GenericModels.ApiResult.Message
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.Message
-  nameWithType: ApiResult.Message
-- uid: Unosquare.Tubular.GenericModels.ApiResult.Message*
-  name: Message
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Message_
-  commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.Message
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.Message
-  nameWithType: ApiResult.Message
-- uid: Unosquare.Tubular.GenericModels.ApiResult.Ok(System.String)
-  name: Ok(String)
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Ok_System_String_
-  commentId: M:Unosquare.Tubular.GenericModels.ApiResult.Ok(System.String)
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.Ok(System.String)
-  nameWithType: ApiResult.Ok(String)
-- uid: Unosquare.Tubular.GenericModels.ApiResult.Ok*
-  name: Ok
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Ok_
-  commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.Ok
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.Ok
-  nameWithType: ApiResult.Ok
-- uid: Unosquare.Tubular.GenericModels.ApiResult.Status
-  name: Status
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Status
-  commentId: P:Unosquare.Tubular.GenericModels.ApiResult.Status
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.Status
-  nameWithType: ApiResult.Status
-- uid: Unosquare.Tubular.GenericModels.ApiResult.Status*
-  name: Status
-  href: api/Unosquare.Tubular.GenericModels.ApiResult.html#Unosquare_Tubular_GenericModels_ApiResult_Status_
-  commentId: Overload:Unosquare.Tubular.GenericModels.ApiResult.Status
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.ApiResult.Status
-  nameWithType: ApiResult.Status
-- uid: Unosquare.Tubular.GenericModels.AppModule
-  name: AppModule
-  href: api/Unosquare.Tubular.GenericModels.AppModule.html
-  commentId: T:Unosquare.Tubular.GenericModels.AppModule
-  fullName: Unosquare.Tubular.GenericModels.AppModule
-  nameWithType: AppModule
-- uid: Unosquare.Tubular.GenericModels.AppModule.IsRoot
-  name: IsRoot
-  href: api/Unosquare.Tubular.GenericModels.AppModule.html#Unosquare_Tubular_GenericModels_AppModule_IsRoot
-  commentId: P:Unosquare.Tubular.GenericModels.AppModule.IsRoot
-  fullName: Unosquare.Tubular.GenericModels.AppModule.IsRoot
-  nameWithType: AppModule.IsRoot
-- uid: Unosquare.Tubular.GenericModels.AppModule.IsRoot*
-  name: IsRoot
-  href: api/Unosquare.Tubular.GenericModels.AppModule.html#Unosquare_Tubular_GenericModels_AppModule_IsRoot_
-  commentId: Overload:Unosquare.Tubular.GenericModels.AppModule.IsRoot
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.AppModule.IsRoot
-  nameWithType: AppModule.IsRoot
-- uid: Unosquare.Tubular.GenericModels.AppModule.Menus
-  name: Menus
-  href: api/Unosquare.Tubular.GenericModels.AppModule.html#Unosquare_Tubular_GenericModels_AppModule_Menus
-  commentId: P:Unosquare.Tubular.GenericModels.AppModule.Menus
-  fullName: Unosquare.Tubular.GenericModels.AppModule.Menus
-  nameWithType: AppModule.Menus
-- uid: Unosquare.Tubular.GenericModels.AppModule.Menus*
-  name: Menus
-  href: api/Unosquare.Tubular.GenericModels.AppModule.html#Unosquare_Tubular_GenericModels_AppModule_Menus_
-  commentId: Overload:Unosquare.Tubular.GenericModels.AppModule.Menus
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.AppModule.Menus
-  nameWithType: AppModule.Menus
-- uid: Unosquare.Tubular.GenericModels.Menu
-  name: Menu
-  href: api/Unosquare.Tubular.GenericModels.Menu.html
-  commentId: T:Unosquare.Tubular.GenericModels.Menu
-  fullName: Unosquare.Tubular.GenericModels.Menu
-  nameWithType: Menu
-- uid: Unosquare.Tubular.GenericModels.Menu.Icon
-  name: Icon
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_Icon
-  commentId: P:Unosquare.Tubular.GenericModels.Menu.Icon
-  fullName: Unosquare.Tubular.GenericModels.Menu.Icon
-  nameWithType: Menu.Icon
-- uid: Unosquare.Tubular.GenericModels.Menu.Icon*
-  name: Icon
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_Icon_
-  commentId: Overload:Unosquare.Tubular.GenericModels.Menu.Icon
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.Menu.Icon
-  nameWithType: Menu.Icon
-- uid: Unosquare.Tubular.GenericModels.Menu.IsFunction
-  name: IsFunction
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_IsFunction
-  commentId: P:Unosquare.Tubular.GenericModels.Menu.IsFunction
-  fullName: Unosquare.Tubular.GenericModels.Menu.IsFunction
-  nameWithType: Menu.IsFunction
-- uid: Unosquare.Tubular.GenericModels.Menu.IsFunction*
-  name: IsFunction
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_IsFunction_
-  commentId: Overload:Unosquare.Tubular.GenericModels.Menu.IsFunction
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.Menu.IsFunction
-  nameWithType: Menu.IsFunction
-- uid: Unosquare.Tubular.GenericModels.Menu.IsSeparator
-  name: IsSeparator
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_IsSeparator
-  commentId: P:Unosquare.Tubular.GenericModels.Menu.IsSeparator
-  fullName: Unosquare.Tubular.GenericModels.Menu.IsSeparator
-  nameWithType: Menu.IsSeparator
-- uid: Unosquare.Tubular.GenericModels.Menu.IsSeparator*
-  name: IsSeparator
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_IsSeparator_
-  commentId: Overload:Unosquare.Tubular.GenericModels.Menu.IsSeparator
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.Menu.IsSeparator
-  nameWithType: Menu.IsSeparator
-- uid: Unosquare.Tubular.GenericModels.Menu.IsVisible
-  name: IsVisible
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_IsVisible
-  commentId: P:Unosquare.Tubular.GenericModels.Menu.IsVisible
-  fullName: Unosquare.Tubular.GenericModels.Menu.IsVisible
-  nameWithType: Menu.IsVisible
-- uid: Unosquare.Tubular.GenericModels.Menu.IsVisible*
-  name: IsVisible
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_IsVisible_
-  commentId: Overload:Unosquare.Tubular.GenericModels.Menu.IsVisible
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.Menu.IsVisible
-  nameWithType: Menu.IsVisible
-- uid: Unosquare.Tubular.GenericModels.Menu.Name
-  name: Name
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_Name
-  commentId: P:Unosquare.Tubular.GenericModels.Menu.Name
-  fullName: Unosquare.Tubular.GenericModels.Menu.Name
-  nameWithType: Menu.Name
-- uid: Unosquare.Tubular.GenericModels.Menu.Name*
-  name: Name
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_Name_
-  commentId: Overload:Unosquare.Tubular.GenericModels.Menu.Name
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.Menu.Name
-  nameWithType: Menu.Name
-- uid: Unosquare.Tubular.GenericModels.Menu.TemplateUrl
-  name: TemplateUrl
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_TemplateUrl
-  commentId: P:Unosquare.Tubular.GenericModels.Menu.TemplateUrl
-  fullName: Unosquare.Tubular.GenericModels.Menu.TemplateUrl
-  nameWithType: Menu.TemplateUrl
-- uid: Unosquare.Tubular.GenericModels.Menu.TemplateUrl*
-  name: TemplateUrl
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_TemplateUrl_
-  commentId: Overload:Unosquare.Tubular.GenericModels.Menu.TemplateUrl
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.Menu.TemplateUrl
-  nameWithType: Menu.TemplateUrl
-- uid: Unosquare.Tubular.GenericModels.Menu.Url
-  name: Url
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_Url
-  commentId: P:Unosquare.Tubular.GenericModels.Menu.Url
-  fullName: Unosquare.Tubular.GenericModels.Menu.Url
-  nameWithType: Menu.Url
-- uid: Unosquare.Tubular.GenericModels.Menu.Url*
-  name: Url
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_Url_
-  commentId: Overload:Unosquare.Tubular.GenericModels.Menu.Url
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.Menu.Url
-  nameWithType: Menu.Url
-- uid: Unosquare.Tubular.GenericModels.Menu.UrlLink
-  name: UrlLink
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_UrlLink
-  commentId: P:Unosquare.Tubular.GenericModels.Menu.UrlLink
-  fullName: Unosquare.Tubular.GenericModels.Menu.UrlLink
-  nameWithType: Menu.UrlLink
-- uid: Unosquare.Tubular.GenericModels.Menu.UrlLink*
-  name: UrlLink
-  href: api/Unosquare.Tubular.GenericModels.Menu.html#Unosquare_Tubular_GenericModels_Menu_UrlLink_
-  commentId: Overload:Unosquare.Tubular.GenericModels.Menu.UrlLink
-  isSpec: "True"
-  fullName: Unosquare.Tubular.GenericModels.Menu.UrlLink
-  nameWithType: Menu.UrlLink
-- uid: Unosquare.Tubular.ObjectModel
-  name: Unosquare.Tubular.ObjectModel
-  href: api/Unosquare.Tubular.ObjectModel.html
-  commentId: N:Unosquare.Tubular.ObjectModel
-  fullName: Unosquare.Tubular.ObjectModel
-  nameWithType: Unosquare.Tubular.ObjectModel
-- uid: Unosquare.Tubular.ObjectModel.Filter
+- uid: Unosquare.Tubular.Filter
   name: Filter
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html
-  commentId: T:Unosquare.Tubular.ObjectModel.Filter
-  fullName: Unosquare.Tubular.ObjectModel.Filter
+  href: api/Unosquare.Tubular.Filter.html
+  commentId: T:Unosquare.Tubular.Filter
+  fullName: Unosquare.Tubular.Filter
   nameWithType: Filter
-- uid: Unosquare.Tubular.ObjectModel.Filter.#ctor
+- uid: Unosquare.Tubular.Filter.#ctor
   name: Filter()
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter__ctor
-  commentId: M:Unosquare.Tubular.ObjectModel.Filter.#ctor
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Filter()
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter__ctor
+  commentId: M:Unosquare.Tubular.Filter.#ctor
+  fullName: Unosquare.Tubular.Filter.Filter()
   nameWithType: Filter.Filter()
-- uid: Unosquare.Tubular.ObjectModel.Filter.#ctor*
+- uid: Unosquare.Tubular.Filter.#ctor*
   name: Filter
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter__ctor_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.#ctor
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter__ctor_
+  commentId: Overload:Unosquare.Tubular.Filter.#ctor
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Filter
+  fullName: Unosquare.Tubular.Filter.Filter
   nameWithType: Filter.Filter
-- uid: Unosquare.Tubular.ObjectModel.Filter.Argument
+- uid: Unosquare.Tubular.Filter.Argument
   name: Argument
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Argument
-  commentId: P:Unosquare.Tubular.ObjectModel.Filter.Argument
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Argument
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_Argument
+  commentId: P:Unosquare.Tubular.Filter.Argument
+  fullName: Unosquare.Tubular.Filter.Argument
   nameWithType: Filter.Argument
-- uid: Unosquare.Tubular.ObjectModel.Filter.Argument*
+- uid: Unosquare.Tubular.Filter.Argument*
   name: Argument
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Argument_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.Argument
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_Argument_
+  commentId: Overload:Unosquare.Tubular.Filter.Argument
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Argument
+  fullName: Unosquare.Tubular.Filter.Argument
   nameWithType: Filter.Argument
-- uid: Unosquare.Tubular.ObjectModel.Filter.HasFilter
+- uid: Unosquare.Tubular.Filter.HasFilter
   name: HasFilter
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_HasFilter
-  commentId: P:Unosquare.Tubular.ObjectModel.Filter.HasFilter
-  fullName: Unosquare.Tubular.ObjectModel.Filter.HasFilter
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_HasFilter
+  commentId: P:Unosquare.Tubular.Filter.HasFilter
+  fullName: Unosquare.Tubular.Filter.HasFilter
   nameWithType: Filter.HasFilter
-- uid: Unosquare.Tubular.ObjectModel.Filter.HasFilter*
+- uid: Unosquare.Tubular.Filter.HasFilter*
   name: HasFilter
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_HasFilter_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.HasFilter
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_HasFilter_
+  commentId: Overload:Unosquare.Tubular.Filter.HasFilter
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.Filter.HasFilter
+  fullName: Unosquare.Tubular.Filter.HasFilter
   nameWithType: Filter.HasFilter
-- uid: Unosquare.Tubular.ObjectModel.Filter.Name
+- uid: Unosquare.Tubular.Filter.Name
   name: Name
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Name
-  commentId: P:Unosquare.Tubular.ObjectModel.Filter.Name
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Name
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_Name
+  commentId: P:Unosquare.Tubular.Filter.Name
+  fullName: Unosquare.Tubular.Filter.Name
   nameWithType: Filter.Name
-- uid: Unosquare.Tubular.ObjectModel.Filter.Name*
+- uid: Unosquare.Tubular.Filter.Name*
   name: Name
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Name_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.Name
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_Name_
+  commentId: Overload:Unosquare.Tubular.Filter.Name
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Name
+  fullName: Unosquare.Tubular.Filter.Name
   nameWithType: Filter.Name
-- uid: Unosquare.Tubular.ObjectModel.Filter.Operator
+- uid: Unosquare.Tubular.Filter.Operator
   name: Operator
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Operator
-  commentId: P:Unosquare.Tubular.ObjectModel.Filter.Operator
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Operator
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_Operator
+  commentId: P:Unosquare.Tubular.Filter.Operator
+  fullName: Unosquare.Tubular.Filter.Operator
   nameWithType: Filter.Operator
-- uid: Unosquare.Tubular.ObjectModel.Filter.Operator*
+- uid: Unosquare.Tubular.Filter.Operator*
   name: Operator
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Operator_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.Operator
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_Operator_
+  commentId: Overload:Unosquare.Tubular.Filter.Operator
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Operator
+  fullName: Unosquare.Tubular.Filter.Operator
   nameWithType: Filter.Operator
-- uid: Unosquare.Tubular.ObjectModel.Filter.OptionsUrl
-  name: OptionsUrl
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_OptionsUrl
-  commentId: P:Unosquare.Tubular.ObjectModel.Filter.OptionsUrl
-  fullName: Unosquare.Tubular.ObjectModel.Filter.OptionsUrl
-  nameWithType: Filter.OptionsUrl
-- uid: Unosquare.Tubular.ObjectModel.Filter.OptionsUrl*
-  name: OptionsUrl
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_OptionsUrl_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.OptionsUrl
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.Filter.OptionsUrl
-  nameWithType: Filter.OptionsUrl
-- uid: Unosquare.Tubular.ObjectModel.Filter.Text
+- uid: Unosquare.Tubular.Filter.Text
   name: Text
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Text
-  commentId: P:Unosquare.Tubular.ObjectModel.Filter.Text
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Text
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_Text
+  commentId: P:Unosquare.Tubular.Filter.Text
+  fullName: Unosquare.Tubular.Filter.Text
   nameWithType: Filter.Text
-- uid: Unosquare.Tubular.ObjectModel.Filter.Text*
+- uid: Unosquare.Tubular.Filter.Text*
   name: Text
-  href: api/Unosquare.Tubular.ObjectModel.Filter.html#Unosquare_Tubular_ObjectModel_Filter_Text_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.Filter.Text
+  href: api/Unosquare.Tubular.Filter.html#Unosquare_Tubular_Filter_Text_
+  commentId: Overload:Unosquare.Tubular.Filter.Text
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.Filter.Text
+  fullName: Unosquare.Tubular.Filter.Text
   nameWithType: Filter.Text
-- uid: Unosquare.Tubular.ObjectModel.GridColumn
+- uid: Unosquare.Tubular.GridColumn
   name: GridColumn
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html
-  commentId: T:Unosquare.Tubular.ObjectModel.GridColumn
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn
+  href: api/Unosquare.Tubular.GridColumn.html
+  commentId: T:Unosquare.Tubular.GridColumn
+  fullName: Unosquare.Tubular.GridColumn
   nameWithType: GridColumn
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Aggregate
+- uid: Unosquare.Tubular.GridColumn.Aggregate
   name: Aggregate
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Aggregate
-  commentId: P:Unosquare.Tubular.ObjectModel.GridColumn.Aggregate
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Aggregate
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Aggregate
+  commentId: P:Unosquare.Tubular.GridColumn.Aggregate
+  fullName: Unosquare.Tubular.GridColumn.Aggregate
   nameWithType: GridColumn.Aggregate
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Aggregate*
+- uid: Unosquare.Tubular.GridColumn.Aggregate*
   name: Aggregate
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Aggregate_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Aggregate
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Aggregate_
+  commentId: Overload:Unosquare.Tubular.GridColumn.Aggregate
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Aggregate
+  fullName: Unosquare.Tubular.GridColumn.Aggregate
   nameWithType: GridColumn.Aggregate
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.DataType
+- uid: Unosquare.Tubular.GridColumn.DataType
   name: DataType
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_DataType
-  commentId: P:Unosquare.Tubular.ObjectModel.GridColumn.DataType
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.DataType
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_DataType
+  commentId: P:Unosquare.Tubular.GridColumn.DataType
+  fullName: Unosquare.Tubular.GridColumn.DataType
   nameWithType: GridColumn.DataType
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.DataType*
+- uid: Unosquare.Tubular.GridColumn.DataType*
   name: DataType
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_DataType_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.DataType
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_DataType_
+  commentId: Overload:Unosquare.Tubular.GridColumn.DataType
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.DataType
+  fullName: Unosquare.Tubular.GridColumn.DataType
   nameWithType: GridColumn.DataType
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Filter
+- uid: Unosquare.Tubular.GridColumn.Filter
   name: Filter
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Filter
-  commentId: P:Unosquare.Tubular.ObjectModel.GridColumn.Filter
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Filter
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Filter
+  commentId: P:Unosquare.Tubular.GridColumn.Filter
+  fullName: Unosquare.Tubular.GridColumn.Filter
   nameWithType: GridColumn.Filter
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Filter*
+- uid: Unosquare.Tubular.GridColumn.Filter*
   name: Filter
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Filter_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Filter
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Filter_
+  commentId: Overload:Unosquare.Tubular.GridColumn.Filter
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Filter
+  fullName: Unosquare.Tubular.GridColumn.Filter
   nameWithType: GridColumn.Filter
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Label
+- uid: Unosquare.Tubular.GridColumn.Label
   name: Label
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Label
-  commentId: P:Unosquare.Tubular.ObjectModel.GridColumn.Label
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Label
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Label
+  commentId: P:Unosquare.Tubular.GridColumn.Label
+  fullName: Unosquare.Tubular.GridColumn.Label
   nameWithType: GridColumn.Label
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Label*
+- uid: Unosquare.Tubular.GridColumn.Label*
   name: Label
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Label_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Label
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Label_
+  commentId: Overload:Unosquare.Tubular.GridColumn.Label
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Label
+  fullName: Unosquare.Tubular.GridColumn.Label
   nameWithType: GridColumn.Label
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Name
+- uid: Unosquare.Tubular.GridColumn.Name
   name: Name
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Name
-  commentId: P:Unosquare.Tubular.ObjectModel.GridColumn.Name
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Name
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Name
+  commentId: P:Unosquare.Tubular.GridColumn.Name
+  fullName: Unosquare.Tubular.GridColumn.Name
   nameWithType: GridColumn.Name
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Name*
+- uid: Unosquare.Tubular.GridColumn.Name*
   name: Name
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Name_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Name
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Name_
+  commentId: Overload:Unosquare.Tubular.GridColumn.Name
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Name
+  fullName: Unosquare.Tubular.GridColumn.Name
   nameWithType: GridColumn.Name
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Searchable
+- uid: Unosquare.Tubular.GridColumn.Searchable
   name: Searchable
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Searchable
-  commentId: P:Unosquare.Tubular.ObjectModel.GridColumn.Searchable
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Searchable
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Searchable
+  commentId: P:Unosquare.Tubular.GridColumn.Searchable
+  fullName: Unosquare.Tubular.GridColumn.Searchable
   nameWithType: GridColumn.Searchable
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Searchable*
+- uid: Unosquare.Tubular.GridColumn.Searchable*
   name: Searchable
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Searchable_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Searchable
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Searchable_
+  commentId: Overload:Unosquare.Tubular.GridColumn.Searchable
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Searchable
+  fullName: Unosquare.Tubular.GridColumn.Searchable
   nameWithType: GridColumn.Searchable
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Sortable
+- uid: Unosquare.Tubular.GridColumn.Sortable
   name: Sortable
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Sortable
-  commentId: P:Unosquare.Tubular.ObjectModel.GridColumn.Sortable
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Sortable
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Sortable
+  commentId: P:Unosquare.Tubular.GridColumn.Sortable
+  fullName: Unosquare.Tubular.GridColumn.Sortable
   nameWithType: GridColumn.Sortable
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.Sortable*
+- uid: Unosquare.Tubular.GridColumn.Sortable*
   name: Sortable
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_Sortable_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.Sortable
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Sortable_
+  commentId: Overload:Unosquare.Tubular.GridColumn.Sortable
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.Sortable
+  fullName: Unosquare.Tubular.GridColumn.Sortable
   nameWithType: GridColumn.Sortable
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.SortDirection
+- uid: Unosquare.Tubular.GridColumn.SortDirection
   name: SortDirection
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_SortDirection
-  commentId: P:Unosquare.Tubular.ObjectModel.GridColumn.SortDirection
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.SortDirection
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_SortDirection
+  commentId: P:Unosquare.Tubular.GridColumn.SortDirection
+  fullName: Unosquare.Tubular.GridColumn.SortDirection
   nameWithType: GridColumn.SortDirection
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.SortDirection*
+- uid: Unosquare.Tubular.GridColumn.SortDirection*
   name: SortDirection
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_SortDirection_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.SortDirection
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_SortDirection_
+  commentId: Overload:Unosquare.Tubular.GridColumn.SortDirection
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.SortDirection
+  fullName: Unosquare.Tubular.GridColumn.SortDirection
   nameWithType: GridColumn.SortDirection
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.SortOrder
+- uid: Unosquare.Tubular.GridColumn.SortOrder
   name: SortOrder
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_SortOrder
-  commentId: P:Unosquare.Tubular.ObjectModel.GridColumn.SortOrder
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.SortOrder
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_SortOrder
+  commentId: P:Unosquare.Tubular.GridColumn.SortOrder
+  fullName: Unosquare.Tubular.GridColumn.SortOrder
   nameWithType: GridColumn.SortOrder
-- uid: Unosquare.Tubular.ObjectModel.GridColumn.SortOrder*
+- uid: Unosquare.Tubular.GridColumn.SortOrder*
   name: SortOrder
-  href: api/Unosquare.Tubular.ObjectModel.GridColumn.html#Unosquare_Tubular_ObjectModel_GridColumn_SortOrder_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridColumn.SortOrder
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_SortOrder_
+  commentId: Overload:Unosquare.Tubular.GridColumn.SortOrder
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridColumn.SortOrder
+  fullName: Unosquare.Tubular.GridColumn.SortOrder
   nameWithType: GridColumn.SortOrder
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest
+- uid: Unosquare.Tubular.GridDataRequest
   name: GridDataRequest
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html
-  commentId: T:Unosquare.Tubular.ObjectModel.GridDataRequest
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest
+  href: api/Unosquare.Tubular.GridDataRequest.html
+  commentId: T:Unosquare.Tubular.GridDataRequest
+  fullName: Unosquare.Tubular.GridDataRequest
   nameWithType: GridDataRequest
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Columns
+- uid: Unosquare.Tubular.GridDataRequest.Columns
   name: Columns
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Columns
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataRequest.Columns
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Columns
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Columns
+  commentId: P:Unosquare.Tubular.GridDataRequest.Columns
+  fullName: Unosquare.Tubular.GridDataRequest.Columns
   nameWithType: GridDataRequest.Columns
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Columns*
+- uid: Unosquare.Tubular.GridDataRequest.Columns*
   name: Columns
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Columns_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Columns
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Columns_
+  commentId: Overload:Unosquare.Tubular.GridDataRequest.Columns
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Columns
+  fullName: Unosquare.Tubular.GridDataRequest.Columns
   nameWithType: GridDataRequest.Columns
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Counter
+- uid: Unosquare.Tubular.GridDataRequest.Counter
   name: Counter
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Counter
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataRequest.Counter
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Counter
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Counter
+  commentId: P:Unosquare.Tubular.GridDataRequest.Counter
+  fullName: Unosquare.Tubular.GridDataRequest.Counter
   nameWithType: GridDataRequest.Counter
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Counter*
+- uid: Unosquare.Tubular.GridDataRequest.Counter*
   name: Counter
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Counter_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Counter
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Counter_
+  commentId: Overload:Unosquare.Tubular.GridDataRequest.Counter
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Counter
+  fullName: Unosquare.Tubular.GridDataRequest.Counter
   nameWithType: GridDataRequest.Counter
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Search
+- uid: Unosquare.Tubular.GridDataRequest.Search
   name: Search
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Search
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataRequest.Search
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Search
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Search
+  commentId: P:Unosquare.Tubular.GridDataRequest.Search
+  fullName: Unosquare.Tubular.GridDataRequest.Search
   nameWithType: GridDataRequest.Search
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Search*
+- uid: Unosquare.Tubular.GridDataRequest.Search*
   name: Search
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Search_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Search
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Search_
+  commentId: Overload:Unosquare.Tubular.GridDataRequest.Search
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Search
+  fullName: Unosquare.Tubular.GridDataRequest.Search
   nameWithType: GridDataRequest.Search
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Skip
+- uid: Unosquare.Tubular.GridDataRequest.Skip
   name: Skip
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Skip
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataRequest.Skip
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Skip
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Skip
+  commentId: P:Unosquare.Tubular.GridDataRequest.Skip
+  fullName: Unosquare.Tubular.GridDataRequest.Skip
   nameWithType: GridDataRequest.Skip
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Skip*
+- uid: Unosquare.Tubular.GridDataRequest.Skip*
   name: Skip
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Skip_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Skip
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Skip_
+  commentId: Overload:Unosquare.Tubular.GridDataRequest.Skip
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Skip
+  fullName: Unosquare.Tubular.GridDataRequest.Skip
   nameWithType: GridDataRequest.Skip
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Take
+- uid: Unosquare.Tubular.GridDataRequest.Take
   name: Take
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Take
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataRequest.Take
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Take
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Take
+  commentId: P:Unosquare.Tubular.GridDataRequest.Take
+  fullName: Unosquare.Tubular.GridDataRequest.Take
   nameWithType: GridDataRequest.Take
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.Take*
+- uid: Unosquare.Tubular.GridDataRequest.Take*
   name: Take
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_Take_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.Take
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Take_
+  commentId: Overload:Unosquare.Tubular.GridDataRequest.Take
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.Take
+  fullName: Unosquare.Tubular.GridDataRequest.Take
   nameWithType: GridDataRequest.Take
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.TimezoneOffset
+- uid: Unosquare.Tubular.GridDataRequest.TimezoneOffset
   name: TimezoneOffset
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_TimezoneOffset
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataRequest.TimezoneOffset
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.TimezoneOffset
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_TimezoneOffset
+  commentId: P:Unosquare.Tubular.GridDataRequest.TimezoneOffset
+  fullName: Unosquare.Tubular.GridDataRequest.TimezoneOffset
   nameWithType: GridDataRequest.TimezoneOffset
-- uid: Unosquare.Tubular.ObjectModel.GridDataRequest.TimezoneOffset*
+- uid: Unosquare.Tubular.GridDataRequest.TimezoneOffset*
   name: TimezoneOffset
-  href: api/Unosquare.Tubular.ObjectModel.GridDataRequest.html#Unosquare_Tubular_ObjectModel_GridDataRequest_TimezoneOffset_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataRequest.TimezoneOffset
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_TimezoneOffset_
+  commentId: Overload:Unosquare.Tubular.GridDataRequest.TimezoneOffset
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataRequest.TimezoneOffset
+  fullName: Unosquare.Tubular.GridDataRequest.TimezoneOffset
   nameWithType: GridDataRequest.TimezoneOffset
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse
+- uid: Unosquare.Tubular.GridDataResponse
   name: GridDataResponse
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html
-  commentId: T:Unosquare.Tubular.ObjectModel.GridDataResponse
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse
+  href: api/Unosquare.Tubular.GridDataResponse.html
+  commentId: T:Unosquare.Tubular.GridDataResponse
+  fullName: Unosquare.Tubular.GridDataResponse
   nameWithType: GridDataResponse
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.AggregationPayload
+- uid: Unosquare.Tubular.GridDataResponse.AggregationPayload
   name: AggregationPayload
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_AggregationPayload
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataResponse.AggregationPayload
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.AggregationPayload
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_AggregationPayload
+  commentId: P:Unosquare.Tubular.GridDataResponse.AggregationPayload
+  fullName: Unosquare.Tubular.GridDataResponse.AggregationPayload
   nameWithType: GridDataResponse.AggregationPayload
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.AggregationPayload*
+- uid: Unosquare.Tubular.GridDataResponse.AggregationPayload*
   name: AggregationPayload
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_AggregationPayload_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.AggregationPayload
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_AggregationPayload_
+  commentId: Overload:Unosquare.Tubular.GridDataResponse.AggregationPayload
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.AggregationPayload
+  fullName: Unosquare.Tubular.GridDataResponse.AggregationPayload
   nameWithType: GridDataResponse.AggregationPayload
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.Counter
+- uid: Unosquare.Tubular.GridDataResponse.Counter
   name: Counter
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_Counter
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataResponse.Counter
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.Counter
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_Counter
+  commentId: P:Unosquare.Tubular.GridDataResponse.Counter
+  fullName: Unosquare.Tubular.GridDataResponse.Counter
   nameWithType: GridDataResponse.Counter
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.Counter*
+- uid: Unosquare.Tubular.GridDataResponse.Counter*
   name: Counter
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_Counter_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.Counter
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_Counter_
+  commentId: Overload:Unosquare.Tubular.GridDataResponse.Counter
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.Counter
+  fullName: Unosquare.Tubular.GridDataResponse.Counter
   nameWithType: GridDataResponse.Counter
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.CurrentPage
+- uid: Unosquare.Tubular.GridDataResponse.CurrentPage
   name: CurrentPage
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_CurrentPage
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataResponse.CurrentPage
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.CurrentPage
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_CurrentPage
+  commentId: P:Unosquare.Tubular.GridDataResponse.CurrentPage
+  fullName: Unosquare.Tubular.GridDataResponse.CurrentPage
   nameWithType: GridDataResponse.CurrentPage
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.CurrentPage*
+- uid: Unosquare.Tubular.GridDataResponse.CurrentPage*
   name: CurrentPage
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_CurrentPage_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.CurrentPage
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_CurrentPage_
+  commentId: Overload:Unosquare.Tubular.GridDataResponse.CurrentPage
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.CurrentPage
+  fullName: Unosquare.Tubular.GridDataResponse.CurrentPage
   nameWithType: GridDataResponse.CurrentPage
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.FilteredRecordCount
+- uid: Unosquare.Tubular.GridDataResponse.FilteredRecordCount
   name: FilteredRecordCount
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_FilteredRecordCount
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataResponse.FilteredRecordCount
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.FilteredRecordCount
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_FilteredRecordCount
+  commentId: P:Unosquare.Tubular.GridDataResponse.FilteredRecordCount
+  fullName: Unosquare.Tubular.GridDataResponse.FilteredRecordCount
   nameWithType: GridDataResponse.FilteredRecordCount
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.FilteredRecordCount*
+- uid: Unosquare.Tubular.GridDataResponse.FilteredRecordCount*
   name: FilteredRecordCount
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_FilteredRecordCount_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.FilteredRecordCount
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_FilteredRecordCount_
+  commentId: Overload:Unosquare.Tubular.GridDataResponse.FilteredRecordCount
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.FilteredRecordCount
+  fullName: Unosquare.Tubular.GridDataResponse.FilteredRecordCount
   nameWithType: GridDataResponse.FilteredRecordCount
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.Payload
+- uid: Unosquare.Tubular.GridDataResponse.Payload
   name: Payload
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_Payload
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataResponse.Payload
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.Payload
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_Payload
+  commentId: P:Unosquare.Tubular.GridDataResponse.Payload
+  fullName: Unosquare.Tubular.GridDataResponse.Payload
   nameWithType: GridDataResponse.Payload
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.Payload*
+- uid: Unosquare.Tubular.GridDataResponse.Payload*
   name: Payload
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_Payload_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.Payload
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_Payload_
+  commentId: Overload:Unosquare.Tubular.GridDataResponse.Payload
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.Payload
+  fullName: Unosquare.Tubular.GridDataResponse.Payload
   nameWithType: GridDataResponse.Payload
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalPages
+- uid: Unosquare.Tubular.GridDataResponse.TotalPages
   name: TotalPages
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_TotalPages
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataResponse.TotalPages
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalPages
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_TotalPages
+  commentId: P:Unosquare.Tubular.GridDataResponse.TotalPages
+  fullName: Unosquare.Tubular.GridDataResponse.TotalPages
   nameWithType: GridDataResponse.TotalPages
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalPages*
+- uid: Unosquare.Tubular.GridDataResponse.TotalPages*
   name: TotalPages
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_TotalPages_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.TotalPages
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_TotalPages_
+  commentId: Overload:Unosquare.Tubular.GridDataResponse.TotalPages
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalPages
+  fullName: Unosquare.Tubular.GridDataResponse.TotalPages
   nameWithType: GridDataResponse.TotalPages
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalRecordCount
+- uid: Unosquare.Tubular.GridDataResponse.TotalRecordCount
   name: TotalRecordCount
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_TotalRecordCount
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataResponse.TotalRecordCount
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalRecordCount
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_TotalRecordCount
+  commentId: P:Unosquare.Tubular.GridDataResponse.TotalRecordCount
+  fullName: Unosquare.Tubular.GridDataResponse.TotalRecordCount
   nameWithType: GridDataResponse.TotalRecordCount
-- uid: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalRecordCount*
+- uid: Unosquare.Tubular.GridDataResponse.TotalRecordCount*
   name: TotalRecordCount
-  href: api/Unosquare.Tubular.ObjectModel.GridDataResponse.html#Unosquare_Tubular_ObjectModel_GridDataResponse_TotalRecordCount_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataResponse.TotalRecordCount
+  href: api/Unosquare.Tubular.GridDataResponse.html#Unosquare_Tubular_GridDataResponse_TotalRecordCount_
+  commentId: Overload:Unosquare.Tubular.GridDataResponse.TotalRecordCount
   isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataResponse.TotalRecordCount
+  fullName: Unosquare.Tubular.GridDataResponse.TotalRecordCount
   nameWithType: GridDataResponse.TotalRecordCount
-- uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1
-  name: GridDataUpdateRow<T>
-  href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html
-  commentId: T:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1
-  name.vb: GridDataUpdateRow(Of T)
-  fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>
-  fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T)
-  nameWithType: GridDataUpdateRow<T>
-  nameWithType.vb: GridDataUpdateRow(Of T)
-- uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.AdjustTimezoneOffset
-  name: AdjustTimezoneOffset()
-  href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_AdjustTimezoneOffset
-  commentId: M:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.AdjustTimezoneOffset
-  fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.AdjustTimezoneOffset()
-  fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).AdjustTimezoneOffset()
-  nameWithType: GridDataUpdateRow<T>.AdjustTimezoneOffset()
-  nameWithType.vb: GridDataUpdateRow(Of T).AdjustTimezoneOffset()
-- uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.AdjustTimezoneOffset*
-  name: AdjustTimezoneOffset
-  href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_AdjustTimezoneOffset_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.AdjustTimezoneOffset
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.AdjustTimezoneOffset
-  fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).AdjustTimezoneOffset
-  nameWithType: GridDataUpdateRow<T>.AdjustTimezoneOffset
-  nameWithType.vb: GridDataUpdateRow(Of T).AdjustTimezoneOffset
-- uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.New
-  name: New
-  href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_New
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.New
-  fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.New
-  fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).New
-  nameWithType: GridDataUpdateRow<T>.New
-  nameWithType.vb: GridDataUpdateRow(Of T).New
-- uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.New*
-  name: New
-  href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_New_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.New
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.New
-  fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).New
-  nameWithType: GridDataUpdateRow<T>.New
-  nameWithType.vb: GridDataUpdateRow(Of T).New
-- uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.Old
-  name: Old
-  href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_Old
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.Old
-  fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.Old
-  fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).Old
-  nameWithType: GridDataUpdateRow<T>.Old
-  nameWithType.vb: GridDataUpdateRow(Of T).Old
-- uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.Old*
-  name: Old
-  href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_Old_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.Old
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.Old
-  fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).Old
-  nameWithType: GridDataUpdateRow<T>.Old
-  nameWithType.vb: GridDataUpdateRow(Of T).Old
-- uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.TimezoneOffset
-  name: TimezoneOffset
-  href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_TimezoneOffset
-  commentId: P:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.TimezoneOffset
-  fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.TimezoneOffset
-  fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).TimezoneOffset
-  nameWithType: GridDataUpdateRow<T>.TimezoneOffset
-  nameWithType.vb: GridDataUpdateRow(Of T).TimezoneOffset
-- uid: Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.TimezoneOffset*
-  name: TimezoneOffset
-  href: api/Unosquare.Tubular.ObjectModel.GridDataUpdateRow-1.html#Unosquare_Tubular_ObjectModel_GridDataUpdateRow_1_TimezoneOffset_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.GridDataUpdateRow`1.TimezoneOffset
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.GridDataUpdateRow<T>.TimezoneOffset
-  fullName.vb: Unosquare.Tubular.ObjectModel.GridDataUpdateRow(Of T).TimezoneOffset
-  nameWithType: GridDataUpdateRow<T>.TimezoneOffset
-  nameWithType.vb: GridDataUpdateRow(Of T).TimezoneOffset
-- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1
-  name: MultipleSerieChartResponse<T>
-  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html
-  commentId: T:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1
-  name.vb: MultipleSerieChartResponse(Of T)
-  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>
-  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T)
-  nameWithType: MultipleSerieChartResponse<T>
-  nameWithType.vb: MultipleSerieChartResponse(Of T)
-- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data
-  name: Data
-  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Data
-  commentId: P:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data
-  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Data
-  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Data
-  nameWithType: MultipleSerieChartResponse<T>.Data
-  nameWithType.vb: MultipleSerieChartResponse(Of T).Data
-- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data*
-  name: Data
-  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Data_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Data
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Data
-  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Data
-  nameWithType: MultipleSerieChartResponse<T>.Data
-  nameWithType.vb: MultipleSerieChartResponse(Of T).Data
-- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels
-  name: Labels
-  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Labels
-  commentId: P:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels
-  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Labels
-  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Labels
-  nameWithType: MultipleSerieChartResponse<T>.Labels
-  nameWithType.vb: MultipleSerieChartResponse(Of T).Labels
-- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels*
-  name: Labels
-  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Labels_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Labels
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Labels
-  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Labels
-  nameWithType: MultipleSerieChartResponse<T>.Labels
-  nameWithType.vb: MultipleSerieChartResponse(Of T).Labels
-- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series
-  name: Series
-  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Series
-  commentId: P:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series
-  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Series
-  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Series
-  nameWithType: MultipleSerieChartResponse<T>.Series
-  nameWithType.vb: MultipleSerieChartResponse(Of T).Series
-- uid: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series*
-  name: Series
-  href: api/Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_MultipleSerieChartResponse_1_Series_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse`1.Series
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse<T>.Series
-  fullName.vb: Unosquare.Tubular.ObjectModel.MultipleSerieChartResponse(Of T).Series
-  nameWithType: MultipleSerieChartResponse<T>.Series
-  nameWithType.vb: MultipleSerieChartResponse(Of T).Series
-- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1
-  name: SingleSerieChartResponse<T>
-  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html
-  commentId: T:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1
-  name.vb: SingleSerieChartResponse(Of T)
-  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>
-  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T)
-  nameWithType: SingleSerieChartResponse<T>
-  nameWithType.vb: SingleSerieChartResponse(Of T)
-- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data
-  name: Data
-  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Data
-  commentId: P:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data
-  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Data
-  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Data
-  nameWithType: SingleSerieChartResponse<T>.Data
-  nameWithType.vb: SingleSerieChartResponse(Of T).Data
-- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data*
-  name: Data
-  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Data_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Data
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Data
-  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Data
-  nameWithType: SingleSerieChartResponse<T>.Data
-  nameWithType.vb: SingleSerieChartResponse(Of T).Data
-- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels
-  name: Labels
-  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Labels
-  commentId: P:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels
-  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Labels
-  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Labels
-  nameWithType: SingleSerieChartResponse<T>.Labels
-  nameWithType.vb: SingleSerieChartResponse(Of T).Labels
-- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels*
-  name: Labels
-  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_Labels_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.Labels
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.Labels
-  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).Labels
-  nameWithType: SingleSerieChartResponse<T>.Labels
-  nameWithType.vb: SingleSerieChartResponse(Of T).Labels
-- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName
-  name: SerieName
-  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_SerieName
-  commentId: P:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName
-  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.SerieName
-  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).SerieName
-  nameWithType: SingleSerieChartResponse<T>.SerieName
-  nameWithType.vb: SingleSerieChartResponse(Of T).SerieName
-- uid: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName*
-  name: SerieName
-  href: api/Unosquare.Tubular.ObjectModel.SingleSerieChartResponse-1.html#Unosquare_Tubular_ObjectModel_SingleSerieChartResponse_1_SerieName_
-  commentId: Overload:Unosquare.Tubular.ObjectModel.SingleSerieChartResponse`1.SerieName
-  isSpec: "True"
-  fullName: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse<T>.SerieName
-  fullName.vb: Unosquare.Tubular.ObjectModel.SingleSerieChartResponse(Of T).SerieName
-  nameWithType: SingleSerieChartResponse<T>.SerieName
-  nameWithType.vb: SingleSerieChartResponse(Of T).SerieName
 - uid: Unosquare.Tubular.SortDirection
   name: SortDirection
   href: api/Unosquare.Tubular.SortDirection.html

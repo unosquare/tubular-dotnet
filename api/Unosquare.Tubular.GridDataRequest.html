@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Filter
+    <title>Class GridDataRequest
    | Unosquare Tubular </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Filter
+    <meta name="title" content="Class GridDataRequest
    | Unosquare Tubular ">
     <meta name="generator" content="docfx 2.45.0.0">
     
@@ -76,20 +76,19 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Unosquare.Tubular.ObjectModel.Filter">
+            <article class="content wrap" id="_content" data-uid="Unosquare.Tubular.GridDataRequest">
   
   
-  <h1 id="Unosquare_Tubular_ObjectModel_Filter" data-uid="Unosquare.Tubular.ObjectModel.Filter" class="text-break">Class Filter
+  <h1 id="Unosquare_Tubular_GridDataRequest" data-uid="Unosquare.Tubular.GridDataRequest" class="text-break">Class GridDataRequest
   </h1>
-  <div class="markdown level0 summary"><p>Represents a Tubular&apos;s filter (by column).</p>
-<p>This object is only used to be serialized/deserialized between
-the API and Tubular.</p>
+  <div class="markdown level0 summary"><p>Represents a Data Request from a Tubular Grid.</p>
+<p>This model is how Tubular Grid sends data to any server.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">Filter</span></div>
+    <div class="level1"><span class="xref">GridDataRequest</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -115,36 +114,23 @@ the API and Tubular.</p>
       <span class="xref">System.Object.MemberwiseClone()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.Tubular.ObjectModel.html">Unosquare.Tubular.ObjectModel</a></h6>
-  <h5 id="Unosquare_Tubular_ObjectModel_Filter_syntax">Syntax</h5>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.Tubular.html">Unosquare.Tubular</a></h6>
+  <h5 id="Unosquare_Tubular_GridDataRequest_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Filter</code></pre>
-  </div>
-  <h3 id="constructors">Constructors
-  </h3>
-  
-  
-  <a id="Unosquare_Tubular_ObjectModel_Filter__ctor_" data-uid="Unosquare.Tubular.ObjectModel.Filter.#ctor*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_Filter__ctor" data-uid="Unosquare.Tubular.ObjectModel.Filter.#ctor">Filter()</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Unosquare.Tubular.ObjectModel.Filter.html">Filter</a> class.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Filter()</code></pre>
+    <pre><code class="lang-csharp hljs">public class GridDataRequest</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   
   
-  <a id="Unosquare_Tubular_ObjectModel_Filter_Argument_" data-uid="Unosquare.Tubular.ObjectModel.Filter.Argument*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_Filter_Argument" data-uid="Unosquare.Tubular.ObjectModel.Filter.Argument">Argument</h4>
-  <div class="markdown level1 summary"><p>Filter search params.</p>
+  <a id="Unosquare_Tubular_GridDataRequest_Columns_" data-uid="Unosquare.Tubular.GridDataRequest.Columns*"></a>
+  <h4 id="Unosquare_Tubular_GridDataRequest_Columns" data-uid="Unosquare.Tubular.GridDataRequest.Columns">Columns</h4>
+  <div class="markdown level1 summary"><p>Defines the columns.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] Argument { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public GridColumn[] Columns { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -156,21 +142,21 @@ the API and Tubular.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span>[]</td>
+        <td><a class="xref" href="Unosquare.Tubular.GridColumn.html">GridColumn</a>[]</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_Tubular_ObjectModel_Filter_HasFilter_" data-uid="Unosquare.Tubular.ObjectModel.Filter.HasFilter*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_Filter_HasFilter" data-uid="Unosquare.Tubular.ObjectModel.Filter.HasFilter">HasFilter</h4>
-  <div class="markdown level1 summary"><p>Flags if the Filter is applied.</p>
+  <a id="Unosquare_Tubular_GridDataRequest_Counter_" data-uid="Unosquare.Tubular.GridDataRequest.Counter*"></a>
+  <h4 id="Unosquare_Tubular_GridDataRequest_Counter" data-uid="Unosquare.Tubular.GridDataRequest.Counter">Counter</h4>
+  <div class="markdown level1 summary"><p>Request&apos;s counter.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasFilter { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Counter { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -182,21 +168,21 @@ the API and Tubular.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">System.Int32</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_Tubular_ObjectModel_Filter_Name_" data-uid="Unosquare.Tubular.ObjectModel.Filter.Name*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_Filter_Name" data-uid="Unosquare.Tubular.ObjectModel.Filter.Name">Name</h4>
-  <div class="markdown level1 summary"><p>Filter name.</p>
+  <a id="Unosquare_Tubular_GridDataRequest_Search_" data-uid="Unosquare.Tubular.GridDataRequest.Search*"></a>
+  <h4 id="Unosquare_Tubular_GridDataRequest_Search" data-uid="Unosquare.Tubular.GridDataRequest.Search">Search</h4>
+  <div class="markdown level1 summary"><p>The free-text search.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Filter Search { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -208,21 +194,21 @@ the API and Tubular.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><a class="xref" href="Unosquare.Tubular.Filter.html">Filter</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_Tubular_ObjectModel_Filter_Operator_" data-uid="Unosquare.Tubular.ObjectModel.Filter.Operator*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_Filter_Operator" data-uid="Unosquare.Tubular.ObjectModel.Filter.Operator">Operator</h4>
-  <div class="markdown level1 summary"><p>Filter&apos;s operator.</p>
+  <a id="Unosquare_Tubular_GridDataRequest_Skip_" data-uid="Unosquare.Tubular.GridDataRequest.Skip*"></a>
+  <h4 id="Unosquare_Tubular_GridDataRequest_Skip" data-uid="Unosquare.Tubular.GridDataRequest.Skip">Skip</h4>
+  <div class="markdown level1 summary"><p>Set how many records skip, for pagination.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CompareOperators Operator { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Skip { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -234,22 +220,21 @@ the API and Tubular.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Unosquare.Tubular.CompareOperators.html">CompareOperators</a></td>
+        <td><span class="xref">System.Int32</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_Tubular_ObjectModel_Filter_OptionsUrl_" data-uid="Unosquare.Tubular.ObjectModel.Filter.OptionsUrl*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_Filter_OptionsUrl" data-uid="Unosquare.Tubular.ObjectModel.Filter.OptionsUrl">OptionsUrl</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the options URL.
-The URL returns a list of Filter objects.</p>
+  <a id="Unosquare_Tubular_GridDataRequest_Take_" data-uid="Unosquare.Tubular.GridDataRequest.Take*"></a>
+  <h4 id="Unosquare_Tubular_GridDataRequest_Take" data-uid="Unosquare.Tubular.GridDataRequest.Take">Take</h4>
+  <div class="markdown level1 summary"><p>Set how many records take, for pagination.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string OptionsUrl { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Take { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -261,21 +246,21 @@ The URL returns a list of Filter objects.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">System.Int32</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_Tubular_ObjectModel_Filter_Text_" data-uid="Unosquare.Tubular.ObjectModel.Filter.Text*"></a>
-  <h4 id="Unosquare_Tubular_ObjectModel_Filter_Text" data-uid="Unosquare.Tubular.ObjectModel.Filter.Text">Text</h4>
-  <div class="markdown level1 summary"><p>Filter search text.</p>
+  <a id="Unosquare_Tubular_GridDataRequest_TimezoneOffset_" data-uid="Unosquare.Tubular.GridDataRequest.TimezoneOffset*"></a>
+  <h4 id="Unosquare_Tubular_GridDataRequest_TimezoneOffset" data-uid="Unosquare.Tubular.GridDataRequest.TimezoneOffset">TimezoneOffset</h4>
+  <div class="markdown level1 summary"><p>Sent the minutes difference between UTC and local time.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Text { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int TimezoneOffset { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -287,7 +272,7 @@ The URL returns a list of Filter objects.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">System.Int32</span></td>
         <td></td>
       </tr>
     </tbody>
