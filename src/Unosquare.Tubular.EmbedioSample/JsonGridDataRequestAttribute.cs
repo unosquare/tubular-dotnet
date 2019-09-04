@@ -2,7 +2,6 @@
 using EmbedIO.WebApi;
 using System;
 using System.Threading.Tasks;
-using Unosquare.Tubular.ObjectModel;
 
 namespace Unosquare.Tubular.EmbedioSample
 {

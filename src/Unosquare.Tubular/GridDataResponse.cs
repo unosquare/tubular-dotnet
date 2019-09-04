@@ -1,4 +1,4 @@
-﻿namespace Unosquare.Tubular.ObjectModel
+﻿namespace Unosquare.Tubular
 {
     using System.Collections.Generic;
 

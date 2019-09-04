@@ -3,7 +3,6 @@ using System.Linq;
 using EmbedIO;
 using EmbedIO.Routing;
 using EmbedIO.WebApi;
-using Unosquare.Tubular.ObjectModel;
 
 namespace Unosquare.Tubular.EmbedioSample
 {

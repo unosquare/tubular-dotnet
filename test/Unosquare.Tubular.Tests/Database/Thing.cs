@@ -1,7 +1,6 @@
 ﻿namespace Unosquare.Tubular.Tests.Database
 {
     using System;
-    using ObjectModel;
 
     public class Thing
     {
@@ -23,9 +22,8 @@
 
         public bool IsShipped { get; set; }
 
-        public static GridColumn[] GetColumnsWithAggregate()
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithAggregate() =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Number", Aggregate = AggregationFunction.Sum},
@@ -33,11 +31,9 @@
                 new GridColumn {Name = "Name", Aggregate = AggregationFunction.Max},
                 new GridColumn {Name = "Date", Aggregate = AggregationFunction.Min}
             };
-        }
 
-        public static GridColumn[] GetColumnsWithMultipleCounts()
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithMultipleCounts() =>
+            new[]
             {
                 new GridColumn {Name = "Id", Aggregate = AggregationFunction.DistinctCount},
                 new GridColumn {Name = "Number", Aggregate = AggregationFunction.DistinctCount},
@@ -46,33 +42,27 @@
                 new GridColumn {Name = "Date", Aggregate = AggregationFunction.DistinctCount},
                 new GridColumn {Name = "IsShipped", Aggregate = AggregationFunction.DistinctCount}
             };
-        }
 
-        public static GridColumn[] GetColumns()
-        {
-            return new[]
+        public static GridColumn[] GetColumns() =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name", Searchable = true},
                 new GridColumn {Name = "Date"},
                 new GridColumn {Name = "IsShipped"}
             };
-        }
 
-        public static GridColumn[] GetColumnsWithSort()
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithSort() =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date", Sortable = true, SortDirection = SortDirection.Ascending, SortOrder = 1},
                 new GridColumn {Name = "IsShipped"}
             };
-        }
 
-        public static GridColumn[] GetColumnsWithIdFilter(string filter, CompareOperators oper)
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithIdFilter(string filter, CompareOperators oper) =>
+            new[]
             {
                 new GridColumn
                 {
@@ -84,11 +74,9 @@
                 new GridColumn {Name = "Date"},
                 new GridColumn {Name = "IsShipped"}
             };
-        }
 
-        public static GridColumn[] GetColumnsWithColorFilter(string filter, CompareOperators oper)
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithColorFilter(string filter, CompareOperators oper) =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
@@ -101,11 +89,9 @@
                     DataType = DataType.String
                 }
             };
-        }
 
-        public static GridColumn[] GetColumnsWithBetweenFilter(string filter, string[] arguments)
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithBetweenFilter(string filter, string[] arguments) =>
+            new[]
             {
                 new GridColumn
                 {
@@ -117,11 +103,9 @@
                 new GridColumn {Name = "Date"},
                 new GridColumn {Name = "IsShipped"}
             };
-        }
 
-        public static GridColumn[] GetColumnsWithMultipleFilter(string[] arguments, CompareOperators oper)
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithMultipleFilter(string[] arguments, CompareOperators oper) =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
@@ -134,12 +118,10 @@
                     DataType = DataType.String
                 }
             };
-        }
 
         public static GridColumn[] GetColumnsWithDateFilter(string filter, CompareOperators oper,
-            DataType dataType)
-        {
-            return new[]
+            DataType dataType) =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
@@ -151,11 +133,9 @@
                     DataType = dataType
                 }
             };
-        }
 
-        public static GridColumn[] GetColumnsWithNumberFilter(string filter, CompareOperators oper)
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithNumberFilter(string filter, CompareOperators oper) =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
@@ -168,11 +148,9 @@
                     DataType = DataType.Numeric
                 }
             };
-        }
 
-        public static GridColumn[] GetColumnsWithBooleanFilter(string filter, CompareOperators oper)
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithBooleanFilter(string filter, CompareOperators oper) =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Name"},
@@ -185,11 +163,9 @@
                     DataType = DataType.Boolean,
                 }
             };
-        }
 
-        public static GridColumn[] GetColumnsWithAggregateDouble(AggregationFunction aggregation)
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithAggregateDouble(AggregationFunction aggregation) =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Number", Aggregate = aggregation},
@@ -197,11 +173,9 @@
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"}
             };
-        }
 
-        public static GridColumn[] GetColumnsWithAggregateInt(AggregationFunction aggregation)
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithAggregateInt(AggregationFunction aggregation) =>
+            new[]
             {
                 new GridColumn {Name = "Id", Aggregate = aggregation},
                 new GridColumn {Name = "Number"},
@@ -209,11 +183,9 @@
                 new GridColumn {Name = "Name"},
                 new GridColumn {Name = "Date"}
             };
-        }
 
-        public static GridColumn[] GetColumnsWithAggregateDoubleAndInvalidDate(AggregationFunction aggregation)
-        {
-            return new[]
+        public static GridColumn[] GetColumnsWithAggregateDoubleAndInvalidDate(AggregationFunction aggregation) =>
+            new[]
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Number"},
@@ -231,6 +203,5 @@
                     }
                 }
             };
-        }
     }
 }

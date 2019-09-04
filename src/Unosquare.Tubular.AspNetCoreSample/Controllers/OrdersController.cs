@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Unosquare.Tubular.AspNetCoreSample.ApiModel;
 using Unosquare.Tubular.AspNetCoreSample.Models;
-using Unosquare.Tubular.ObjectModel;
 
 namespace Unosquare.Tubular.AspNetCoreSample.Controllers
 {
@@ -30,10 +29,7 @@ namespace Unosquare.Tubular.AspNetCoreSample.Controllers
         }
 
         [HttpPost, Route("paged")]
-        public object GridData([FromBody] GridDataRequest request)
-        {
-            return request.CreateGridDataResponse(_context.Orders);
-        }
+        public object GridData([FromBody] GridDataRequest request) => request.CreateGridDataResponse(_context.Orders);
 
         private static IQueryable FormatOutput(IQueryable q)
         {
@@ -57,44 +53,39 @@ namespace Unosquare.Tubular.AspNetCoreSample.Controllers
         }
 
         [HttpPost, Route("pagedwithformat")]
-        public async Task<object> GridDataWithFormat([FromBody] GridDataRequest request)
-        {
-            // This is just a sample using a Task
-            return await Task.Run(() =>
-                                request.CreateGridDataResponse(
-                                    _context.Orders.Select(x => new OrderDto
-                                    {
-                                        Amount = x.Amount.ToString(),
-                                        CustomerName = x.CustomerName,
-                                        IsShipped = x.IsShipped.ToString(),
-                                        OrderId = x.OrderId,
-                                        ShippedDate = x.ShippedDate.ToString(),
-                                        ShipperCity = x.ShipperCity
-                                    }), FormatOutput));
-        }
+        public Task<GridDataResponse> GridDataWithFormat([FromBody] GridDataRequest request) =>
+            Task.Run(() =>
+                request.CreateGridDataResponse(
+                    _context.Orders.Select(x => new OrderDto
+                    {
+                        Amount = x.Amount.ToString(),
+                        CustomerName = x.CustomerName,
+                        IsShipped = x.IsShipped.ToString(),
+                        OrderId = x.OrderId,
+                        ShippedDate = x.ShippedDate.ToString(),
+                        ShipperCity = x.ShipperCity
+                    }), FormatOutput));
 
         [HttpPut, Route("save")]
-        public async Task<object> UpdateOrder([FromBody] GridDataUpdateRow<Order> request)
+        public async Task<object> UpdateOrder([FromBody] Order request)
         {
-            var order = _context.Orders.FirstOrDefault(o => o.OrderId == request.Old.OrderId);
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == request.OrderId);
 
             if (order == null)
                 return null;
-
-            request.AdjustTimezoneOffset();
-
-            order.Amount = request.New.Amount;
-            order.CustomerName = request.New.CustomerName;
-            order.IsShipped = request.New.IsShipped;
-            order.ShippedDate = request.New.ShippedDate.Date;
-            order.ShipperCity = request.New.ShipperCity;
-            order.OrderType = request.New.OrderType;
-            order.Comments = request.New.Comments;
-            order.CarrierName = request.New.CarrierName;
+            
+            order.Amount = request.Amount;
+            order.CustomerName = request.CustomerName;
+            order.IsShipped = request.IsShipped;
+            order.ShippedDate = request.ShippedDate.Date;
+            order.ShipperCity = request.ShipperCity;
+            order.OrderType = request.OrderType;
+            order.Comments = request.Comments;
+            order.CarrierName = request.CarrierName;
 
             await _context.SaveChangesAsync();
-
-            return new { Status = "OK" };
+            
+            return Ok();
         }
 
         [HttpPost, Route("save")]
@@ -104,7 +95,7 @@ namespace Unosquare.Tubular.AspNetCoreSample.Controllers
             _context.Orders.Add(fixedOrder);
             await _context.SaveChangesAsync();
 
-            return new { Status = "OK" };
+            return Ok();
         }
 
         [HttpDelete, Route("save/{id}")]
@@ -119,14 +110,13 @@ namespace Unosquare.Tubular.AspNetCoreSample.Controllers
             _context.Orders.Remove(orderDb);
 
             await _context.SaveChangesAsync();
-
-            return new { Status = "OK" };
+            
+            return Ok();
         }
 
         [HttpGet, Route("cities")]
-        public IEnumerable<object> GetCities()
-        {
-            return _context.Orders
+        public IEnumerable<object> GetCities() =>
+            _context.Orders
                 .Select(x => new
                 {
                     Key = x.ShipperCity,
@@ -135,24 +125,5 @@ namespace Unosquare.Tubular.AspNetCoreSample.Controllers
                 .Distinct()
                 .OrderBy(x => x.Label)
                 .ToList();
-        }
-
-        [HttpGet, Route("chart")]
-        public object GetChart()
-        {
-            return _context.Orders.ProvideMultipleSerieChartResponse(
-                    label: x => x.ShipperCity,
-                    serie: x => x.CustomerName,
-                    value: x => x.Amount);
-        }
-
-        [HttpGet, Route("chartpie")]
-        public object GetChartPie()
-        {
-            return _context.Orders.ProvideSingleSerieChartResponse(
-                    label: x => x.CustomerName,
-                    value: x => x.Amount,
-                    serieName: "Customers");
-        }
     }
 }
