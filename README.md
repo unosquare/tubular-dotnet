@@ -15,8 +15,6 @@ Please visit the [Tubular GitHub Page](http://unosquare.github.io/tubular) to le
 
 ## Installation [![NuGet version](https://badge.fury.io/nu/Tubular.ServerSide.svg)](https://badge.fury.io/nu/Tubular.ServerSide)
 
-The same NuGet contains `.NET Framework 4.5.2` and `.NET Standard 2.0` framework targets.
-
 ```
 PM> Install-Package Tubular.ServerSide
 ```
