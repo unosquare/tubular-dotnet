@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/unosquare/tubular-dotnet/badge.svg?branch=master)](https://coveralls.io/github/unosquare/tubular-dotnet?branch=master)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=unosquare/tubular-dotnet)](https://dependabot.com)
 
-![Tubular DotNet](http://unosquare.github.io/tubular/assets/tubular.png)
+![Tubular DotNet](http://unosquare.github.io/tubular-angular/assets/tubular.png)
 
 :star: *Please star this project if you find it useful!*
 
