@@ -349,14 +349,14 @@
             const int offset = 30;
             var now = DateTime.Now;
             var date = new MyDateClass { Date = now, NullableDate = now };
-            var actual = (MyDateClass)Extensions.AdjustTimeZone(date, offset);
+            var actual = (MyDateClass)date.AdjustTimeZone(offset);
 
             Assert.AreEqual(now.AddMinutes(-offset), actual.Date, "Non-nullable date adjusted");
             Assert.IsNotNull(actual.NullableDate);
             Assert.AreEqual(now.AddMinutes(-offset), actual.NullableDate.Value, "Nullable date with value adjusted");
 
             date = new MyDateClass { Date = now, NullableDate = null };
-            actual = (MyDateClass)Extensions.AdjustTimeZone(date, offset);
+            actual = (MyDateClass)date.AdjustTimeZone(offset);
 
             Assert.IsNull(actual.NullableDate, "Nullable date adjusted");
         }
@@ -381,7 +381,7 @@
         [Test]
         public void ProcessResponseSubsetTest()
         {
-            var filter = "blue";
+            const string filter = "blue";
             var dataSource = SampleEntities.GenerateData().AsQueryable();
             var filterCount = dataSource.Where(x => x.Color == filter);
             var data = filterCount.Take(PageSize).ToList();

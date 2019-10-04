@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -17,15 +15,9 @@ namespace Unosquare.Tubular.AspNetCoreSample
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
 
             TokenOptions = new TokenValidationParameters
             {
@@ -49,7 +41,7 @@ namespace Unosquare.Tubular.AspNetCoreSample
             };
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
         private TokenValidationParameters TokenOptions { get; }
 
 
@@ -62,14 +54,16 @@ namespace Unosquare.Tubular.AspNetCoreSample
             services.AddBearerTokenAuthentication(TokenOptions);
 
             // Add framework services.
-            services.AddMvc()
+            services.AddControllers()
                 // Change the JSON contract resolver to DefaultContractResolver to avoid issues with camel case property
-                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-            SampleDbContext dbContext)
+        public void Configure(IApplicationBuilder app)
         {
             app.UseFallback();
             app.UseJsonExceptionHandler();
@@ -84,12 +78,18 @@ namespace Unosquare.Tubular.AspNetCoreSample
 
                 var identity = new ClaimsIdentity();
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userName));
+
                 return Task.FromResult(identity);
             });
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            
+            app.UseAuthorization();
 
-            app.UseMvc();            
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });          
         }
     }
 }

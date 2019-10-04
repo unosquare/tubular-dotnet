@@ -1,7 +1,5 @@
 version: '1.0.{build}'
-image: 
-- Visual Studio 2017
-- Ubuntu
+image: Visual Studio 2019
 configuration: Release
 platform: Any CPU
 notifications:
@@ -10,7 +8,6 @@ notifications:
     secure: Q+xg4/yU5OR9BVF14cw4yZ+3qlhMeYDsAhUQyOIszmF1mHvq44tIvQpWByBJCd/cgUIZk3SwBpk4hh1MrkQIk6rnaOZ2LNBTev4zrq36oXk=
   channel: '#builds'
 environment:
-  DOTNET_CLI_TELEMETRY_OPTOUT: 1
   COVERALLS_REPO_TOKEN:  
        secure: tMQ8tkErQ8zJr+uwZd8xXFfuYCTbHaZoA3M0pJuShvrcQJswmMLgaKo7Pn+YK5eL
   op_build_user: "Geo Perez"
@@ -27,8 +24,6 @@ before_build:
 - dotnet restore Unosquare.Tubular.sln -v Minimal
 - cmd: mkdir tools
 - cmd: nuget install coveralls.net -Version 0.7.0 -OutputDirectory tools
-build_script:
-- cmd: msbuild /p:Configuration=%CONFIGURATION%
 test_script:
 - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude=[NUnit3.TestAdapter]* test/Unosquare.Tubular.Tests -c %CONFIGURATION%
 - ps: |
