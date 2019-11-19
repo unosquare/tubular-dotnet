@@ -52,10 +52,13 @@
         public static GridDataResponse CreateGridDataResponse(
             this GridDataRequest request,
             IQueryable dataSource,
-            ProcessResponseSubset preProcessSubset = null)
+            ProcessResponseSubset? preProcessSubset = null)
         {
-            if (request?.Columns.Any() != true)
+            if (request == null)
                 throw new ArgumentNullException(nameof(request));
+
+            if (request.Columns.Any() != true)
+                throw new ArgumentOutOfRangeException(nameof(request), "Missing column information");
 
             var response = new GridDataResponse
             {
@@ -203,8 +206,8 @@
                 Func<IQueryable<double>, double> doubleF,
                 Func<IQueryable<decimal>, decimal> decimalF, 
                 Func<IQueryable<int>, int> intF,
-                Func<IQueryable<string>, string> stringF, 
-                Func<IQueryable<DateTime>, DateTime> dateF)
+                Func<IQueryable<string>, string>? stringF, 
+                Func<IQueryable<DateTime>, DateTime>? dateF)
             {
                 try
                 {
@@ -290,28 +293,19 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static string GetSqlOperator(CompareOperators op)
-        {
-            switch (op)
+        private static string? GetSqlOperator(CompareOperators op) =>
+            op switch
             {
-                case CompareOperators.Equals:
-                    return "==";
-                case CompareOperators.NotEquals:
-                    return "!=";
-                case CompareOperators.Gte:
-                    return ">=";
-                case CompareOperators.Gt:
-                    return ">";
-                case CompareOperators.Lte:
-                    return "<=";
-                case CompareOperators.Lt:
-                    return "<";
-                default:
-                    return null;
-            }
-        }
+                CompareOperators.Equals => "==",
+                CompareOperators.NotEquals => "!=",
+                CompareOperators.Gte => ">=",
+                CompareOperators.Gt => ">",
+                CompareOperators.Lte => "<=",
+                CompareOperators.Lt => "<",
+                _ => null
+            };
 
-        private static IQueryable FilterResponse(GridDataRequest request, IQueryable subset, GridDataResponse response)
+        private static IQueryable? FilterResponse(GridDataRequest request, IQueryable subset, GridDataResponse response)
         {
             var isDbQuery = subset.GetType().IsDbQuery();
 
@@ -489,10 +483,10 @@
                     case CompareOperators.Multiple:
                         if (column.Filter.Argument == null || column.Filter.Argument.Length == 0) continue;
 
-                        var filterString = "(";
+                        var filterString = new StringBuilder("(");
                         foreach (var filter in column.Filter.Argument)
                         {
-                            filterString += $" {column.Name} == @{searchParamArgs.Count} ||";
+                            filterString.AppendFormat(" {0} == @{1} ||", column.Name, searchParamArgs.Count);
                             searchParamArgs.Add(filter);
                         }
 

@@ -6,7 +6,7 @@
     using Database;
 
     [TestFixture]
-    class ExtensionTest
+    public class ExtensionTest
     {
         private const int PageSize = 20;
 

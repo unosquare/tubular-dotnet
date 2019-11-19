@@ -16,7 +16,7 @@
         /// <summary>
         /// Column Label.
         /// </summary>
-        public string Label { get; set; }
+        public string? Label { get; set; }
         
         /// <summary>
         /// Set if column is sortable.

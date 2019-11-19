@@ -136,7 +136,7 @@
                                     </div>
                                 </tb-cell-template>
                                 <tb-cell-template class="text-center" column-name="OrderId">
-                                    <a href="/form/{{row.OrderId}}" ng-bind="row.OrderId"></a>
+                                    <a ng-href="{{'/form/' + row.OrderId}}" ng-bind="row.OrderId"></a>
                                 </tb-cell-template>
                                 <tb-cell-template column-name="CustomerName">
                                     <span ng-hide="row.$isEditing" ng-bind="row.CustomerName"></span>

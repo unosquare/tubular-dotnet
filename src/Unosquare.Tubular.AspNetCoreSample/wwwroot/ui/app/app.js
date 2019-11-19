@@ -1,9 +1,9 @@
-﻿(function(angular) {
+﻿(function (angular) {
     'use strict';
 
     angular.module('app.routes', ['ngRoute'])
         .config([
-            '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+            '$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
                 $routeProvider.
                     when('/', {
                         templateUrl: '/ui/app/common/view.html',
@@ -46,7 +46,7 @@
         .controller('tubularSampleCtrl', [
             '$scope', '$location', 'toastr', '$http', 'tubularConfig',
             function ($scope, $location, toastr, $http, tubularConfig) {
-                var me = this;
+                const me = this;
 
                 tubularConfig.webApi.requireAuthentication(false);
                 $http.get('api/orders/cities').then(function (response) {
@@ -95,11 +95,9 @@
                     $location.path('/');
                 });
 
-                $scope.$on('tbForm_OnCancel', function () {
-                    $location.path('/');
-                });
+                $scope.$on('tbForm_OnCancel', () => $location.path('/'));
             }
-        ]).controller('loginCtrl',
+        ]).controller('loginCtrl', ['$scope', '$location', 'tubularHttp', '$uibModal', '$routeParams', 'toastr',
             function ($scope, $location, tubularHttp, $uibModal, $routeParams, toastr) {
                 $scope.loading = false;
                 $scope.tokenReset = $routeParams.token;
@@ -115,16 +113,14 @@
 
                     $scope.loading = true;
 
-                    tubularHttp.authenticate($scope.username, $scope.password).then(
-                        function (data) {
-                            $location.path('/');
-                        },
-                        function (error) {
+                    tubularHttp.authenticate($scope.username, $scope.password)
+                        .then(() => $location.path('/'),
+                        (error) => {
                             $scope.loading = false;
                             toastr.error(error.error_description);
                         });
                 };
-            });
+            }]);
 
     angular.module('app', [
         'ngAnimate',
