@@ -1,7 +1,7 @@
 [![NuGet](https://img.shields.io/nuget/dt/Tubular.ServerSide.svg)](https://www.nuget.org/packages/Tubular.ServerSide/)
 [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/tubular/)](https://github.com/igrigorik/ga-beacon)
- ![Buils status](https://github.com/unosquare/tubular-dotnet/workflows/.NET%20Core%20CI/badge.svg)
- [![Build status](https://ci.appveyor.com/api/projects/status/ia9hnxea6b64xbhh?svg=true)](https://ci.appveyor.com/project/geoperez/tubular-dotnet)
+![Buils status](https://github.com/unosquare/tubular-dotnet/workflows/.NET%20Core%20CI/badge.svg)
+[![Build status](https://ci.appveyor.com/api/projects/status/ia9hnxea6b64xbhh?svg=true)](https://ci.appveyor.com/project/geoperez/tubular-dotnet)
 [![Coverage Status](https://coveralls.io/repos/github/unosquare/tubular-dotnet/badge.svg?branch=master)](https://coveralls.io/github/unosquare/tubular-dotnet?branch=master)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=unosquare/tubular-dotnet)](https://dependabot.com)
 
