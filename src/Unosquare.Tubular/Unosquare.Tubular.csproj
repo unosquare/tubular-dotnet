@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <Copyright>Unosquare 2016-2019</Copyright>
     <DebugType>Full</DebugType>
     <AssemblyTitle>Unosquare Tubular</AssemblyTitle>
