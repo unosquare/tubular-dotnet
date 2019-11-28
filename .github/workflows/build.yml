@@ -19,6 +19,4 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-nuget-
     - name: Test with dotnet
-      run: |
-        dotnet restore --locked-mode
-        dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj
+      run: dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj
