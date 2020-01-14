@@ -42,6 +42,6 @@
         /// <summary>
         /// A dictionary with the aggregation functions.
         /// </summary>
-        public Dictionary<string, object> AggregationPayload { get; set; }
+        public Dictionary<string, object>? AggregationPayload { get; set; }
     }
 }

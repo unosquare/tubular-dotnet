@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Copyright>Unosquare 2016-2019</Copyright>
+    <Copyright>Unosquare 2016-2020</Copyright>
     <AssemblyTitle>Unosquare Tubular</AssemblyTitle>
-    <VersionPrefix>2.0.1</VersionPrefix>
+    <VersionPrefix>2.0.2</VersionPrefix>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Tubular</AssemblyName>

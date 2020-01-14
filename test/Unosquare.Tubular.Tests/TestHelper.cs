@@ -419,7 +419,7 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             foreach (var item in response.Payload)
-                Assert.AreNotEqual(filter, item[4], "Diferent color");
+                Assert.AreNotEqual(filter, item[4], "Different color");
 
             foreach (var item in response.Payload)
                 Assert.AreEqual("darkblue", item[4], "Same color");

@@ -26,7 +26,7 @@
         /// <summary>
         /// Filter search text.
         /// </summary>
-        public string Text { get; set; }
+        public string? Text { get; set; }
 
         /// <summary>
         /// Filter search params.
