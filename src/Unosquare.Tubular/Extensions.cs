@@ -103,7 +103,7 @@
             else
             {
                 var filteredCount = subset.Count();
-                var totalPages = filteredCount / pageSize;
+                var totalPages = (filteredCount / pageSize) + (filteredCount % pageSize > 0 ? 1 : 0);
 
                 if (totalPages > 0)
                 {
