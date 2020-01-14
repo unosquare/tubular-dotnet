@@ -186,8 +186,9 @@
             var response = request.CreateGridDataResponse(dataSource.AsQueryable());
 
             Assert.AreEqual(dataSource.Count, response.TotalRecordCount, "Same length");
-            Assert.AreEqual(data.First().Id, response.Payload.First().First(), "Same first item");
             Assert.AreEqual(data.Count, response.FilteredRecordCount, "Total filtered rows matching");
+            
+            Assert.AreEqual(data.First().Id, response.Payload.First().First(), "Same first item");
         }
 
         [Test]
