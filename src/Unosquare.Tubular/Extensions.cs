@@ -103,14 +103,23 @@
             else
             {
                 var filteredCount = subset.Count();
-                var totalPages = filteredCount / pageSize;
+                var totalPages = (int)Math.Ceiling((double)filteredCount / pageSize);
 
                 if (totalPages > 0)
                 {
                     response.TotalPages = totalPages;
-                    response.CurrentPage = (request.Skip / pageSize) + 1;
+                    var currentPage = (request.Skip / pageSize) + 1;
+                    response.CurrentPage = Math.Min(currentPage, totalPages);
 
-                    if (request.Skip > 0) subset = subset.Skip(request.Skip);
+                    if (request.Skip > 0)
+                    {
+                        var maxSkip = pageSize *
+                            (response.CurrentPage == response.TotalPages 
+                                ? response.CurrentPage - 1 
+                                : response.CurrentPage);
+
+                        subset = subset.Skip(Math.Min(request.Skip, maxSkip));
+                    }
                 }
                 else
                 {

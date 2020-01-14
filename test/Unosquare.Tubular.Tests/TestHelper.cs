@@ -154,6 +154,26 @@
         }
 
         [Test]
+        public void TakeNone()
+        {
+            var dataSource = SampleEntities.GenerateData().AsQueryable();
+            var data = dataSource.ToList();
+
+            var request = new GridDataRequest
+            {
+                Take = 0,
+                Skip = 0,
+                Search = new Filter(),
+                Columns = Thing.GetColumns()
+            };
+
+            var response = request.CreateGridDataResponse(dataSource);
+
+            Assert.AreEqual(request.Take, response.Payload.Count, "Same items requested");
+            Assert.AreEqual(data.Count, response.TotalRecordCount, "Total rows matching");
+        }
+
+        [Test]
         public void TestListSimpleSearch()
         {
             var dataSource = new List<Thing>
@@ -400,7 +420,7 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
             foreach (var item in response.Payload)
-                Assert.AreNotEqual(filter, item[4], "Diferent color");
+                Assert.AreNotEqual(filter, item[4], "Different color");
 
             foreach (var item in response.Payload)
                 Assert.AreEqual("darkblue", item[4], "Same color");
