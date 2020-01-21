@@ -15,7 +15,7 @@
         /// <summary>
         /// The free-text search.
         /// </summary>
-        public Filter Search { get; set; }
+        public Filter? Search { get; set; }
         
         /// <summary>
         /// Set how many records skip, for pagination.

@@ -36,7 +36,7 @@
         /// <summary>
         /// Represents the Columns filter.
         /// </summary>
-        public Filter Filter { get; set; }
+        public Filter? Filter { get; set; }
         
         /// <summary>
         /// Set if the column is searchable in free-text search.

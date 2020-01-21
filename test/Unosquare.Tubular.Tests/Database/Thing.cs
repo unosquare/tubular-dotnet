@@ -6,15 +6,15 @@
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public double Number { get; set; }
 
         public decimal DecimalNumber { get; set; }
 
-        public string Category { get; set; }
+        public string? Category { get; set; }
 
-        public string Color { get; set; }
+        public string? Color { get; set; }
 
         public DateTime Date { get; set; }
 

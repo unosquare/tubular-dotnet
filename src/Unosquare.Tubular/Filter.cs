@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.Tubular
 {
     /// <summary>
-    /// Represents a Tubular's filter (by column).
+    /// Represents a Tubular filter (by column).
     /// 
     /// This object is only used to be serialized/deserialized between
     /// the API and Tubular.
@@ -21,7 +21,7 @@
         /// <summary>
         /// Filter name.
         /// </summary>
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Filter search text.
@@ -31,7 +31,7 @@
         /// <summary>
         /// Filter search params.
         /// </summary>
-        public string[] Argument { get; set; }
+        public string[]? Argument { get; set; }
 
         /// <summary>
         /// Filter's operator.
