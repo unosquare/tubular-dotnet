@@ -31,7 +31,7 @@
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Dictionary<string, PropertyInfo> GetTypeProperties(Type t) => t.GetProperties()
-            .Where(p => (Common.PrimitiveTypes.Contains(p.PropertyType) || p.PropertyType.GetType().IsEnum()) && p.CanRead)
+            .Where(p => (Common.PrimitiveTypes.Contains(p.PropertyType) || p.PropertyType.IsEnum) && p.CanRead)
             .ToDictionary(k => k.Name, v => v);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
