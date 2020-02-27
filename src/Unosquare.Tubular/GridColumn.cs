@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.Tubular
 {
     /// <summary>
-    /// Represents a Tubular's Grid column.
+    /// Represents a Tubular Grid column.
     /// 
     /// This object is only used to be serialized/deserialized between
     /// the backend and Tubular Grid.

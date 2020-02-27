@@ -8,7 +8,7 @@ using System;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Unosquare.Swan.AspNetCore;
+using Swan.AspNetCore;
 using Unosquare.Tubular.AspNetCoreSample.Models;
 
 namespace Unosquare.Tubular.AspNetCoreSample
@@ -41,9 +41,9 @@ namespace Unosquare.Tubular.AspNetCoreSample
             };
         }
 
-        public IConfiguration Configuration { get; }
         private TokenValidationParameters TokenOptions { get; }
 
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
@@ -56,10 +56,7 @@ namespace Unosquare.Tubular.AspNetCoreSample
             // Add framework services.
             services.AddControllers()
                 // Change the JSON contract resolver to DefaultContractResolver to avoid issues with camel case property
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-                });
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -74,7 +71,8 @@ namespace Unosquare.Tubular.AspNetCoreSample
             app.UseBearerTokenAuthentication(TokenOptions, (provider, userName, password, grantType, clientId) =>
             {
                 // TODO: Replace with your implementation
-                if (userName != "Admin" || password != "pass.word") return Task.FromResult<ClaimsIdentity>(null);
+                if (userName != "Admin" || password != "pass.word")
+                    return Task.FromResult<ClaimsIdentity>(null);
 
                 var identity = new ClaimsIdentity();
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userName));
@@ -83,13 +81,13 @@ namespace Unosquare.Tubular.AspNetCoreSample
             });
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });          
+            });
         }
     }
 }
