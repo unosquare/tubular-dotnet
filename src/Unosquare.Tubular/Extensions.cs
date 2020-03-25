@@ -61,6 +61,9 @@
             if (request.Columns.Any() != true)
                 throw new ArgumentOutOfRangeException(nameof(request), "Missing column information");
 
+            // Remove this in future versions.
+            AdjustFilters(request);
+
             var response = new GridDataResponse
             {
                 Counter = request.Counter,
@@ -104,7 +107,7 @@
             else
             {
                 var filteredCount = subset.Count();
-                var totalPages = (int) Math.Ceiling((double) filteredCount / pageSize);
+                var totalPages = (int)Math.Ceiling((double)filteredCount / pageSize);
 
                 if (totalPages > 0)
                 {
@@ -139,6 +142,19 @@
             return response;
         }
 
+        private static void AdjustFilters(GridDataRequest request)
+        {
+            if (request.Search != null)
+                request.SearchText = request.Search.Text;
+
+            foreach (var column in request.Columns.Where(x => x.Filter != null))
+            {
+                column.FilterArgument = column.Filter.Argument;
+                column.FilterOperator = column.Filter.Operator;
+                column.FilterText = column.Filter.Text;
+            }
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Dictionary<GridColumn, PropertyInfo> MapColumnsToProperties(
             IReadOnlyCollection<GridColumn> columns,
@@ -167,7 +183,7 @@
             {
                 var payloadItem = new List<object>(columnMap.Keys.Count);
 
-                foreach (var column in columnMap.Select(m => new {Value = m.Value.GetValue(item), m.Key}))
+                foreach (var column in columnMap.Select(m => new { Value = m.Value.GetValue(item), m.Key }))
                 {
                     if (column.Value is DateTime time)
                     {
@@ -194,13 +210,13 @@
 
             if (prop.PropertyType == typeof(DateTime?))
             {
-                var nullableValue = (DateTime?) prop.GetValue(data);
+                var nullableValue = (DateTime?)prop.GetValue(data);
                 if (!nullableValue.HasValue) return;
                 value = nullableValue.Value;
             }
             else
             {
-                value = (DateTime) prop.GetValue(data);
+                value = (DateTime)prop.GetValue(data);
             }
 
             value = value.AddMinutes(-timezoneOffset);
@@ -324,9 +340,9 @@
             var searchLambda = new StringBuilder();
             var searchParamArgs = new List<object>();
 
-            if (request.Search?.Operator == CompareOperators.Auto)
+            if (!string.IsNullOrWhiteSpace(request.SearchText))
             {
-                var searchValue = isDbQuery ? request.Search?.Text : request.Search?.Text?.ToLowerInvariant();
+                var searchValue = isDbQuery ? request.SearchText : request.SearchText?.ToLowerInvariant();
 
                 if (!string.IsNullOrWhiteSpace(searchValue))
                     GetSearchFilter(request, isDbQuery, searchValue!, searchLambda, searchParamArgs);
@@ -334,8 +350,7 @@
 
             // Perform Filtering
             foreach (var column in request.Columns
-                .Where(x => x.Filter != null)
-                .Where(column => !string.IsNullOrWhiteSpace(column.Filter!.Text) || column.Filter.Argument != null))
+                .Where(column => !string.IsNullOrWhiteSpace(column.FilterText) || column.FilterArgument != null))
             {
                 FilterColumn(column, searchLambda, searchParamArgs, isDbQuery);
             }
@@ -353,24 +368,22 @@
         }
 
         private static void FilterColumn(
-            GridColumn column, 
-            StringBuilder searchLambda, 
+            GridColumn column,
+            StringBuilder searchLambda,
             ICollection<object> searchParamArgs,
             bool isDbQuery)
         {
-            column.Filter!.HasFilter = true;
-
-            switch (column.Filter.Operator)
+            switch (column.FilterOperator)
             {
                 case CompareOperators.Equals:
                 case CompareOperators.NotEquals:
 
-                    if (string.IsNullOrWhiteSpace(column.Filter.Text)) return;
+                    if (string.IsNullOrWhiteSpace(column.FilterText)) return;
 
                     if (column.DataType == DataType.Date)
                     {
                         searchLambda.AppendFormat(
-                            column.Filter.Operator == CompareOperators.Equals
+                            column.FilterOperator == CompareOperators.Equals
                                 ? "({0} >= @{1} && {0} <= @{2}) &&"
                                 : "({0} < @{1} || {0} > @{2}) &&",
                             column.Name,
@@ -382,25 +395,25 @@
                         searchLambda.AppendFormat("{0} {2} @{1} &&",
                             column.Name,
                             searchParamArgs.Count,
-                            GetSqlOperator(column.Filter.Operator));
+                            GetSqlOperator(column.FilterOperator));
                     }
 
                     switch (column.DataType)
                     {
                         case DataType.Numeric:
-                            searchParamArgs.Add(decimal.Parse(column.Filter.Text));
+                            searchParamArgs.Add(decimal.Parse(column.FilterText));
                             break;
                         case DataType.DateTime:
                         case DataType.DateTimeUtc:
-                            searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString(DateFormat));
+                            searchParamArgs.Add(DateTime.Parse(column.FilterText).ToString(DateFormat));
                             break;
                         case DataType.Date:
                             if (TubularDefaultSettings.AdjustTimezoneOffset)
                             {
-                                searchParamArgs.Add(DateTime.Parse(column.Filter.Text).Date.ToUniversalTime()
+                                searchParamArgs.Add(DateTime.Parse(column.FilterText).Date.ToUniversalTime()
                                     .ToString(DateTimeFormat));
                                 searchParamArgs.Add(
-                                    DateTime.Parse(column.Filter.Text)
+                                    DateTime.Parse(column.FilterText)
                                         .Date.ToUniversalTime()
                                         .AddDays(1)
                                         .AddMinutes(-1).ToString(DateTimeFormat));
@@ -408,18 +421,18 @@
                             else
                             {
                                 searchParamArgs.Add(
-                                    DateTime.Parse(column.Filter.Text).Date.ToString(DateTimeFormat));
-                                searchParamArgs.Add(DateTime.Parse(column.Filter.Text)
+                                    DateTime.Parse(column.FilterText).Date.ToString(DateTimeFormat));
+                                searchParamArgs.Add(DateTime.Parse(column.FilterText)
                                     .Date.AddDays(1)
                                     .AddMinutes(-1).ToString(DateTimeFormat));
                             }
 
                             break;
                         case DataType.Boolean:
-                            searchParamArgs.Add(bool.Parse(column.Filter.Text));
+                            searchParamArgs.Add(bool.Parse(column.FilterText));
                             break;
                         default:
-                            searchParamArgs.Add(column.Filter.Text);
+                            searchParamArgs.Add(column.FilterText);
                             break;
                     }
 
@@ -431,7 +444,7 @@
                             : "({0} != null && {0}.ToLowerInvariant().Contains(@{1})) &&", column.Name,
                         searchParamArgs.Count);
 
-                    searchParamArgs.Add(column.Filter.Text.ToLowerInvariant());
+                    searchParamArgs.Add(column.FilterText.ToLowerInvariant());
                     break;
                 case CompareOperators.StartsWith:
                     searchLambda.AppendFormat(
@@ -440,7 +453,7 @@
                             : "({0} != null && {0}.ToLowerInvariant().StartsWith(@{1})) &&", column.Name,
                         searchParamArgs.Count);
 
-                    searchParamArgs.Add(column.Filter.Text.ToLowerInvariant());
+                    searchParamArgs.Add(column.FilterText.ToLowerInvariant());
                     break;
                 case CompareOperators.EndsWith:
                     searchLambda.AppendFormat(
@@ -449,7 +462,7 @@
                             : "({0} != null && {0}.ToLowerInvariant().EndsWith(@{1})) &&", column.Name,
                         searchParamArgs.Count);
 
-                    searchParamArgs.Add(column.Filter.Text.ToLowerInvariant());
+                    searchParamArgs.Add(column.FilterText.ToLowerInvariant());
                     break;
                 case CompareOperators.NotContains:
                     searchLambda.AppendFormat(
@@ -458,7 +471,7 @@
                             : "({0} != null && {0}.ToLowerInvariant().Contains(@{1}) == false) &&", column.Name,
                         searchParamArgs.Count);
 
-                    searchParamArgs.Add(column.Filter.Text.ToLowerInvariant());
+                    searchParamArgs.Add(column.FilterText.ToLowerInvariant());
                     break;
                 case CompareOperators.NotStartsWith:
                     searchLambda.AppendFormat(
@@ -467,7 +480,7 @@
                             : "({0} != null && {0}.ToLowerInvariant().StartsWith(@{1}) == false) &&", column.Name,
                         searchParamArgs.Count);
 
-                    searchParamArgs.Add(column.Filter.Text.ToLowerInvariant());
+                    searchParamArgs.Add(column.FilterText.ToLowerInvariant());
                     break;
                 case CompareOperators.NotEndsWith:
                     searchLambda.AppendFormat(
@@ -476,7 +489,7 @@
                             : "({0} != null && {0}.ToLowerInvariant().EndsWith(@{1}) == false) &&", column.Name,
                         searchParamArgs.Count);
 
-                    searchParamArgs.Add(column.Filter.Text.ToLowerInvariant());
+                    searchParamArgs.Add(column.FilterText.ToLowerInvariant());
                     break;
                 case CompareOperators.Gte:
                 case CompareOperators.Gt:
@@ -485,19 +498,19 @@
                     searchLambda.AppendFormat("{0} {2} @{1} &&",
                         column.Name,
                         searchParamArgs.Count,
-                        GetSqlOperator(column.Filter.Operator));
+                        GetSqlOperator(column.FilterOperator));
 
                     if (column.DataType == DataType.Numeric)
-                        searchParamArgs.Add(decimal.Parse(column.Filter.Text));
+                        searchParamArgs.Add(decimal.Parse(column.FilterText));
                     else
-                        searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString(DateFormat));
+                        searchParamArgs.Add(DateTime.Parse(column.FilterText).ToString(DateFormat));
 
                     break;
                 case CompareOperators.Multiple:
-                    if (column.Filter.Argument == null || column.Filter.Argument.Length == 0) return;
+                    if (column.FilterArgument == null || column.FilterArgument.Length == 0) return;
 
                     var filterString = new StringBuilder("(");
-                    foreach (var filter in column.Filter.Argument)
+                    foreach (var filter in column.FilterArgument)
                     {
                         filterString.AppendFormat(" {0} == @{1} ||", column.Name, searchParamArgs.Count);
                         searchParamArgs.Add(filter);
@@ -509,7 +522,7 @@
 
                     break;
                 case CompareOperators.Between:
-                    if (column.Filter.Argument == null || column.Filter.Argument.Length == 0) return;
+                    if (column.FilterArgument == null || column.FilterArgument.Length == 0) return;
 
                     searchLambda.AppendFormat("(({0} >= @{1}) &&  ({0} <= @{2})) &&",
                         column.Name,
@@ -518,13 +531,13 @@
 
                     if (column.DataType == DataType.Numeric)
                     {
-                        searchParamArgs.Add(decimal.Parse(column.Filter.Text));
-                        searchParamArgs.Add(decimal.Parse(column.Filter.Argument[0]));
+                        searchParamArgs.Add(decimal.Parse(column.FilterText));
+                        searchParamArgs.Add(decimal.Parse(column.FilterArgument[0]));
                     }
                     else
                     {
-                        searchParamArgs.Add(DateTime.Parse(column.Filter.Text).ToString(DateFormat));
-                        searchParamArgs.Add(DateTime.Parse(column.Filter.Argument[0]).ToString(DateFormat));
+                        searchParamArgs.Add(DateTime.Parse(column.FilterText).ToString(DateFormat));
+                        searchParamArgs.Add(DateTime.Parse(column.FilterArgument[0]).ToString(DateFormat));
                     }
 
                     break;
@@ -532,10 +545,10 @@
         }
 
         private static void GetSearchFilter(
-            GridDataRequest request, 
-            bool isDbQuery, 
+            GridDataRequest request,
+            bool isDbQuery,
             string searchValue,
-            StringBuilder searchLambda, 
+            StringBuilder searchLambda,
             List<object> searchParamArgs)
         {
             var filter = new StringBuilder();

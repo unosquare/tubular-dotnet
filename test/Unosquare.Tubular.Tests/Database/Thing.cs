@@ -67,7 +67,8 @@
                 new GridColumn
                 {
                     Name = "Id",
-                    Filter = new Filter {Text = filter, Operator = oper},
+                    FilterText = filter,
+                    FilterOperator = oper,
                     DataType = DataType.Numeric
                 },
                 new GridColumn {Name = "Name"},
@@ -85,7 +86,8 @@
                 new GridColumn
                 {
                     Name = "Color",
-                    Filter = new Filter {Text = filter, Operator = oper},
+                    FilterText = filter,
+                    FilterOperator = oper,
                     DataType = DataType.String
                 }
             };
@@ -96,7 +98,7 @@
                 new GridColumn
                 {
                     Name = "Id",
-                    Filter = new Filter {Text = filter, Argument = arguments, Operator = CompareOperators.Between},
+                    FilterText = filter, FilterArgument = arguments, FilterOperator = CompareOperators.Between,
                     DataType = DataType.Numeric
                 },
                 new GridColumn {Name = "Name"},
@@ -114,7 +116,8 @@
                 new GridColumn
                 {
                     Name = "Color",
-                    Filter = new Filter {Argument = arguments, Operator = oper},
+                    FilterArgument = arguments,
+                    FilterOperator = oper,
                     DataType = DataType.String
                 }
             };
@@ -129,7 +132,8 @@
                 new GridColumn
                 {
                     Name = "Date",
-                    Filter = new Filter {Text = filter, Operator = oper,},
+                    FilterText = filter,
+                    FilterOperator = oper,
                     DataType = dataType
                 }
             };
@@ -144,7 +148,7 @@
                 new GridColumn
                 {
                     Name = "DecimalNumber",
-                    Filter = new Filter {Text = filter, Operator = oper},
+                    FilterText = filter, FilterOperator = oper,
                     DataType = DataType.Numeric
                 }
             };
@@ -159,7 +163,8 @@
                 {
                     Name = "IsShipped",
                     Searchable = false,
-                    Filter = new Filter {Text = filter, Operator = oper,},
+                    FilterText = filter,
+                    FilterOperator = oper,
                     DataType = DataType.Boolean,
                 }
             };
@@ -189,18 +194,14 @@
             {
                 new GridColumn {Name = "Id"},
                 new GridColumn {Name = "Number"},
-                new GridColumn {Name = "DecimalNumber", Aggregate = aggregation, DataType = DataType.Numeric },
+                new GridColumn {Name = "DecimalNumber", Aggregate = aggregation, DataType = DataType.Numeric},
                 new GridColumn {Name = "Name"},
                 new GridColumn
                 {
                     Name = "Date",
-                    Filter = new Filter
-                    {
-                        Argument = new[] {DateTime.Now.AddDays(1).ToShortDateString()},
-                        HasFilter = true,
-                        Text = DateTime.Now.AddDays(1).ToShortDateString(),
-                        Operator = CompareOperators.Equals
-                    }
+                    FilterArgument = new[] {DateTime.Now.AddDays(1).ToShortDateString()},
+                    FilterText = DateTime.Now.AddDays(1).ToShortDateString(),
+                    FilterOperator = CompareOperators.Equals
                 }
             };
     }

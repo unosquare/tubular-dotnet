@@ -1,4 +1,6 @@
-﻿namespace Unosquare.Tubular
+﻿using System;
+
+namespace Unosquare.Tubular
 {
     /// <summary>
     /// Represents a Tubular Grid column.
@@ -36,6 +38,7 @@
         /// <summary>
         /// Represents the Columns filter.
         /// </summary>
+        [Obsolete("This will be removed in future versions.")]
         public Filter? Filter { get; set; }
         
         /// <summary>
@@ -52,5 +55,20 @@
         /// The Aggregation Function.
         /// </summary>
         public AggregationFunction Aggregate { get; set; }
+
+        /// <summary>
+        /// Filter search text.
+        /// </summary>
+        public string? FilterText { get; set; }
+
+        /// <summary>
+        /// Filter search params.
+        /// </summary>
+        public string[]? FilterArgument { get; set; }
+
+        /// <summary>
+        /// Filter operator.
+        /// </summary>
+        public CompareOperators FilterOperator { get; set; }
     }
 }

@@ -25,7 +25,6 @@
             {
                 Take = PageSize,
                 Skip = PageSize * page,
-                Search = new Filter(),
                 Columns = Thing.GetColumns(),
                 TimezoneOffset = timezoneOffset
             };
@@ -71,7 +70,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithIdFilter(filter.ToString(), CompareOperators.Gt)
             };
 
@@ -92,7 +90,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithSort()
             };
 
@@ -114,11 +111,7 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter
-                {
-                    Operator = CompareOperators.Auto,
-                    Text = SearchText
-                },
+                SearchText = SearchText,
                 Columns = Thing.GetColumns()
             };
 
@@ -141,7 +134,6 @@
             {
                 Take = -1,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumns()
             };
 
@@ -163,7 +155,6 @@
             {
                 Take = 0,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumns()
             };
 
@@ -194,11 +185,7 @@
             {
                 Take = PageSize,
                 Skip = 30,
-                Search = new Filter
-                {
-                    Operator = CompareOperators.Auto,
-                    Text = SearchText
-                },
+                SearchText = SearchText,
                 Columns = Thing.GetColumns()
             };
 
@@ -207,7 +194,7 @@
 
             Assert.AreEqual(dataSource.Count, response.TotalRecordCount, "Same length");
             Assert.AreEqual(data.Count, response.FilteredRecordCount, "Total filtered rows matching");
-            
+
             Assert.AreEqual(data.First().Id, response.Payload.First().First(), "Same first item");
         }
 
@@ -218,9 +205,9 @@
 
             for (var i = 0; i < 422; i++)
             {
-                dataSource.Add(new Thing { Color = "red" });
-                dataSource.Add(new Thing { Color = "blue" });
-                dataSource.Add(new Thing { Color = "yellow" });
+                dataSource.Add(new Thing {Color = "red"});
+                dataSource.Add(new Thing {Color = "blue"});
+                dataSource.Add(new Thing {Color = "yellow"});
             }
 
             var columns = new[]
@@ -235,18 +222,14 @@
                 },
                 new GridColumn {Name = "Id"}
             };
+
             var request = new GridDataRequest
             {
                 Columns = columns,
                 TimezoneOffset = 300,
                 Take = 100,
                 Skip = 300,
-                Search = new Filter
-                {
-                    Operator = CompareOperators.Auto,
-                    Text = "red"
-                }
-
+                SearchText = "red",
             };
             var response = request.CreateGridDataResponse(dataSource.AsQueryable());
             Assert.AreEqual(4, response.CurrentPage);
@@ -273,11 +256,7 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter
-                {
-                    Operator = CompareOperators.Auto,
-                    Text = SearchText
-                },
+                SearchText = SearchText,
                 Columns = Thing.GetColumns()
             };
 
@@ -302,7 +281,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithAggregate()
             };
 
@@ -313,7 +291,8 @@
 
             Assert.AreEqual(dataSource.Sum(x => x.Number), response.AggregationPayload["Number"],
                 "Same average number");
-            Assert.AreEqual(dataSource.Sum(x => x.DecimalNumber), (decimal)response.AggregationPayload["DecimalNumber"],
+            Assert.AreEqual(dataSource.Sum(x => x.DecimalNumber),
+                (decimal) response.AggregationPayload["DecimalNumber"],
                 "Same average decimal number");
             Assert.AreEqual(dataSource.Max(x => x.Name), response.AggregationPayload["Name"],
                 "Same max name");
@@ -334,7 +313,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithMultipleCounts()
             };
 
@@ -343,17 +321,20 @@
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
             Assert.AreEqual(data.First().Id, response.Payload.First().First(), "Same first item");
 
-            Assert.AreEqual(dataSource.Select(x => x.Id).Distinct().Count(), (int)response.AggregationPayload["Id"],
+            Assert.AreEqual(dataSource.Select(x => x.Id).Distinct().Count(), (int) response.AggregationPayload["Id"],
                 "Id same distinct count");
             Assert.AreEqual(dataSource.Select(x => x.Number).Distinct().Count(),
-                (int)response.AggregationPayload["Number"], "Number same distinct count");
+                (int) response.AggregationPayload["Number"], "Number same distinct count");
             Assert.AreEqual(dataSource.Select(x => x.DecimalNumber).Distinct().Count(),
-                (int)response.AggregationPayload["DecimalNumber"], "DecimalNumber same distinct count");
-            Assert.AreEqual(dataSource.Select(x => x.Name).Distinct().Count(), (int)response.AggregationPayload["Name"],
+                (int) response.AggregationPayload["DecimalNumber"], "DecimalNumber same distinct count");
+            Assert.AreEqual(dataSource.Select(x => x.Name).Distinct().Count(),
+                (int) response.AggregationPayload["Name"],
                 "Name same distinct count");
-            Assert.AreEqual(dataSource.Select(x => x.Date).Distinct().Count(), (int)response.AggregationPayload["Date"],
+            Assert.AreEqual(dataSource.Select(x => x.Date).Distinct().Count(),
+                (int) response.AggregationPayload["Date"],
                 "Date same distinct count");
-            Assert.AreEqual(dataSource.Select(x => x.IsShipped).Distinct().Count(), (int)response.AggregationPayload["IsShipped"],
+            Assert.AreEqual(dataSource.Select(x => x.IsShipped).Distinct().Count(),
+                (int) response.AggregationPayload["IsShipped"],
                 "IsShipped same distinct count");
         }
 
@@ -369,15 +350,15 @@
         {
             const int offset = 30;
             var now = DateTime.Now;
-            var date = new MyDateClass { Date = now, NullableDate = now };
-            var actual = (MyDateClass)date.AdjustTimeZone(offset);
+            var date = new MyDateClass {Date = now, NullableDate = now};
+            var actual = (MyDateClass) date.AdjustTimeZone(offset);
 
             Assert.AreEqual(now.AddMinutes(-offset), actual.Date, "Non-nullable date adjusted");
             Assert.IsNotNull(actual.NullableDate);
             Assert.AreEqual(now.AddMinutes(-offset), actual.NullableDate.Value, "Nullable date with value adjusted");
 
-            date = new MyDateClass { Date = now, NullableDate = null };
-            actual = (MyDateClass)date.AdjustTimeZone(offset);
+            date = new MyDateClass {Date = now, NullableDate = null};
+            actual = (MyDateClass) date.AdjustTimeZone(offset);
 
             Assert.IsNull(actual.NullableDate, "Nullable date adjusted");
         }
@@ -411,7 +392,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithColorFilter(filter, CompareOperators.Equals)
             };
 

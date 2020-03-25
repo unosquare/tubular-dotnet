@@ -19,7 +19,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Sum)
             };
 
@@ -40,7 +39,7 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
+
                 Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Average)
             };
 
@@ -62,7 +61,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Max)
             };
 
@@ -83,7 +81,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Min)
             };
 
@@ -104,7 +101,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Count)
             };
 
@@ -123,7 +119,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter {Text = string.Empty, Operator = CompareOperators.None},
                 Columns = Thing.GetColumnsWithAggregateDoubleAndInvalidDate(AggregationFunction.Sum),
                 TimezoneOffset = 360
             };

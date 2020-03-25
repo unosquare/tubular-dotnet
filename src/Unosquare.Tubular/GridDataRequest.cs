@@ -1,4 +1,6 @@
-﻿namespace Unosquare.Tubular
+﻿using System;
+
+namespace Unosquare.Tubular
 {
     /// <summary>
     /// Represents a Data Request from a Tubular Grid.
@@ -11,12 +13,21 @@
         /// Request's counter.
         /// </summary>
         public int Counter { get; set; }
-        
+
         /// <summary>
         /// The free-text search.
         /// </summary>
+        [Obsolete("This will be removed in future versions.")]
         public Filter? Search { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the search text.
+        /// </summary>
+        /// <value>
+        /// The search text.
+        /// </value>
+        public string? SearchText { get; set; }
+
         /// <summary>
         /// Set how many records skip, for pagination.
         /// </summary>

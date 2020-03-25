@@ -1,4 +1,6 @@
-﻿namespace Unosquare.Tubular
+﻿using System;
+
+namespace Unosquare.Tubular
 {
     /// <summary>
     /// Represents a Tubular filter (by column).
@@ -6,6 +8,7 @@
     /// This object is only used to be serialized/deserialized between
     /// the API and Tubular.
     /// </summary>
+    [Obsolete("This will be removed in future versions.")]
     public class Filter
     {
         /// <summary>

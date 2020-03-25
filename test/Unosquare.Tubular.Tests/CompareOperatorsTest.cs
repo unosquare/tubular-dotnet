@@ -46,7 +46,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithColorFilter(filter, compareOperator)
             };
 
@@ -68,7 +67,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithIdFilter("20", compareOperator)
             };
 
@@ -93,7 +91,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithBetweenFilter(a.ToString(), b)
             };
 
@@ -117,7 +114,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithNumberFilter(filter.ToString(), CompareOperators.Equals)
             };
 
@@ -141,7 +137,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.DateTime)
             };
 
@@ -164,7 +159,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithMultipleFilter(filters, CompareOperators.Multiple)
             };
 
@@ -187,7 +181,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = Thing.GetColumnsWithBooleanFilter(filter, CompareOperators.Equals)
             };
 

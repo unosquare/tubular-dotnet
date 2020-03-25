@@ -20,7 +20,6 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Search = new Filter(),
                 Columns = null
             };
 

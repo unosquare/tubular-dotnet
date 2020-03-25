@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Copyright>Unosquare 2016-2020</Copyright>
     <AssemblyTitle>Unosquare Tubular</AssemblyTitle>
-    <VersionPrefix>2.1.0</VersionPrefix>
+    <VersionPrefix>2.2.0</VersionPrefix>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Tubular</AssemblyName>
