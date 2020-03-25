@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "ld6Y+Faz5mOZspXFjrCkdA=="
+          "hash": "5+MlJHGbtuOoAP5hAcfhRQ=="
         }
       },
       "is_incremental": false,
@@ -74,7 +74,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.AggregationFunction.html",
-          "hash": "liWArnsfOshLKCWdvqu4jQ=="
+          "hash": "1bkrO+j1YTjmC7lI3o0tDg=="
         }
       },
       "is_incremental": false,
@@ -86,7 +86,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.Common.html",
-          "hash": "StMLS7Bh0qvqNMKg3Yt8qg=="
+          "hash": "KJwfHfqIZMHPzn+K74mLMA=="
         }
       },
       "is_incremental": false,
@@ -98,7 +98,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.CompareOperators.html",
-          "hash": "5HPrboBFafILe37qVoZadA=="
+          "hash": "oQ1DKbK1WH05WjLJDmP5Aw=="
         }
       },
       "is_incremental": false,
@@ -110,7 +110,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.DataType.html",
-          "hash": "fbUS1OiJbdtsiOYh89l9hw=="
+          "hash": "5CtTIdqHPAbKTs47peP6sw=="
         }
       },
       "is_incremental": false,
@@ -122,7 +122,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.Extensions.ProcessResponseSubset.html",
-          "hash": "iU3dkzq55HwF05ks6fPouw=="
+          "hash": "OHBWM+NcEcdpV3Bh0mWJSw=="
         }
       },
       "is_incremental": false,
@@ -134,7 +134,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.Extensions.html",
-          "hash": "RJEEyRlEBhLrdoxSpItGQw=="
+          "hash": "LiiDOOEhK650g0AxElOggA=="
         }
       },
       "is_incremental": false,
@@ -146,7 +146,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.Filter.html",
-          "hash": "z1vytlim2/UdOFzNkWoDNQ=="
+          "hash": "MM/MBE02xWNODRS1iljI6Q=="
         }
       },
       "is_incremental": false,
@@ -158,7 +158,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.GridColumn.html",
-          "hash": "YI7LyWmI+8bp0mitdabVUQ=="
+          "hash": "zZFj7Y7QwFruXdc08ERffA=="
         }
       },
       "is_incremental": false,
@@ -170,7 +170,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.GridDataRequest.html",
-          "hash": "MKdZORQkGSZI5HgtVCQXUg=="
+          "hash": "7xlS/S7CuSDOBSCIWKdpyg=="
         }
       },
       "is_incremental": false,
@@ -182,7 +182,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.GridDataResponse.html",
-          "hash": "zpCnXxoL0EW84DT7zH3lAw=="
+          "hash": "felPM9eDdfrc3rxP8KiVPA=="
         }
       },
       "is_incremental": false,
@@ -194,7 +194,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.SortDirection.html",
-          "hash": "z63zhNBxqiXOzWci1/bJfA=="
+          "hash": "CTzx6JWpEb/8mA5D1qUNkA=="
         }
       },
       "is_incremental": false,
@@ -206,7 +206,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.TubularDefaultSettings.html",
-          "hash": "+o9p2H4ziWUkleROk7iyIA=="
+          "hash": "MtMtCJhhoGyn8Jx1F3/xaA=="
         }
       },
       "is_incremental": false,
@@ -218,7 +218,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Tubular.html",
-          "hash": "BgMbC5uCGWyXADNywQNIug=="
+          "hash": "R7BjVE3ha1ev2HBmXBuP9A=="
         }
       },
       "is_incremental": false,
@@ -271,11 +271,10 @@
         "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
-        "TocDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 0,
+          "total_file_count": 1,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
@@ -291,10 +290,11 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ConceptualDocumentProcessor": {
+        "TocDocumentProcessor": {
           "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 1,
+          "total_file_count": 0,
           "skipped_file_count": 0
         }
       }

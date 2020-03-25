@@ -378,6 +378,45 @@ references:
   isSpec: "True"
   fullName: Unosquare.Tubular.GridColumn.Filter
   nameWithType: GridColumn.Filter
+- uid: Unosquare.Tubular.GridColumn.FilterArgument
+  name: FilterArgument
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_FilterArgument
+  commentId: P:Unosquare.Tubular.GridColumn.FilterArgument
+  fullName: Unosquare.Tubular.GridColumn.FilterArgument
+  nameWithType: GridColumn.FilterArgument
+- uid: Unosquare.Tubular.GridColumn.FilterArgument*
+  name: FilterArgument
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_FilterArgument_
+  commentId: Overload:Unosquare.Tubular.GridColumn.FilterArgument
+  isSpec: "True"
+  fullName: Unosquare.Tubular.GridColumn.FilterArgument
+  nameWithType: GridColumn.FilterArgument
+- uid: Unosquare.Tubular.GridColumn.FilterOperator
+  name: FilterOperator
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_FilterOperator
+  commentId: P:Unosquare.Tubular.GridColumn.FilterOperator
+  fullName: Unosquare.Tubular.GridColumn.FilterOperator
+  nameWithType: GridColumn.FilterOperator
+- uid: Unosquare.Tubular.GridColumn.FilterOperator*
+  name: FilterOperator
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_FilterOperator_
+  commentId: Overload:Unosquare.Tubular.GridColumn.FilterOperator
+  isSpec: "True"
+  fullName: Unosquare.Tubular.GridColumn.FilterOperator
+  nameWithType: GridColumn.FilterOperator
+- uid: Unosquare.Tubular.GridColumn.FilterText
+  name: FilterText
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_FilterText
+  commentId: P:Unosquare.Tubular.GridColumn.FilterText
+  fullName: Unosquare.Tubular.GridColumn.FilterText
+  nameWithType: GridColumn.FilterText
+- uid: Unosquare.Tubular.GridColumn.FilterText*
+  name: FilterText
+  href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_FilterText_
+  commentId: Overload:Unosquare.Tubular.GridColumn.FilterText
+  isSpec: "True"
+  fullName: Unosquare.Tubular.GridColumn.FilterText
+  nameWithType: GridColumn.FilterText
 - uid: Unosquare.Tubular.GridColumn.Label
   name: Label
   href: api/Unosquare.Tubular.GridColumn.html#Unosquare_Tubular_GridColumn_Label
@@ -501,6 +540,19 @@ references:
   isSpec: "True"
   fullName: Unosquare.Tubular.GridDataRequest.Search
   nameWithType: GridDataRequest.Search
+- uid: Unosquare.Tubular.GridDataRequest.SearchText
+  name: SearchText
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_SearchText
+  commentId: P:Unosquare.Tubular.GridDataRequest.SearchText
+  fullName: Unosquare.Tubular.GridDataRequest.SearchText
+  nameWithType: GridDataRequest.SearchText
+- uid: Unosquare.Tubular.GridDataRequest.SearchText*
+  name: SearchText
+  href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_SearchText_
+  commentId: Overload:Unosquare.Tubular.GridDataRequest.SearchText
+  isSpec: "True"
+  fullName: Unosquare.Tubular.GridDataRequest.SearchText
+  nameWithType: GridDataRequest.SearchText
 - uid: Unosquare.Tubular.GridDataRequest.Skip
   name: Skip
   href: api/Unosquare.Tubular.GridDataRequest.html#Unosquare_Tubular_GridDataRequest_Skip
