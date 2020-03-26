@@ -88,7 +88,7 @@
             // Apply the sorting expression if supplied
             subset = !string.IsNullOrWhiteSpace(orderingExpression)
                 ? subset.OrderBy(orderingExpression.Substring(0, orderingExpression.Length - 2))
-                : subset.OrderBy(request.Columns.First().Name + " ASC");
+                : subset.OrderBy($"{request.Columns.First().Name} ASC");
 
             // Check aggregations before paging
             // Should it aggregate before filtering too?
@@ -332,7 +332,7 @@
                 _ => null
             };
 
-        private static IQueryable? FilterResponse(GridDataRequest request, IQueryable subset, GridDataResponse response)
+        private static IQueryable FilterResponse(GridDataRequest request, IQueryable subset, GridDataResponse response)
         {
             var isDbQuery = subset.GetType().IsDbQuery();
 
@@ -361,8 +361,7 @@
                 searchLambda.Remove(searchLambda.Length - 3, 3).ToString(),
                 searchParamArgs.ToArray());
 
-            if (subset != null)
-                response.FilteredRecordCount = subset.Count();
+            response.FilteredRecordCount = subset.Count();
 
             return subset;
         }
