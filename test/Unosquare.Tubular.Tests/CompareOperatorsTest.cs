@@ -127,7 +127,7 @@
         [Test]
         public void DateTimeEqualFilterTest()
         {
-            var filter = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture);
+            var filter = "2020-04-15T05:00:00.000Z";
 
             var filterCount = DataSource.Where(x => x.Date.ToString(CultureInfo.InvariantCulture) == filter);
 
@@ -137,7 +137,7 @@
             {
                 Take = PageSize,
                 Skip = 0,
-                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.DateTime)
+                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.Date)
             };
 
             var response = request.CreateGridDataResponse(DataSource);

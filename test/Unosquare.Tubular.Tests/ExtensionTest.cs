@@ -23,10 +23,7 @@
                 Columns = null
             };
 
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                request.CreateGridDataResponse(dataSource);
-            });
+            Assert.Throws<ArgumentNullException>(() => request.CreateGridDataResponse(dataSource));
         }
     }
 }

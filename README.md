@@ -19,19 +19,6 @@ Please visit the [Tubular GitHub Page](http://unosquare.github.io/tubular) to le
 PM> Install-Package Tubular.ServerSide
 ```
 
-## Global Settings
-
-You can access global settings by using the static object `TubularDefaultSettings` and setup common behavior in Tubular. The settings included are:
-
-<table>
-    <tr><th>Setting</th><th>Default value</th><th>Notes</th></tr>
-    <tr><th>AdjustTimezoneOffset</th><td><i>True</i></td><td>Determines if the DateTime from a Response should adjust the timezone offset send by within the Request.</td></tr>
-</table>
-
-## Building C# Library
-
-To build the solution you need VS2017 with .NET Core support.
-
 ## Sample
 
 You can check out the <a href="http://unosquare.github.io/tubular" target="_blank">Tubular GitHub Page</a> to get a few examples. We still need to work on more samples and better documentation, but we feel what we have now will get you up to speed very quickly :).

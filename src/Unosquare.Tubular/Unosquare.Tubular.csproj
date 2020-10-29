@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Copyright>Unosquare 2016-2020</Copyright>
     <AssemblyTitle>Unosquare Tubular</AssemblyTitle>
-    <VersionPrefix>2.2.0</VersionPrefix>
+    <VersionPrefix>3.0.0</VersionPrefix>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Tubular</AssemblyName>
@@ -16,6 +16,6 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.20" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.5" />
   </ItemGroup>
 </Project>

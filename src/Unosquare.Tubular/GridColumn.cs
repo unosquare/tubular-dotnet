@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Unosquare.Tubular
+﻿namespace Unosquare.Tubular
 {
     /// <summary>
     /// Represents a Tubular Grid column.
@@ -34,12 +32,6 @@ namespace Unosquare.Tubular
         /// Set the sort direction.
         /// </summary>
         public SortDirection SortDirection { get; set; }
-        
-        /// <summary>
-        /// Represents the Columns filter.
-        /// </summary>
-        [Obsolete("This will be removed in future versions.")]
-        public Filter? Filter { get; set; }
         
         /// <summary>
         /// Set if the column is searchable in free-text search.

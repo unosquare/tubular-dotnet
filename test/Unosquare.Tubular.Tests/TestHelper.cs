@@ -50,15 +50,6 @@
         }
 
         [Test]
-        public void SimpleListIgnoreTimezoneOffset()
-        {
-            // Ignore timezone adjustment
-            TubularDefaultSettings.AdjustTimezoneOffset = false;
-            SimpleListTest(true);
-            TubularDefaultSettings.AdjustTimezoneOffset = true;
-        }
-
-        [Test]
         public void SimpleFilter()
         {
             const int filter = 95;

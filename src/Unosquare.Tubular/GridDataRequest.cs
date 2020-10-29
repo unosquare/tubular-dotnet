@@ -15,12 +15,6 @@ namespace Unosquare.Tubular
         public int Counter { get; set; }
 
         /// <summary>
-        /// The free-text search.
-        /// </summary>
-        [Obsolete("This will be removed in future versions.")]
-        public Filter? Search { get; set; }
-
-        /// <summary>
         /// Gets or sets the search text.
         /// </summary>
         /// <value>

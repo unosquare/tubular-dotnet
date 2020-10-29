@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EmbedIO" Version="3.4.2" />
+    <PackageReference Include="EmbedIO" Version="3.4.3" />
   </ItemGroup>
 
 </Project>
