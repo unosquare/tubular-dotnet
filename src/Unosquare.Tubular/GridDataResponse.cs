@@ -17,7 +17,7 @@
         /// <summary>
         /// A list of object's list with all the rows.
         /// </summary>
-        public List<List<object>> Payload { get; set; }
+        public List<List<object?>> Payload { get; set; }
         
         /// <summary>
         /// Set how many records are in the entire set.

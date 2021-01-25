@@ -108,26 +108,8 @@
 
             Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(_dataSource.Count(), response.AggregationPayload["Number"],
+            Assert.AreEqual(_dataSource.Count(), response.AggregationPayload?["Number"],
                 "Same count number");
-        }
-
-        [Test]
-        public void EmptySetSumAggregation_ReturnsSumZero()
-        {
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithAggregateDoubleAndInvalidDate(AggregationFunction.Sum),
-                TimezoneOffset = 360
-            };
-
-            var response = request.CreateGridDataResponse(_dataSource);
-
-            Assert.AreEqual(0, response.Payload.Count, "Same length");
-            Assert.IsTrue(response.AggregationPayload.Any());
-            Assert.AreEqual(0, response.AggregationPayload.First().Value, "Sum zero");
         }
     }
 }

@@ -18,13 +18,6 @@
         private const string DateFormat = "yyyy-MM-dd";
 
         /// <summary>
-        /// Delegates a process to format a subset response.
-        /// </summary>
-        /// <param name="dataSource">The data source.</param>
-        /// <returns>A subset.</returns>
-        public delegate IQueryable ProcessResponseSubset(IQueryable dataSource);
-
-        /// <summary>
         /// Adjust a timezone data in a object.
         /// </summary>
         /// <param name="data">The data.</param>
@@ -32,12 +25,13 @@
         /// <returns>The same object with DateTime properties adjusted to the timezone specified.</returns>
         public static object AdjustTimeZone(this object data, int timezoneOffset)
         {
+            if (data == null) 
+                throw new ArgumentNullException(nameof(data));
+
             var dateTimeProperties = data.GetType().GetDateProperties();
 
             foreach (var prop in dateTimeProperties)
-            {
                 data.AdjustTimeZoneForProperty(timezoneOffset, prop);
-            }
 
             return data;
         }
@@ -53,11 +47,12 @@
         public static GridDataResponse CreateGridDataResponse(
             this GridDataRequest request,
             IQueryable dataSource,
-            ProcessResponseSubset? preProcessSubset = null)
+            Func<IQueryable, IQueryable>? preProcessSubset = null)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
-
+            if (dataSource == null) 
+                throw new ArgumentNullException(nameof(dataSource));
             if (request.Columns.Any() != true)
                 throw new ArgumentOutOfRangeException(nameof(request), "Missing column information");
 
@@ -155,17 +150,17 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static List<List<object>> CreateGridPayload(
+        private static List<List<object?>> CreateGridPayload(
             IEnumerable subset,
             Dictionary<GridColumn, PropertyInfo> columnMap,
             int initialCapacity,
             int timezoneOffset)
         {
-            var payload = new List<List<object>>(initialCapacity);
+            var payload = new List<List<object?>>(initialCapacity);
 
             foreach (var item in subset)
             {
-                var payloadItem = new List<object>(columnMap.Keys.Count);
+                var payloadItem = new List<object?>(columnMap.Keys.Count);
 
                 foreach (var column in columnMap.Select(m => new { Value = m.Value.GetValue(item), m.Key }))
                 {
@@ -199,7 +194,7 @@
             }
             else
             {
-                value = (DateTime)prop.GetValue(data);
+                value = (DateTime)(prop.GetValue(data) ?? throw new InvalidOperationException());
             }
 
             value = value.AddMinutes(-timezoneOffset);
@@ -212,11 +207,29 @@
             var aggregateColumns = columns.Where(c => c.Aggregate != AggregationFunction.None);
             var payload = new Dictionary<string, object>(aggregateColumns.Count());
 
+            foreach (var column in aggregateColumns)
+            {
+                try
+                {
+                    AggregateColumn(subset, column, payload);
+                }
+                catch (InvalidCastException)
+                {
+                    throw new InvalidCastException(
+                        $"Invalid casting using column {column.Name} with aggregate {column.Aggregate}");
+                }
+            }
+
+            return payload;
+        }
+
+        private static void AggregateColumn(IQueryable subset, GridColumn gridColumn, IDictionary<string, object> payload)
+        {
             void Aggregate(GridColumn column,
                 Func<IQueryable<double>, double> doubleF,
                 Func<IQueryable<decimal>, decimal> decimalF,
                 Func<IQueryable<int>, int> intF,
-                Func<IQueryable<string>, string>? stringF,
+                Func<IQueryable<string?>, string?>? stringF,
                 Func<IQueryable<DateTime>, DateTime>? dateF)
             {
                 try
@@ -245,7 +258,7 @@
                     {
                         if (stringF == null) return;
 
-                        payload.Add(column.Name, stringF(subset.Select(column.Name).Cast<string>()));
+                        payload.Add(column.Name, stringF(subset.Select(column.Name).Cast<string?>()));
                     }
                 }
                 catch (InvalidOperationException ex)
@@ -256,50 +269,42 @@
                 }
             }
 
-            foreach (var column in aggregateColumns)
             {
-                try
+                switch (gridColumn.Aggregate)
                 {
-                    switch (column.Aggregate)
-                    {
-                        case AggregationFunction.Sum:
-                            Aggregate(column, x => x.Sum(), x => x.Sum(), x => x.Sum(), null, null);
+                    case AggregationFunction.Sum:
+                        Aggregate(gridColumn, x => x.Sum(), x => x.Sum(), x => x.Sum(), null, null);
 
-                            break;
-                        case AggregationFunction.Average:
-                            Aggregate(column, x => x.Average(), x => x.Average(), x => x.Sum() / x.Count(), null, null);
+                        break;
+                    case AggregationFunction.Average:
+                        Aggregate(gridColumn, x => x.Average(), x => x.Average(), x => x.Sum() / x.Count(), null, null);
 
-                            break;
-                        case AggregationFunction.Max:
-                            Aggregate(column, x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max());
+                        break;
+                    case AggregationFunction.Max:
+                        Aggregate(gridColumn, x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max());
 
-                            break;
-                        case AggregationFunction.Min:
-                            Aggregate(column, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min());
+                        break;
+                    case AggregationFunction.Min:
+                        Aggregate(gridColumn, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min());
 
-                            break;
+                        break;
 
-                        case AggregationFunction.Count:
-                            payload.Add(column.Name, subset.Select(column.Name).Count());
-                            break;
-                        case AggregationFunction.DistinctCount:
-                            payload.Add(column.Name,
-                                subset.Select(column.Name).Distinct().Count());
-                            break;
+                    case AggregationFunction.Count:
+                        payload.Add(gridColumn.Name, subset.Select(gridColumn.Name).Count());
+                        break;
+                    case AggregationFunction.DistinctCount:
+                        payload.Add(gridColumn.Name,
+                            subset.Select(gridColumn.Name).Distinct().Count());
+                        break;
 
-                        default:
-                            throw new ArgumentOutOfRangeException(
-                                $"The AggregationFunction in column {column.Name} is not valid");
-                    }
-                }
-                catch (InvalidCastException)
-                {
-                    throw new InvalidCastException(
-                        $"Invalid casting using column {column.Name} with aggregate {column.Aggregate}");
+                    case AggregationFunction.None:
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException(
+                            $"The AggregationFunction in column {gridColumn.Name} is not valid");
                 }
             }
-
-            return payload;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -325,7 +330,7 @@
 
             if (!string.IsNullOrWhiteSpace(request.SearchText))
             {
-                var searchValue = isDbQuery ? request.SearchText : request.SearchText?.ToLowerInvariant();
+                var searchValue = isDbQuery ? request.SearchText : request.SearchText.ToLowerInvariant();
 
                 if (!string.IsNullOrWhiteSpace(searchValue))
                     GetSearchFilter(request, isDbQuery, searchValue!, searchLambda, searchParamArgs);

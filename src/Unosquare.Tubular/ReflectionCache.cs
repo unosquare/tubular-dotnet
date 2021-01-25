@@ -10,11 +10,11 @@
 
     internal static class ReflectionCache
     {
-        private static readonly ConcurrentDictionary<Type, IEnumerable<PropertyInfo>> DatePropertyCache = new ConcurrentDictionary<Type, IEnumerable<PropertyInfo>>();
+        private static readonly ConcurrentDictionary<Type, IEnumerable<PropertyInfo>> DatePropertyCache = new();
         private static readonly ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>> TypePropertyCache =
-            new ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>>();
+            new();
 
-        private static readonly ConcurrentDictionary<Type, bool> DbQueryCache = new ConcurrentDictionary<Type, bool>();
+        private static readonly ConcurrentDictionary<Type, bool> DbQueryCache = new();
 
         public static IEnumerable<PropertyInfo> GetDateProperties(this Type t) => DatePropertyCache.GetOrAdd(t, GetDateTypeProperties);
         
@@ -31,7 +31,7 @@
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Dictionary<string, PropertyInfo> GetTypeProperties(Type t) => t.GetProperties()
-            .Where(p => (Common.PrimitiveTypes.Contains(p.PropertyType) || p.PropertyType.IsEnum) && p.CanRead)
+            .Where(p => (CommonTypes.PrimitiveTypes.Contains(p.PropertyType) || p.PropertyType.IsEnum) && p.CanRead)
             .ToDictionary(k => k.Name, v => v);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

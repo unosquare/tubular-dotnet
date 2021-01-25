@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Unosquare.Tubular
+﻿namespace Unosquare.Tubular
 {
     /// <summary>
     /// Represents a Data Request from a Tubular Grid.

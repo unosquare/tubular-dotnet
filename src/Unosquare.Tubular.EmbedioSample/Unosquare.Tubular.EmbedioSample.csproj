@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <AssemblyTitle>Tubular with EmbedIO webserver sample</AssemblyTitle>
-    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <PackageId>Unosquare.Tubular.EmbedioSample</PackageId>
     <LangVersion>8.0</LangVersion>
