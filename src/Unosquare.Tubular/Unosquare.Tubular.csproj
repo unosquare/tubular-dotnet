@@ -4,7 +4,7 @@
     <Copyright>Unosquare 2016-2021</Copyright>
     <AssemblyTitle>Unosquare Tubular</AssemblyTitle>
     <VersionPrefix>3.1.0</VersionPrefix>
-    <TargetFrameworks>net5.0</TargetFrameworks>
+    <TargetFramework>net5.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Tubular</AssemblyName>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
