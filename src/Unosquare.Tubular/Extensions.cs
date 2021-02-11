@@ -166,9 +166,11 @@
                 {
                     if (column.Value is DateTime time)
                     {
-                        payloadItem.Add(column.Key.DataType == DataType.DateTimeUtc
-                            ? time
-                            : time.AddMinutes(-timezoneOffset));
+                        // DateTimeUtc and no-time dates should not be timezone shifted
+                        // only DateTime (local) should be
+                        payloadItem.Add(column.Key.DataType == DataType.DateTime
+                            ? time.AddMinutes(-timezoneOffset)
+                            : time);
                     }
                     else
                     {
