@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2.3.4
+    - uses: actions/checkout@v2.3.5
     - name: Test with dotnet
       run: dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj
