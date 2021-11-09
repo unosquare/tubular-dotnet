@@ -1,4 +1,4 @@
-name: .NET Core CI
+﻿name: .NET Core CI
 
 on: [push]
 
@@ -7,6 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2.3.4
+    - name: 🛎 Checkout
+      uses: actions/checkout@v2
+    - name: 📦 Cache
+      uses: actions/cache@v2.1.6
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
     - name: Test with dotnet
       run: dotnet test ./test/Unosquare.Tubular.Tests/Unosquare.Tubular.Tests.csproj

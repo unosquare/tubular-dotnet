@@ -1,23 +1,22 @@
-﻿namespace Unosquare.Tubular
+﻿namespace Unosquare.Tubular;
+
+/// <summary>
+/// Enumeration Sort directions.
+/// </summary>
+public enum SortDirection
 {
     /// <summary>
-    /// Enumeration Sort directions.
+    /// Not sorting
     /// </summary>
-    public enum SortDirection
-    {
-        /// <summary>
-        /// Not sorting
-        /// </summary>
-        None,
+    None,
 
-        /// <summary>
-        /// Ascending sorting
-        /// </summary>
-        Ascending,
+    /// <summary>
+    /// Ascending sorting
+    /// </summary>
+    Ascending,
 
-        /// <summary>
-        /// Descending sorting
-        /// </summary>
-        Descending,
-    }
+    /// <summary>
+    /// Descending sorting
+    /// </summary>
+    Descending,
 }

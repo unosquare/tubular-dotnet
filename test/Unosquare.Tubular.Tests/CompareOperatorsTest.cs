@@ -1,194 +1,192 @@
-﻿namespace Unosquare.Tubular.Tests
+﻿using Unosquare.Tubular.Tests.Database;
+using NUnit.Framework;
+using System.Globalization;
+using System.Linq;
+
+namespace Unosquare.Tubular.Tests;
+
+[TestFixture]
+public class CompareOperatorsTest
 {
-    using NUnit.Framework;
-    using System;
-    using System.Globalization;
-    using System.Linq;
-    using Database;
+    private const int PageSize = 20;
 
-    [TestFixture]
-    public class CompareOperatorsTest
+    private static readonly IQueryable<Thing> DataSource = SampleEntities.GenerateData().ToList().AsQueryable();
+
+    private static readonly object[] FilterColorCases =
     {
-        private const int PageSize = 20;
+        // Filter, filterCount, Operator 
+        new object[] {"blue", DataSource.Where(x => x.Color.Equals("blue")), CompareOperators.Equals},
+        new object[] {"l", DataSource.Where(x => x.Color.Contains("l")), CompareOperators.Contains},
+        new object[] {"ow", DataSource.Where(x => x.Color.EndsWith("ow")), CompareOperators.EndsWith},
+        new object[] {"l", DataSource.Where(x => !x.Color.Contains("l")), CompareOperators.NotContains},
+        new object[] {"ow", DataSource.Where(x => !x.Color.EndsWith("ow")), CompareOperators.NotEndsWith},
+        new object[] {"blue", DataSource.Where(x => !x.Color.Equals("blue")), CompareOperators.NotEquals},
+        new object[] {"yell", DataSource.Where(x => !x.Color.StartsWith("yell")), CompareOperators.NotStartsWith},
+        new object[] {"yell", DataSource.Where(x => x.Color.StartsWith("yell")), CompareOperators.StartsWith},
+        new object[] {string.Empty, DataSource, CompareOperators.None},
+        new object[] {string.Empty, DataSource, CompareOperators.Auto}
+    };
 
-        private static readonly IQueryable<Thing> DataSource = SampleEntities.GenerateData().ToList().AsQueryable();
+    private static readonly object[] FilterIdCases =
+    {
+        // filterCount, Operator 
+        new object[] {DataSource.Where(x => x.Id > 20), CompareOperators.Gt},
+        new object[] {DataSource.Where(x => x.Id >= 20), CompareOperators.Gte},
+        new object[] {DataSource.Where(x => x.Id < 20), CompareOperators.Lt},
+        new object[] {DataSource.Where(x => x.Id <= 20), CompareOperators.Lte},
+    };
 
-        private static readonly object[] FilterColorCases =
+    [Test, TestCaseSource(nameof(FilterColorCases))]
+    public void FilterColorTests(string filter, IQueryable<Thing> filterCount, CompareOperators compareOperator)
+    {
+        var data = filterCount.Take(PageSize).ToList();
+
+        var request = new GridDataRequest
         {
-            // Filter, filterCount, Operator 
-            new object[] {"blue", DataSource.Where(x => x.Color.Equals("blue")), CompareOperators.Equals},
-            new object[] {"l", DataSource.Where(x => x.Color.Contains("l")), CompareOperators.Contains},
-            new object[] {"ow", DataSource.Where(x => x.Color.EndsWith("ow")), CompareOperators.EndsWith},
-            new object[] {"l", DataSource.Where(x => !x.Color.Contains("l")), CompareOperators.NotContains},
-            new object[] {"ow", DataSource.Where(x => !x.Color.EndsWith("ow")), CompareOperators.NotEndsWith},
-            new object[] {"blue", DataSource.Where(x => !x.Color.Equals("blue")), CompareOperators.NotEquals},
-            new object[] {"yell", DataSource.Where(x => !x.Color.StartsWith("yell")), CompareOperators.NotStartsWith},
-            new object[] {"yell", DataSource.Where(x => x.Color.StartsWith("yell")), CompareOperators.StartsWith},
-            new object[] {string.Empty, DataSource, CompareOperators.None},
-            new object[] {string.Empty, DataSource, CompareOperators.Auto}
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithColorFilter(filter, compareOperator)
         };
 
-        private static readonly object[] FilterIdCases =
+        var response = request.CreateGridDataResponse(DataSource);
+
+        Assert.AreEqual(data.Count, response.Payload.Count, $"Test {compareOperator}");
+
+        Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
+
+        Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+    }
+
+    [Test, TestCaseSource(nameof(FilterIdCases))]
+    public void FilterIdTests(IQueryable<Thing> filterCount, CompareOperators compareOperator)
+    {
+        var data = filterCount.Take(PageSize).ToList();
+
+        var request = new GridDataRequest
         {
-            // filterCount, Operator 
-            new object[] {DataSource.Where(x => x.Id > 20), CompareOperators.Gt},
-            new object[] {DataSource.Where(x => x.Id >= 20), CompareOperators.Gte},
-            new object[] {DataSource.Where(x => x.Id < 20), CompareOperators.Lt},
-            new object[] {DataSource.Where(x => x.Id <= 20), CompareOperators.Lte},
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithIdFilter("20", compareOperator)
         };
 
-        [Test, TestCaseSource(nameof(FilterColorCases))]
-        public void FilterColorTests(string filter, IQueryable<Thing> filterCount, CompareOperators compareOperator)
+        var response = request.CreateGridDataResponse(DataSource);
+
+        Assert.AreEqual(data.Count, response.Payload.Count, $"Test {compareOperator}");
+
+        Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
+
+        Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+    }
+
+    [Test]
+    public void BetweenFilterTest()
+    {
+        const int a = 10;
+        var b = new[] { "30" };
+        var filterCount = DataSource.Where(x => x.Id >= a && x.Id <= int.Parse(b[0]));
+        var data = filterCount.Take(PageSize).ToList();
+
+        var request = new GridDataRequest
         {
-            var data = filterCount.Take(PageSize).ToList();
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithBetweenFilter(a.ToString(), b)
+        };
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithColorFilter(filter, compareOperator)
-            };
+        var response = request.CreateGridDataResponse(DataSource);
 
-            var response = request.CreateGridDataResponse(DataSource);
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(data.Count, response.Payload.Count, $"Test {compareOperator}");
+        Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
 
-            Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
+        Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+    }
 
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
+    [Test]
+    public void DecimalNumberFilterTest()
+    {
+        const decimal filter = 1.101m;
+        var filterCount = DataSource.Where(x => x.DecimalNumber == filter);
+        var data = filterCount.Take(PageSize).ToList();
 
-        [Test, TestCaseSource(nameof(FilterIdCases))]
-        public void FilterIdTests(IQueryable<Thing> filterCount, CompareOperators compareOperator)
+        var request = new GridDataRequest
         {
-            var data = filterCount.Take(PageSize).ToList();
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithNumberFilter(filter.ToString(), CompareOperators.Equals)
+        };
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithIdFilter("20", compareOperator)
-            };
+        var response = request.CreateGridDataResponse(DataSource);
 
-            var response = request.CreateGridDataResponse(DataSource);
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(data.Count, response.Payload.Count, $"Test {compareOperator}");
+        Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+    }
 
-            Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
+    [Test]
+    public void DateTimeEqualFilterTest()
+    {
+        var filter = "2020-04-15T05:00:00.000Z";
 
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
+        var filterCount = DataSource.Where(x => x.Date.ToString(CultureInfo.InvariantCulture) == filter);
 
-        [Test]
-        public void BetweenFilterTest()
+        var data = filterCount.Take(PageSize).ToList();
+
+        var request = new GridDataRequest
         {
-            const int a = 10;
-            var b = new[] { "30" };
-            var filterCount = DataSource.Where(x => x.Id >= a && x.Id <= int.Parse(b[0]));
-            var data = filterCount.Take(PageSize).ToList();
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.Date)
+        };
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithBetweenFilter(a.ToString(), b)
-            };
+        var response = request.CreateGridDataResponse(DataSource);
 
-            var response = request.CreateGridDataResponse(DataSource);
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+        Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+    }
 
-            Assert.AreEqual(data[0].Id, response.Payload[0][0], "Same Id");
+    [Test]
+    public void MultipleFilterTest()
+    {
+        var filters = new[] { "blue", "red" };
+        var sut = DataSource.ToList();
+        var filterCount = sut.Where(x => x.Color.Equals(filters[0]) || x.Color.Equals(filters[1]));
+        var data = filterCount.Take(PageSize).ToList();
 
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
-
-        [Test]
-        public void DecimalNumberFilterTest()
+        var request = new GridDataRequest
         {
-            const decimal filter = 1.101m;
-            var filterCount = DataSource.Where(x => x.DecimalNumber == filter);
-            var data = filterCount.Take(PageSize).ToList();
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithMultipleFilter(filters, CompareOperators.Multiple)
+        };
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithNumberFilter(filter.ToString(), CompareOperators.Equals)
-            };
+        var response = request.CreateGridDataResponse(sut.AsQueryable());
 
-            var response = request.CreateGridDataResponse(DataSource);
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+        Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
+    }
 
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
+    [Test]
+    public void BooleanFilterTests()
+    {
+        const string filter = "true";
+        var filterCount = DataSource.Where(x => x.IsShipped == bool.Parse(filter));
 
-        [Test]
-        public void DateTimeEqualFilterTest()
+        var data = filterCount.Take(PageSize).ToList();
+
+        var request = new GridDataRequest
         {
-            var filter = "2020-04-15T05:00:00.000Z";
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithBooleanFilter(filter, CompareOperators.Equals)
+        };
 
-            var filterCount = DataSource.Where(x => x.Date.ToString(CultureInfo.InvariantCulture) == filter);
+        var response = request.CreateGridDataResponse(DataSource);
 
-            var data = filterCount.Take(PageSize).ToList();
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.Date)
-            };
-
-            var response = request.CreateGridDataResponse(DataSource);
-
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
-
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
-
-        [Test]
-        public void MultipleFilterTest()
-        {
-            var filters = new[] { "blue", "red" };
-            var sut = DataSource.ToList();
-            var filterCount = sut.Where(x => x.Color.Equals(filters[0]) || x.Color.Equals(filters[1]));
-            var data = filterCount.Take(PageSize).ToList();
-
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithMultipleFilter(filters, CompareOperators.Multiple)
-            };
-
-            var response = request.CreateGridDataResponse(sut.AsQueryable());
-
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
-
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
-
-        [Test]
-        public void BooleanFilterTests()
-        {
-            const string filter = "true";
-            var filterCount = DataSource.Where(x => x.IsShipped == bool.Parse(filter));
-
-            var data = filterCount.Take(PageSize).ToList();
-
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithBooleanFilter(filter, CompareOperators.Equals)
-            };
-
-            var response = request.CreateGridDataResponse(DataSource);
-
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
-
-            Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
-        }
+        Assert.AreEqual(filterCount.Count(), response.FilteredRecordCount, "Total filtered rows matching");
     }
 }

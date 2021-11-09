@@ -1,115 +1,114 @@
-﻿namespace Unosquare.Tubular.Tests
+﻿using Unosquare.Tubular.Tests.Database;
+using NUnit.Framework;
+using System.Linq;
+
+namespace Unosquare.Tubular.Tests;
+
+[TestFixture]
+public class AggregationTest
 {
-    using NUnit.Framework;
-    using System.Linq;
-    using Database;
+    private const int PageSize = 20;
+    private readonly IQueryable<Thing> _dataSource = SampleEntities.GenerateData().AsQueryable();
 
-    [TestFixture]
-    public class AggregationTest
+    [Test]
+    public void SumAggregationTest()
     {
-        private const int PageSize = 20;
-        private readonly IQueryable<Thing> _dataSource = SampleEntities.GenerateData().AsQueryable();
+        var data = _dataSource.Take(PageSize).ToList();
 
-        [Test]
-        public void SumAggregationTest()
+        var request = new GridDataRequest
         {
-            var data = _dataSource.Take(PageSize).ToList();
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Sum)
+        };
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Sum)
-            };
+        var response = request.CreateGridDataResponse(_dataSource);
 
-            var response = request.CreateGridDataResponse(_dataSource);
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+        Assert.AreEqual(_dataSource.Sum(x => x.Number), response.AggregationPayload["Number"],
+            "Same sum number");
+    }
 
-            Assert.AreEqual(_dataSource.Sum(x => x.Number), response.AggregationPayload["Number"],
-                "Same sum number");
-        }
+    [Test]
+    public void AverageAggregationTest()
+    {
+        var data = _dataSource.Take(PageSize).ToList();
 
-        [Test]
-        public void AverageAggregationTest()
+        var request = new GridDataRequest
         {
-            var data = _dataSource.Take(PageSize).ToList();
+            Take = PageSize,
+            Skip = 0,
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
+            Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Average)
+        };
 
-                Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Average)
-            };
+        var response = request.CreateGridDataResponse(_dataSource);
 
-            var response = request.CreateGridDataResponse(_dataSource);
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+        Assert.AreEqual(_dataSource.Sum(x => x.Number) / _dataSource.Count(), response.AggregationPayload["Number"],
+            "Same average number");
 
-            Assert.AreEqual(_dataSource.Sum(x => x.Number) / _dataSource.Count(), response.AggregationPayload["Number"],
-                "Same average number");
+    }
 
-        }
+    [Test]
+    public void MaxAggregationTest()
+    {
+        var data = _dataSource.Take(PageSize).ToList();
 
-        [Test]
-        public void MaxAggregationTest()
+        var request = new GridDataRequest
         {
-            var data = _dataSource.Take(PageSize).ToList();
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Max)
+        };
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Max)
-            };
+        var response = request.CreateGridDataResponse(_dataSource);
 
-            var response = request.CreateGridDataResponse(_dataSource);
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+        Assert.AreEqual(_dataSource.Max(x => x.Id), response.AggregationPayload["Id"],
+            "Same max number");
+    }
 
-            Assert.AreEqual(_dataSource.Max(x => x.Id), response.AggregationPayload["Id"],
-                "Same max number");
-        }
+    [Test]
+    public void MinAggregationTest()
+    {
+        var data = _dataSource.Take(PageSize).ToList();
 
-        [Test]
-        public void MinAggregationTest()
+        var request = new GridDataRequest
         {
-            var data = _dataSource.Take(PageSize).ToList();
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Min)
+        };
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Min)
-            };
+        var response = request.CreateGridDataResponse(_dataSource);
 
-            var response = request.CreateGridDataResponse(_dataSource);
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+        Assert.AreEqual(_dataSource.Min(x => x.Id), response.AggregationPayload["Id"],
+            "Same min number");
+    }
 
-            Assert.AreEqual(_dataSource.Min(x => x.Id), response.AggregationPayload["Id"],
-                "Same min number");
-        }
+    [Test]
+    public void CountAggregationTest()
+    {
+        var data = _dataSource.Take(PageSize).ToList();
 
-        [Test]
-        public void CountAggregationTest()
+        var request = new GridDataRequest
         {
-            var data = _dataSource.Take(PageSize).ToList();
+            Take = PageSize,
+            Skip = 0,
+            Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Count)
+        };
 
-            var request = new GridDataRequest
-            {
-                Take = PageSize,
-                Skip = 0,
-                Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Count)
-            };
+        var response = request.CreateGridDataResponse(_dataSource);
 
-            var response = request.CreateGridDataResponse(_dataSource);
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
 
-            Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
-
-            Assert.AreEqual(_dataSource.Count(), response.AggregationPayload?["Number"],
-                "Same count number");
-        }
+        Assert.AreEqual(_dataSource.Count(), response.AggregationPayload?["Number"],
+            "Same count number");
     }
 }

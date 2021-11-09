@@ -73,7 +73,7 @@ namespace Unosquare.Tubular.AspNetCoreSample.Controllers
 
             if (order == null)
                 return null;
-            
+
             order.Amount = request.Amount;
             order.CustomerName = request.CustomerName;
             order.IsShipped = request.IsShipped;
@@ -84,7 +84,7 @@ namespace Unosquare.Tubular.AspNetCoreSample.Controllers
             order.CarrierName = request.CarrierName;
 
             await _context.SaveChangesAsync();
-            
+
             return Ok();
         }
 
@@ -110,7 +110,7 @@ namespace Unosquare.Tubular.AspNetCoreSample.Controllers
             _context.Orders.Remove(orderDb);
 
             await _context.SaveChangesAsync();
-            
+
             return Ok();
         }
 

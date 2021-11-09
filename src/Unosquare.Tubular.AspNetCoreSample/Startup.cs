@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
+using Swan.AspNetCore;
 using System;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Swan.AspNetCore;
 using Unosquare.Tubular.AspNetCoreSample.Models;
 
 namespace Unosquare.Tubular.AspNetCoreSample
@@ -82,8 +82,8 @@ namespace Unosquare.Tubular.AspNetCoreSample
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
-            app.UseAuthorization();
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }

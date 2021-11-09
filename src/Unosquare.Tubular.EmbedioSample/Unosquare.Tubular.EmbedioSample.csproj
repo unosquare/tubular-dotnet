@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <AssemblyTitle>Tubular with EmbedIO webserver sample</AssemblyTitle>
-    <TargetFrameworks>net5.0</TargetFrameworks>
+    <TargetFrameworks>net6.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <PackageId>Unosquare.Tubular.EmbedioSample</PackageId>
-    <LangVersion>8.0</LangVersion>
-    <Nullable>enable</Nullable>
+	  <EnableNETAnalyzers>true</EnableNETAnalyzers>
+	  <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	  <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
 
   <ItemGroup>

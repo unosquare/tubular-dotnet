@@ -1,38 +1,37 @@
-﻿namespace Unosquare.Tubular
+﻿namespace Unosquare.Tubular;
+
+/// <summary>
+/// Supported data types.
+/// </summary>
+public enum DataType
 {
     /// <summary>
-    /// Supported data types.
+    /// String type
     /// </summary>
-    public enum DataType
-    {
-        /// <summary>
-        /// String type
-        /// </summary>
-        String,
+    String,
 
-        /// <summary>
-        /// Numeric type (int or float)
-        /// </summary>
-        Numeric,
+    /// <summary>
+    /// Numeric type (int or float)
+    /// </summary>
+    Numeric,
 
-        /// <summary>
-        /// DataTime type
-        /// </summary>
-        DateTime,
+    /// <summary>
+    /// DataTime type
+    /// </summary>
+    DateTime,
 
-        /// <summary>
-        /// Only Date type
-        /// </summary>
-        Date,
+    /// <summary>
+    /// Only Date type
+    /// </summary>
+    Date,
 
-        /// <summary>
-        /// Boolean type
-        /// </summary>
-        Boolean,
+    /// <summary>
+    /// Boolean type
+    /// </summary>
+    Boolean,
 
-        /// <summary>
-        /// DataTime UTC type
-        /// </summary>
-        DateTimeUtc,
-    }
+    /// <summary>
+    /// DataTime UTC type
+    /// </summary>
+    DateTimeUtc,
 }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
-using EmbedIO;
+﻿using EmbedIO;
 using EmbedIO.WebApi;
 using Swan;
+using System;
+using System.IO;
 
 namespace Unosquare.Tubular.EmbedioSample
 {
