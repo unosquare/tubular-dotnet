@@ -2,21 +2,18 @@
 
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
-		<TargetFrameworks>net6.0;net5.0;netstandard2.1</TargetFrameworks>
+		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
-	</PropertyGroup>
-
-	<PropertyGroup>
 		<PackageId>Tubular.ServerSide</PackageId>
 		<Version>4.0.1</Version>
 		<Authors>mariodivece, geoperez, unosquare</Authors>
 		<Company>Unosquare</Company>
 		<Product>Unosquare Tubular Server-Side Library</Product>
 		<Description>A set of C# classes designed to rapidly build modern web applications to use with Tubular Angular library.</Description>
-		<Copyright>(c) 2016-2021 Unosquare, LLC</Copyright>
+		<Copyright>(c) 2016-2022 Unosquare, LLC</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>tubular, rest, api, grid</PackageTags>
 		<RepositoryType>git</RepositoryType>
