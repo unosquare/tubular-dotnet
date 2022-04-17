@@ -1,7 +1,6 @@
 ﻿using Unosquare.Tubular.Tests.Database;
 using NUnit.Framework;
 using System.Globalization;
-using System.Linq;
 
 namespace Unosquare.Tubular.Tests;
 
@@ -126,7 +125,7 @@ public class CompareOperatorsTest
     [Test]
     public void DateTimeEqualFilterTest()
     {
-        var filter = "2020-04-15T05:00:00.000Z";
+        const string filter = "2020-04-15T05:00:00.000Z";
 
         var filterCount = DataSource.Where(x => x.Date.ToString(CultureInfo.InvariantCulture) == filter);
 

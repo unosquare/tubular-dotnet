@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Unosquare.Tubular.Tests.Database;
+﻿namespace Unosquare.Tubular.Tests.Database;
 
 public static class SampleEntities
 {
@@ -15,10 +12,10 @@ public static class SampleEntities
 
         for (var i = 0; i < count; i++)
         {
-            yield return new Thing
+            yield return new()
             {
                 Date = nowBase.AddDays(-i),
-                NullableDate = (i % 2) == 0 ? (DateTime?)null : DateTime.UtcNow.AddDays(-i),
+                NullableDate = (i % 2) == 0 ? null : DateTime.UtcNow.AddDays(-i),
                 Id = i,
                 Name = "Name - " + i,
                 IsShipped = (i % 2) == 0,

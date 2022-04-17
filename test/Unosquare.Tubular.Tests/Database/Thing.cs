@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Unosquare.Tubular.Tests.Database;
+﻿namespace Unosquare.Tubular.Tests.Database;
 
 public class Thing
 {
@@ -187,21 +185,5 @@ public class Thing
             new GridColumn {Name = "DecimalNumber"},
             new GridColumn {Name = "Name"},
             new GridColumn {Name = "Date"}
-        };
-
-    public static GridColumn[] GetColumnsWithAggregateDoubleAndInvalidDate(AggregationFunction aggregation) =>
-        new[]
-        {
-            new GridColumn {Name = "Id"},
-            new GridColumn {Name = "Number"},
-            new GridColumn {Name = "DecimalNumber", Aggregate = aggregation, DataType = DataType.Numeric},
-            new GridColumn {Name = "Name"},
-            new GridColumn
-            {
-                Name = "Date",
-                FilterArgument = new[] {DateTime.Now.AddDays(1).ToShortDateString()},
-                FilterText = DateTime.Now.AddDays(1).ToShortDateString(),
-                FilterOperator = CompareOperators.Equals
-            }
         };
 }

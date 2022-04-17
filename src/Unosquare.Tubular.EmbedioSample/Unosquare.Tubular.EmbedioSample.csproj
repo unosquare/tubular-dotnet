@@ -1,27 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <AssemblyTitle>Tubular with EmbedIO webserver sample</AssemblyTitle>
-    <TargetFrameworks>net6.0</TargetFrameworks>
-    <OutputType>Exe</OutputType>
-    <PackageId>Unosquare.Tubular.EmbedioSample</PackageId>
-	  <EnableNETAnalyzers>true</EnableNETAnalyzers>
-	  <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-	  <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-  </PropertyGroup>
+	<PropertyGroup>
+		<AssemblyTitle>Tubular with EmbedIO webserver sample</AssemblyTitle>
+		<TargetFrameworks>net6.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<PackageId>Unosquare.Tubular.EmbedioSample</PackageId>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Update="html\**\*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="html\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Unosquare.Tubular\Unosquare.Tubular.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Unosquare.Tubular\Unosquare.Tubular.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="EmbedIO" Version="3.4.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="EmbedIO" Version="3.4.3" />
+	</ItemGroup>
 
 </Project>

@@ -1,6 +1,4 @@
 ﻿
-using System;
-
 namespace Unosquare.Tubular;
 /// <summary>
 /// Common properties.

@@ -1,8 +1,5 @@
 ﻿using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
 using Unosquare.Tubular.Tests.Database;
-using System;
 
 namespace Unosquare.Tubular.Tests;
 
@@ -160,11 +157,11 @@ public class TestHelper
     {
         var dataSource = new List<Thing>
         {
-            new Thing {Name = SearchText + "1"},
-            new Thing {Name = SearchText.ToLower() + "2"},
-            new Thing {Name = SearchText.ToUpper() + "3"},
-            new Thing {Name = SearchText + "4"},
-            new Thing {Name = "ODOR"}
+            new() {Name = SearchText + "1"},
+            new() {Name = SearchText.ToLower() + "2"},
+            new() {Name = SearchText.ToUpper() + "3"},
+            new() {Name = SearchText + "4"},
+            new() {Name = "ODOR"}
         };
 
         var data =
@@ -196,9 +193,9 @@ public class TestHelper
 
         for (var i = 0; i < 422; i++)
         {
-            dataSource.Add(new Thing { Color = "red" });
-            dataSource.Add(new Thing { Color = "blue" });
-            dataSource.Add(new Thing { Color = "yellow" });
+            dataSource.Add(new() { Color = "red" });
+            dataSource.Add(new() { Color = "blue" });
+            dataSource.Add(new() { Color = "yellow" });
         }
 
         var columns = new[]
@@ -348,7 +345,7 @@ public class TestHelper
         Assert.IsNotNull(actual.NullableDate);
         Assert.AreEqual(now.AddMinutes(-offset), actual.NullableDate.Value, "Nullable date with value adjusted");
 
-        date = new MyDateClass { Date = now, NullableDate = null };
+        date = new() { Date = now, NullableDate = null };
         actual = (MyDateClass)date.AdjustTimeZone(offset);
 
         Assert.IsNull(actual.NullableDate, "Nullable date adjusted");

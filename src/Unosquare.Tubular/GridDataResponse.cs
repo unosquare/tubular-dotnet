@@ -1,6 +1,4 @@
 ﻿
-using System.Collections.Generic;
-
 namespace Unosquare.Tubular;
 /// <summary>
 /// Represents a Data Response to a Tubular Grid.

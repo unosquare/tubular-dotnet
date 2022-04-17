@@ -1,7 +1,5 @@
 ﻿using Unosquare.Tubular.Tests.Database;
 using NUnit.Framework;
-using System;
-using System.Linq;
 
 namespace Unosquare.Tubular.Tests;
 
