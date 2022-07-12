@@ -229,42 +229,53 @@ public static class Extensions
             Func<IQueryable<double>, double> doubleF,
             Func<IQueryable<decimal>, decimal> decimalF,
             Func<IQueryable<int>, int> intF,
-            Func<IQueryable<string?>, string?>? stringF,
+            Func<IQueryable<string?>, string>? stringF,
             Func<IQueryable<DateTime>, DateTime>? dateF)
         {
+            if (column is null)
+                throw new ArgumentNullException(nameof(column));
+
+            if (string.IsNullOrWhiteSpace(column.Name))
+                throw new ArgumentNullException(nameof(column), $"The comlumn has an empty '{nameof(column.Name)}'");
+
             try
             {
                 var propertyType = subset.ElementType.ExtractPropertyType(column.Name);
+                var aggregateTarget = subset.Select(column.Name);
 
                 if (propertyType == typeof(double))
                 {
-                    payload.Add(column.Name, doubleF(subset.Select(column.Name).Cast<double>()));
+                    payload.Add(column.Name, doubleF(aggregateTarget.Cast<double>().DefaultIfEmpty()));
                 }
                 else if (propertyType == typeof(decimal))
                 {
-                    payload.Add(column.Name, decimalF(subset.Select(column.Name).Cast<decimal>()));
+                    payload.Add(column.Name, decimalF(aggregateTarget.Cast<decimal>().DefaultIfEmpty()));
                 }
                 else if (propertyType == typeof(int))
                 {
-                    payload.Add(column.Name, intF(subset.Select(column.Name).Cast<int>()));
+                    payload.Add(column.Name, intF(aggregateTarget.Cast<int>().DefaultIfEmpty()));
                 }
                 else if (propertyType == typeof(DateTime))
                 {
-                    if (dateF == null) return;
+                    if (dateF is null)
+                        return;
 
-                    payload.Add(column.Name, dateF(subset.Select(column.Name).Cast<DateTime>()));
+                    payload.Add(column.Name, dateF(aggregateTarget.Cast<DateTime>().DefaultIfEmpty()));
                 }
                 else
                 {
-                    if (stringF == null) return;
+                    if (stringF is null)
+                        return;
 
-                    payload.Add(column.Name, stringF(subset.Select(column.Name).Cast<string?>()));
+                    payload.Add(column.Name, stringF(aggregateTarget.Cast<string?>().DefaultIfEmpty()));
                 }
             }
             catch (InvalidOperationException ex)
             {
                 // EF6 can't materialize a no-nullable value aggregate function returning NULL, so the logic path is return the ONLY value ZERO
-                if (ex.Source != "EntityFramework") throw;
+                if (ex.Source != "EntityFramework")
+                    throw;
+
                 payload.Add(column.Name, 0);
             }
         }
@@ -284,12 +295,11 @@ public static class Extensions
                 case AggregationFunction.Min:
                     Aggregate(gridColumn, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min());
                     break;
-
                 case AggregationFunction.Count:
-                    payload.Add(gridColumn.Name, subset.Select(gridColumn.Name).Count());
+                    payload.Add(gridColumn.Name!, subset.Select(gridColumn.Name).Count());
                     break;
                 case AggregationFunction.DistinctCount:
-                    payload.Add(gridColumn.Name,
+                    payload.Add(gridColumn.Name!,
                         subset.Select(gridColumn.Name).Distinct().Count());
                     break;
 
@@ -485,7 +495,7 @@ public static class Extensions
 
                 break;
             case CompareOperators.Multiple:
-                if (column.FilterArgument == null || column.FilterArgument.Length == 0) return;
+                if (column.FilterArgument is null || column.FilterArgument.Length <= 0) return;
 
                 var filterString = new StringBuilder("(");
                 foreach (var filter in column.FilterArgument)
@@ -495,14 +505,15 @@ public static class Extensions
                     searchParamArgs.Add(filter);
                 }
 
-                if (filterString.Length == 1) return;
+                if (filterString.Length == 1)
+                    return;
 
                 searchLambda.AppendFormat(CultureInfo.InvariantCulture,
                     filterString.Remove(filterString.Length - 3, 3) + ") &&");
 
                 break;
             case CompareOperators.Between:
-                if (column.FilterArgument == null || column.FilterArgument.Length == 0) return;
+                if (column.FilterArgument is null || column.FilterArgument.Length <= 0) return;
 
                 searchLambda.AppendFormat(CultureInfo.InvariantCulture,
                     "(({0} >= @{1}) &&  ({0} <= @{2})) &&",

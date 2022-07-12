@@ -20,7 +20,8 @@ public class OrdersController : Controller
         var orderId = int.Parse(id);
         var order = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
 
-        if (order == null) return NotFound();
+        if (order is null)
+            return NotFound();
 
         return order;
     }
@@ -68,7 +69,7 @@ public class OrdersController : Controller
     {
         var order = _context.Orders.FirstOrDefault(o => o.OrderId == request.OrderId);
 
-        if (order == null)
+        if (order is null)
             return null;
 
         order.Amount = request.Amount;
@@ -101,7 +102,7 @@ public class OrdersController : Controller
         var orderId = int.Parse(id);
         var orderDb = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
 
-        if (orderDb == null)
+        if (orderDb is null)
             return NotFound();
 
         _context.Orders.Remove(orderDb);
