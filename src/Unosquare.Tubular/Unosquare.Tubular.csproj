@@ -9,7 +9,7 @@
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 		<PackageId>Tubular.ServerSide</PackageId>
-		<Version>4.0.1</Version>
+		<Version>4.0.2-b1</Version>
 		<Authors>mariodivece, geoperez, unosquare</Authors>
 		<Company>Unosquare</Company>
 		<Product>Unosquare Tubular Server-Side Library</Product>
@@ -22,7 +22,20 @@
 		<PackageReleaseNotes>Please review the examples in the repo for usage.</PackageReleaseNotes>
 		<PackageIcon>tubular.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<ImplicitUsings>true</ImplicitUsings>
+		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
+	
+	<PropertyGroup>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<AssemblyAttribute Include="System.CLSCompliantAttribute">
+			<_Parameter1>true</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\..\README.md">
@@ -36,6 +49,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.15" />
+		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.19" />
 	</ItemGroup>
 </Project>

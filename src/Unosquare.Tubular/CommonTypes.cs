@@ -1,7 +1,7 @@
-﻿
-namespace Unosquare.Tubular;
+﻿namespace Unosquare.Tubular;
+
 /// <summary>
-/// Common properties.
+/// Common property types supported by this library.
 /// </summary>
 internal class CommonTypes
 {

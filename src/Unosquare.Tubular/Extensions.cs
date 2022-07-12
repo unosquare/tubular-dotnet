@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Linq.Dynamic.Core;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace Unosquare.Tubular;
+﻿namespace Unosquare.Tubular;
 
 /// <summary>
 /// Extensions methods.
@@ -22,7 +16,7 @@ public static class Extensions
     /// <returns>The same object with DateTime properties adjusted to the timezone specified.</returns>
     public static object AdjustTimeZone(this object data, int timezoneOffset)
     {
-        if (data == null)
+        if (data is null)
             throw new ArgumentNullException(nameof(data));
 
         var dateTimeProperties = data.GetType().GetDateProperties();
@@ -46,12 +40,14 @@ public static class Extensions
         IQueryable dataSource,
         Func<IQueryable, IQueryable>? preProcessSubset = null)
     {
-        if (request == null)
+        if (request is null)
             throw new ArgumentNullException(nameof(request));
-        if (dataSource == null)
+        if (request.Columns is null)
+            throw new ArgumentNullException(nameof(request), $"The {nameof(request.Columns)} is null.");
+        if (dataSource is null)
             throw new ArgumentNullException(nameof(dataSource));
-        if (request.Columns.Any() != true)
-            throw new ArgumentOutOfRangeException(nameof(request), "Missing column information");
+        if (!request.Columns.Any())
+            throw new ArgumentOutOfRangeException(nameof(request), "Missing column information.");
 
         var response = new GridDataResponse
         {
@@ -62,8 +58,7 @@ public static class Extensions
 
         var properties = dataSource.ElementType.ExtractProperties();
         var columnMap = MapColumnsToProperties(request.Columns, properties);
-
-        var subset = FilterResponse(request, dataSource, response);
+        var subset = response.ApplySearchAndColumnFilters(request, dataSource);
 
         // Perform Sorting
         var orderingExpression = request.Columns.Where(x => x.SortOrder > 0)
@@ -81,7 +76,7 @@ public static class Extensions
 
         // Check aggregations before paging
         // Should it aggregate before filtering too?
-        response.AggregationPayload = AggregateSubset(request.Columns, subset);
+        response.AggregationPayload = subset.CreateAggregationPayload(request.Columns);
 
         var pageSize = request.Take;
 
@@ -127,7 +122,7 @@ public static class Extensions
         if (preProcessSubset != null)
             subset = preProcessSubset(subset);
 
-        response.Payload = CreateGridPayload(subset, columnMap, pageSize, request.TimezoneOffset);
+        response.Payload = subset.CreateRowsPayload(columnMap, pageSize, request.TimezoneOffset);
         return response;
     }
 
@@ -138,17 +133,23 @@ public static class Extensions
     {
         var columnMap = new Dictionary<GridColumn, PropertyInfo>(columns.Count);
 
-        foreach (var column in columns.Where(column => properties.ContainsKey(column.Name)))
+        foreach (var column in columns)
         {
-            columnMap[column] = properties[column.Name];
+            if (column is null || string.IsNullOrWhiteSpace(column.Name))
+                continue;
+
+            if (!properties.TryGetValue(column.Name, out var propertyInfo))
+                continue;
+
+            columnMap[column] = propertyInfo;
         }
 
         return columnMap;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static List<List<object?>> CreateGridPayload(
-        IEnumerable subset,
+    private static List<List<object?>> CreateRowsPayload(
+        this IEnumerable subset,
         Dictionary<GridColumn, PropertyInfo> columnMap,
         int initialCapacity,
         int timezoneOffset)
@@ -181,27 +182,27 @@ public static class Extensions
         return payload;
     }
 
-    private static void AdjustTimeZoneForProperty(this object data, int timezoneOffset, PropertyInfo prop)
+    private static void AdjustTimeZoneForProperty(this object instance, int timezoneOffset, PropertyInfo dateProperty)
     {
         DateTime value;
 
-        if (prop.PropertyType == typeof(DateTime?))
+        if (dateProperty.PropertyType == typeof(DateTime?))
         {
-            var nullableValue = (DateTime?)prop.GetValue(data);
+            var nullableValue = (DateTime?)dateProperty.GetValue(instance);
             if (!nullableValue.HasValue) return;
             value = nullableValue.Value;
         }
         else
         {
-            value = (DateTime)(prop.GetValue(data) ?? throw new InvalidOperationException());
+            value = (DateTime)(dateProperty.GetValue(instance) ?? throw new InvalidOperationException());
         }
 
         value = value.AddMinutes(-timezoneOffset);
-        prop.SetValue(data, value);
+        dateProperty.SetValue(instance, value);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static Dictionary<string, object> AggregateSubset(IEnumerable<GridColumn> columns, IQueryable subset)
+    private static Dictionary<string, object> CreateAggregationPayload(this IQueryable subset, IEnumerable<GridColumn> columns)
     {
         var aggregateColumns = columns.Where(c => c.Aggregate != AggregationFunction.None);
         var payload = new Dictionary<string, object>(aggregateColumns.Count());
@@ -210,7 +211,7 @@ public static class Extensions
         {
             try
             {
-                AggregateColumn(subset, column, payload);
+                payload.AddAggregateColumn(column, subset);
             }
             catch (InvalidCastException)
             {
@@ -222,7 +223,7 @@ public static class Extensions
         return payload;
     }
 
-    private static void AggregateColumn(IQueryable subset, GridColumn gridColumn, IDictionary<string, object> payload)
+    private static void AddAggregateColumn(this IDictionary<string, object> payload, GridColumn gridColumn, IQueryable subset)
     {
         void Aggregate(GridColumn column,
             Func<IQueryable<double>, double> doubleF,
@@ -302,20 +303,7 @@ public static class Extensions
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string? GetSqlOperator(CompareOperators op) =>
-        op switch
-        {
-            CompareOperators.Equals => "==",
-            CompareOperators.NotEquals => "!=",
-            CompareOperators.Gte => ">=",
-            CompareOperators.Gt => ">",
-            CompareOperators.Lte => "<=",
-            CompareOperators.Lt => "<",
-            _ => null
-        };
-
-    private static IQueryable FilterResponse(GridDataRequest request, IQueryable subset, GridDataResponse response)
+    private static IQueryable ApplySearchAndColumnFilters(this GridDataResponse response, GridDataRequest request, IQueryable subset)
     {
         var isDbQuery = subset.GetType().IsDbQuery();
 
@@ -325,20 +313,26 @@ public static class Extensions
 
         if (!string.IsNullOrWhiteSpace(request.SearchText))
         {
-            var searchValue = isDbQuery ? request.SearchText : request.SearchText.ToLowerInvariant();
+            var searchValue = isDbQuery
+                ? request.SearchText
+                : request.SearchText.ToUpperInvariant();
 
             if (!string.IsNullOrWhiteSpace(searchValue))
-                GetSearchFilter(request, isDbQuery, searchValue, searchLambda, searchParamArgs);
+                searchLambda.AppendSearchFilter(request, isDbQuery, searchValue, searchParamArgs);
         }
 
         // Perform Filtering
-        foreach (var column in request.Columns
-                     .Where(column => !string.IsNullOrWhiteSpace(column.FilterText) || column.FilterArgument != null))
+        if (request.Columns is not null)
         {
-            FilterColumn(column, searchLambda, searchParamArgs, isDbQuery);
+            var filteringColumns = request.Columns
+                .Where(column => column is not null && (!string.IsNullOrWhiteSpace(column.FilterText) || column.FilterArgument is not null));
+
+            foreach (var column in filteringColumns)
+                searchLambda.AppendColumnFilter(column, searchParamArgs, isDbQuery);
         }
 
-        if (searchLambda.Length <= 0) return subset;
+        if (searchLambda.Length <= 0)
+            return subset;
 
         subset = subset.Where(
             searchLambda.Remove(searchLambda.Length - 3, 3).ToString(),
@@ -349,9 +343,21 @@ public static class Extensions
         return subset;
     }
 
-    private static void FilterColumn(
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static string? ToSqlOperator(this CompareOperators op) => op switch
+    {
+        CompareOperators.Equals => "==",
+        CompareOperators.NotEquals => "!=",
+        CompareOperators.Gte => ">=",
+        CompareOperators.Gt => ">",
+        CompareOperators.Lte => "<=",
+        CompareOperators.Lt => "<",
+        _ => null
+    };
+
+    private static void AppendColumnFilter(
+        this StringBuilder searchLambda,
         GridColumn column,
-        StringBuilder searchLambda,
         ICollection<object?> searchParamArgs,
         bool isDbQuery)
     {
@@ -360,11 +366,12 @@ public static class Extensions
             case CompareOperators.Equals:
             case CompareOperators.NotEquals:
 
-                if (string.IsNullOrWhiteSpace(column.FilterText)) return;
+                if (string.IsNullOrWhiteSpace(column.FilterText))
+                    return;
 
                 if (column.DataType is DataType.Date or DataType.DateTime or DataType.DateTimeUtc)
                 {
-                    searchLambda.AppendFormat(
+                    searchLambda.AppendFormat(CultureInfo.InvariantCulture,
                         column.FilterOperator == CompareOperators.Equals
                             ? "({0} >= @{1} && {0} <= @{2}) &&"
                             : "({0} < @{1} || {0} > @{2}) &&",
@@ -374,29 +381,32 @@ public static class Extensions
                 }
                 else
                 {
-                    searchLambda.AppendFormat("{0} {2} @{1} &&",
+                    searchLambda.AppendFormat(CultureInfo.InvariantCulture,
+                        "{0} {2} @{1} &&",
                         column.Name,
                         searchParamArgs.Count,
-                        GetSqlOperator(column.FilterOperator));
+                        column.FilterOperator.ToSqlOperator());
                 }
 
                 switch (column.DataType)
                 {
-                    case DataType.Numeric:
-                        searchParamArgs.Add(decimal.Parse(column.FilterText));
+                    case DataType.Numeric when decimal.TryParse(column.FilterText, NumberStyles.Any, CultureInfo.InvariantCulture, out var decimalValue):
+                        searchParamArgs.Add(decimalValue);
                         break;
                     case DataType.DateTime:
                     case DataType.DateTimeUtc:
                     case DataType.Date:
-                        searchParamArgs.Add(
-                            DateTime.Parse(column.FilterText).Date.ToString(DateTimeFormat));
-                        searchParamArgs.Add(DateTime.Parse(column.FilterText)
-                            .Date.AddDays(1)
-                            .AddMinutes(-1).ToString(DateTimeFormat));
+                        if (!DateTime.TryParse(column.FilterText, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTimeValue))
+                            break;
+
+                        searchParamArgs.Add(dateTimeValue.Date
+                            .ToString(DateTimeFormat, CultureInfo.InvariantCulture));
+                        searchParamArgs.Add(dateTimeValue.Date.AddDays(1).AddSeconds(-1)
+                            .ToString(DateTimeFormat, CultureInfo.InvariantCulture));
 
                         break;
-                    case DataType.Boolean:
-                        searchParamArgs.Add(bool.Parse(column.FilterText));
+                    case DataType.Boolean when bool.TryParse(column.FilterText, out var boolValue):
+                        searchParamArgs.Add(boolValue);
                         break;
                     default:
                         searchParamArgs.Add(column.FilterText);
@@ -405,67 +415,68 @@ public static class Extensions
 
                 break;
             case CompareOperators.Contains:
-                searchLambda.AppendFormat(
+                searchLambda.AppendFormat(CultureInfo.InvariantCulture,
                     isDbQuery
                         ? "{0}.Contains(@{1}) &&"
-                        : "({0} != null && {0}.ToLowerInvariant().Contains(@{1})) &&", column.Name,
+                        : "({0} != null && {0}.ToUpperInvariant().Contains(@{1})) &&", column.Name,
                     searchParamArgs.Count);
 
-                searchParamArgs.Add(column.FilterText?.ToLowerInvariant());
+                searchParamArgs.Add(column.FilterText?.ToUpperInvariant());
                 break;
             case CompareOperators.StartsWith:
-                searchLambda.AppendFormat(
+                searchLambda.AppendFormat(CultureInfo.InvariantCulture,
                     isDbQuery
                         ? "{0}.StartsWith(@{1}) &&"
-                        : "({0} != null && {0}.ToLowerInvariant().StartsWith(@{1})) &&", column.Name,
+                        : "({0} != null && {0}.ToUpperInvariant().StartsWith(@{1})) &&", column.Name,
                     searchParamArgs.Count);
 
-                searchParamArgs.Add(column.FilterText?.ToLowerInvariant());
+                searchParamArgs.Add(column.FilterText?.ToUpperInvariant());
                 break;
             case CompareOperators.EndsWith:
-                searchLambda.AppendFormat(
+                searchLambda.AppendFormat(CultureInfo.InvariantCulture,
                     isDbQuery
                         ? "{0}.EndsWith(@{1}) &&"
-                        : "({0} != null && {0}.ToLowerInvariant().EndsWith(@{1})) &&", column.Name,
+                        : "({0} != null && {0}.ToUpperInvariant().EndsWith(@{1})) &&", column.Name,
                     searchParamArgs.Count);
 
-                searchParamArgs.Add(column.FilterText?.ToLowerInvariant());
+                searchParamArgs.Add(column.FilterText?.ToUpperInvariant());
                 break;
             case CompareOperators.NotContains:
-                searchLambda.AppendFormat(
+                searchLambda.AppendFormat(CultureInfo.InvariantCulture,
                     isDbQuery
                         ? "{0}.Contains(@{1}) == false &&"
-                        : "({0} != null && {0}.ToLowerInvariant().Contains(@{1}) == false) &&", column.Name,
+                        : "({0} != null && {0}.ToUpperInvariant().Contains(@{1}) == false) &&", column.Name,
                     searchParamArgs.Count);
 
-                searchParamArgs.Add(column.FilterText?.ToLowerInvariant());
+                searchParamArgs.Add(column.FilterText?.ToUpperInvariant());
                 break;
             case CompareOperators.NotStartsWith:
-                searchLambda.AppendFormat(
+                searchLambda.AppendFormat(CultureInfo.InvariantCulture,
                     isDbQuery
                         ? "{0}.StartsWith(@{1}) == false &&"
-                        : "({0} != null && {0}.ToLowerInvariant().StartsWith(@{1}) == false) &&", column.Name,
+                        : "({0} != null && {0}.ToUpperInvariant().StartsWith(@{1}) == false) &&", column.Name,
                     searchParamArgs.Count);
 
-                searchParamArgs.Add(column.FilterText?.ToLowerInvariant());
+                searchParamArgs.Add(column.FilterText?.ToUpperInvariant());
                 break;
             case CompareOperators.NotEndsWith:
-                searchLambda.AppendFormat(
+                searchLambda.AppendFormat(CultureInfo.InvariantCulture,
                     isDbQuery
                         ? "{0}.EndsWith(@{1}) == false &&"
-                        : "({0} != null && {0}.ToLowerInvariant().EndsWith(@{1}) == false) &&", column.Name,
+                        : "({0} != null && {0}.ToUpperInvariant().EndsWith(@{1}) == false) &&", column.Name,
                     searchParamArgs.Count);
 
-                searchParamArgs.Add(column.FilterText?.ToLowerInvariant());
+                searchParamArgs.Add(column.FilterText?.ToUpperInvariant());
                 break;
             case CompareOperators.Gte:
             case CompareOperators.Gt:
             case CompareOperators.Lte:
             case CompareOperators.Lt:
-                searchLambda.AppendFormat("{0} {2} @{1} &&",
+                searchLambda.AppendFormat(CultureInfo.InvariantCulture,
+                    "{0} {2} @{1} &&",
                     column.Name,
                     searchParamArgs.Count,
-                    GetSqlOperator(column.FilterOperator));
+                    column.FilterOperator.ToSqlOperator());
 
                 if (column.DataType == DataType.Numeric)
                     searchParamArgs.Add(decimal.Parse(column.FilterText));
@@ -479,19 +490,22 @@ public static class Extensions
                 var filterString = new StringBuilder("(");
                 foreach (var filter in column.FilterArgument)
                 {
-                    filterString.AppendFormat(" {0} == @{1} ||", column.Name, searchParamArgs.Count);
+                    filterString.AppendFormat(CultureInfo.InvariantCulture,
+                        " {0} == @{1} ||", column.Name, searchParamArgs.Count);
                     searchParamArgs.Add(filter);
                 }
 
                 if (filterString.Length == 1) return;
 
-                searchLambda.AppendFormat(filterString.Remove(filterString.Length - 3, 3) + ") &&");
+                searchLambda.AppendFormat(CultureInfo.InvariantCulture,
+                    filterString.Remove(filterString.Length - 3, 3) + ") &&");
 
                 break;
             case CompareOperators.Between:
                 if (column.FilterArgument == null || column.FilterArgument.Length == 0) return;
 
-                searchLambda.AppendFormat("(({0} >= @{1}) &&  ({0} <= @{2})) &&",
+                searchLambda.AppendFormat(CultureInfo.InvariantCulture,
+                    "(({0} >= @{1}) &&  ({0} <= @{2})) &&",
                     column.Name,
                     searchParamArgs.Count,
                     searchParamArgs.Count + 1);
@@ -511,24 +525,27 @@ public static class Extensions
         }
     }
 
-    private static void GetSearchFilter(
+    private static void AppendSearchFilter(
+        this StringBuilder searchLambda,
         GridDataRequest request,
         bool isDbQuery,
         string searchValue,
-        StringBuilder searchLambda,
         List<object?> searchParamArgs)
     {
         var filter = new StringBuilder();
         var values = new List<object?>();
 
-        if (request.Columns.Any(x => x.Searchable))
+        if (request.Columns is not null && request.Columns.Any(x => x.Searchable))
             filter.Append('(');
+        else
+            return;
 
         foreach (var column in request.Columns.Where(x => x.Searchable))
         {
-            filter.AppendFormat(isDbQuery
+            filter.AppendFormat(CultureInfo.InvariantCulture,
+                isDbQuery
                     ? "{0}.Contains(@{1}) ||"
-                    : "({0} != null && {0}.ToLowerInvariant().Contains(@{1})) ||",
+                    : "({0} != null && {0}.ToUpperInvariant().Contains(@{1})) ||",
                 column.Name,
                 values.Count);
 

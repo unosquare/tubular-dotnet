@@ -1,8 +1,7 @@
-﻿
-namespace Unosquare.Tubular;
+﻿namespace Unosquare.Tubular;
+
 /// <summary>
 /// Represents a Data Response to a Tubular Grid.
-/// 
 /// This model is how Tubular Grid expects data to any server.
 /// </summary>
 public class GridDataResponse

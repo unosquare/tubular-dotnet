@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.Tubular;
 
 /// <summary>
-/// Enumeration filtering operators.
+/// Filtering operator definitions.
 /// </summary>
 public enum CompareOperators
 {
