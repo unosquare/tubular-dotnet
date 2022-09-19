@@ -3,7 +3,7 @@ name: SonarCloud .NET
 on:
   push:
     branches:
-      - dev
+      - master
   pull_request:
     types: [opened, synchronize, reopened]
 
