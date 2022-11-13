@@ -250,10 +250,10 @@ public class TestHelper
 
         var response = request.CreateGridDataResponse(dataSource.AsQueryable());
 
-        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
-        Assert.AreEqual(data.First().Id, response.Payload.First().First(), "Same first item");
+        Assert.AreEqual(data.Count, response.Payload?.Count ?? -1, "Same length");
+        Assert.AreEqual(data.First().Id, response.Payload!.First().First(), "Same first item");
 
-        Assert.AreEqual(dataSource.Count(x => x.Name.ToLowerInvariant().Contains(SearchText.ToLowerInvariant())),
+        Assert.AreEqual(dataSource.Count(x => x.Name.ToUpperInvariant().Contains(SearchText.ToUpperInvariant())),
             response.FilteredRecordCount, "Total filtered rows matching");
     }
 

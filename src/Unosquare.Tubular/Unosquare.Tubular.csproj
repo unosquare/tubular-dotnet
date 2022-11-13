@@ -2,14 +2,14 @@
 
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFrameworks>net7.0;net6.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 		<PackageId>Tubular.ServerSide</PackageId>
-		<Version>4.0.2-b2</Version>
+		<Version>7.0.3-b1</Version>
 		<Authors>mariodivece, geoperez, unosquare</Authors>
 		<Company>Unosquare</Company>
 		<Product>Unosquare Tubular Server-Side Library</Product>
@@ -49,6 +49,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.19" />
+		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.23" />
 	</ItemGroup>
 </Project>

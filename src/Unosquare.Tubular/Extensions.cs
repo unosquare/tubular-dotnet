@@ -296,11 +296,11 @@ public static class Extensions
                     Aggregate(gridColumn, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min());
                     break;
                 case AggregationFunction.Count:
-                    payload.Add(gridColumn.Name!, subset.Select(gridColumn.Name).Count());
+                    payload.Add(gridColumn.Name!, subset.Select(gridColumn.Name!).Count());
                     break;
                 case AggregationFunction.DistinctCount:
                     payload.Add(gridColumn.Name!,
-                        subset.Select(gridColumn.Name).Distinct().Count());
+                        subset.Select(gridColumn.Name!).Distinct().Count());
                     break;
 
                 case AggregationFunction.None:
@@ -489,9 +489,9 @@ public static class Extensions
                     column.FilterOperator.ToSqlOperator());
 
                 if (column.DataType == DataType.Numeric)
-                    searchParamArgs.Add(decimal.Parse(column.FilterText));
+                    searchParamArgs.Add(decimal.Parse(column.FilterText!, CultureInfo.InvariantCulture));
                 else
-                    searchParamArgs.Add(DateTime.Parse(column.FilterText).ToString(DateFormat));
+                    searchParamArgs.Add(DateTime.Parse(column.FilterText!, CultureInfo.InvariantCulture).ToString(DateFormat, CultureInfo.InvariantCulture));
 
                 break;
             case CompareOperators.Multiple:
@@ -523,13 +523,13 @@ public static class Extensions
 
                 if (column.DataType == DataType.Numeric)
                 {
-                    searchParamArgs.Add(decimal.Parse(column.FilterText));
-                    searchParamArgs.Add(decimal.Parse(column.FilterArgument[0]));
+                    searchParamArgs.Add(decimal.Parse(column.FilterText!, CultureInfo.InvariantCulture));
+                    searchParamArgs.Add(decimal.Parse(column.FilterArgument[0]!, CultureInfo.InvariantCulture));
                 }
                 else
                 {
-                    searchParamArgs.Add(DateTime.Parse(column.FilterText).ToString(DateFormat));
-                    searchParamArgs.Add(DateTime.Parse(column.FilterArgument[0]).ToString(DateFormat));
+                    searchParamArgs.Add(DateTime.Parse(column.FilterText!, CultureInfo.InvariantCulture).ToString(DateFormat, CultureInfo.InvariantCulture));
+                    searchParamArgs.Add(DateTime.Parse(column.FilterArgument[0]!, CultureInfo.InvariantCulture).ToString(DateFormat, CultureInfo.InvariantCulture));
                 }
 
                 break;
