@@ -33,7 +33,7 @@ public class GridDataRequest
     /// <summary>
     /// Defines the columns.
     /// </summary>
-    public GridColumn[]? Columns { get; set; }
+    public GridColumn?[]? Columns { get; set; }
 
     /// <summary>
     /// Sent the minutes difference between UTC and local time.

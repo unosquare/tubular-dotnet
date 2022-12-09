@@ -2,13 +2,14 @@
 
 	<PropertyGroup>
 		<AssemblyTitle>Tubular with EmbedIO webserver sample</AssemblyTitle>
-		<TargetFrameworks>net6.0</TargetFrameworks>
+		<TargetFrameworks>net7.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<PackageId>Unosquare.Tubular.EmbedioSample</PackageId>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+		<CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -22,7 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EmbedIO" Version="3.4.3" />
+		<PackageReference Include="EmbedIO" Version="3.5.2" />
 	</ItemGroup>
 
 </Project>

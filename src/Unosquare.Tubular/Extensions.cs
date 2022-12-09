@@ -9,25 +9,6 @@ public static class Extensions
     private const string DateFormat = "yyyy-MM-dd";
 
     /// <summary>
-    /// Adjust a timezone data in a object.
-    /// </summary>
-    /// <param name="data">The data.</param>
-    /// <param name="timezoneOffset">The timezone offset.</param>
-    /// <returns>The same object with DateTime properties adjusted to the timezone specified.</returns>
-    public static object AdjustTimeZone(this object data, int timezoneOffset)
-    {
-        if (data is null)
-            throw new ArgumentNullException(nameof(data));
-
-        var dateTimeProperties = data.GetType().GetDateProperties();
-
-        foreach (var prop in dateTimeProperties)
-            data.AdjustTimeZoneForProperty(timezoneOffset, prop);
-
-        return data;
-    }
-
-    /// <summary>
     /// Generates a GridDataResponse using the GridDataRequest and an IQueryable source,
     /// like a DataSet in Entity Framework.
     /// </summary>
@@ -61,7 +42,8 @@ public static class Extensions
         var subset = response.ApplySearchAndColumnFilters(request, dataSource);
 
         // Perform Sorting
-        var orderingExpression = request.Columns.Where(x => x.SortOrder > 0)
+        var orderingExpression = request.Columns
+            .Where(x => x.SortOrder > 0)
             .OrderBy(x => x.SortOrder)
             .Aggregate(string.Empty,
                 (current, column) =>
@@ -128,7 +110,7 @@ public static class Extensions
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Dictionary<GridColumn, PropertyInfo> MapColumnsToProperties(
-        IReadOnlyCollection<GridColumn> columns,
+        IReadOnlyCollection<GridColumn?> columns,
         IReadOnlyDictionary<string, PropertyInfo> properties)
     {
         var columnMap = new Dictionary<GridColumn, PropertyInfo>(columns.Count);
@@ -182,41 +164,22 @@ public static class Extensions
         return payload;
     }
 
-    private static void AdjustTimeZoneForProperty(this object instance, int timezoneOffset, PropertyInfo dateProperty)
-    {
-        DateTime value;
-
-        if (dateProperty.PropertyType == typeof(DateTime?))
-        {
-            var nullableValue = (DateTime?)dateProperty.GetValue(instance);
-            if (!nullableValue.HasValue) return;
-            value = nullableValue.Value;
-        }
-        else
-        {
-            value = (DateTime)(dateProperty.GetValue(instance) ?? throw new InvalidOperationException());
-        }
-
-        value = value.AddMinutes(-timezoneOffset);
-        dateProperty.SetValue(instance, value);
-    }
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static Dictionary<string, object> CreateAggregationPayload(this IQueryable subset, IEnumerable<GridColumn> columns)
+    private static Dictionary<string, object> CreateAggregationPayload(this IQueryable subset, IEnumerable<GridColumn?> columns)
     {
-        var aggregateColumns = columns.Where(c => c.Aggregate != AggregationFunction.None);
+        var aggregateColumns = columns.Where(c => c?.Aggregate != AggregationFunction.None);
         var payload = new Dictionary<string, object>(aggregateColumns.Count());
 
         foreach (var column in aggregateColumns)
         {
             try
             {
-                payload.AddAggregateColumn(column, subset);
+                payload.AddAggregateColumn(column!, subset);
             }
             catch (InvalidCastException)
             {
                 throw new InvalidCastException(
-                    $"Invalid casting using column {column.Name} with aggregate {column.Aggregate}");
+                    $"Invalid casting using column {column!.Name} with aggregate {column.Aggregate}");
             }
         }
 
@@ -236,7 +199,7 @@ public static class Extensions
                 throw new ArgumentNullException(nameof(column));
 
             if (string.IsNullOrWhiteSpace(column.Name))
-                throw new ArgumentNullException(nameof(column), $"The comlumn has an empty '{nameof(column.Name)}'");
+                throw new ArgumentNullException(nameof(column), $"The column has an empty '{nameof(column.Name)}'");
 
             try
             {
@@ -338,7 +301,7 @@ public static class Extensions
                 .Where(column => column is not null && (!string.IsNullOrWhiteSpace(column.FilterText) || column.FilterArgument is not null));
 
             foreach (var column in filteringColumns)
-                searchLambda.AppendColumnFilter(column, searchParamArgs, isDbQuery);
+                searchLambda.AppendColumnFilter(column!, searchParamArgs, isDbQuery);
         }
 
         if (searchLambda.Length <= 0)
@@ -500,8 +463,8 @@ public static class Extensions
                 var filterString = new StringBuilder("(");
                 foreach (var filter in column.FilterArgument)
                 {
-                    filterString.AppendFormat(CultureInfo.InvariantCulture,
-                        " {0} == @{1} ||", column.Name, searchParamArgs.Count);
+                    filterString.Append(CultureInfo.InvariantCulture,
+                        $" {column.Name} == @{searchParamArgs.Count} ||");
                     searchParamArgs.Add(filter);
                 }
 
@@ -563,10 +526,10 @@ public static class Extensions
             values.Add(searchValue);
         }
 
-        if (filter.Length > 0)
-        {
-            searchLambda.Append(filter.Remove(filter.Length - 3, 3) + ") &&");
-            searchParamArgs.AddRange(values);
-        }
+        if (filter.Length <= 0)
+            return;
+
+        searchLambda.Append(filter.Remove(filter.Length - 3, 3) + ") &&");
+        searchParamArgs.AddRange(values);
     }
 }

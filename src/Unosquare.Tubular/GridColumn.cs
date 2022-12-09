@@ -14,11 +14,6 @@ public class GridColumn
     public string? Name { get; set; }
 
     /// <summary>
-    /// Column Label.
-    /// </summary>
-    public string? Label { get; set; }
-
-    /// <summary>
     /// Set if column is sortable.
     /// </summary>
     public bool Sortable { get; set; }
@@ -56,7 +51,7 @@ public class GridColumn
     /// <summary>
     /// Filter search params.
     /// </summary>
-    public string[]? FilterArgument { get; set; }
+    public string?[]? FilterArgument { get; set; }
 
     /// <summary>
     /// Filter operator.

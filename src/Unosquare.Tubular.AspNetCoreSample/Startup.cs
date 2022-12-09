@@ -3,7 +3,6 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using Swan.AspNetCore;
 using System.Security.Claims;
-using System.Text;
 using Unosquare.Tubular.AspNetCoreSample.Models;
 
 namespace Unosquare.Tubular.AspNetCoreSample;
@@ -18,7 +17,7 @@ public class Startup
         {
             // The signing key must match!
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("YOUMAYCHANGEMETOANOTHER")),
+            IssuerSigningKey = new SymmetricSecurityKey("YOUMAYCHANGEMETOANOTHER"u8.ToArray()),
 
             // Validate the JWT Issuer (iss) claim
             ValidateIssuer = true,

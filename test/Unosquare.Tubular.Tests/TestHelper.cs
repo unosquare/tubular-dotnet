@@ -333,24 +333,6 @@ public class TestHelper
         public DateTime? NullableDate { get; init; }
     }
 
-    [Test]
-    public void NullableDateAdjustTimeZone()
-    {
-        const int offset = 30;
-        var now = DateTime.Now;
-        var date = new MyDateClass { Date = now, NullableDate = now };
-        var actual = (MyDateClass)date.AdjustTimeZone(offset);
-
-        Assert.AreEqual(now.AddMinutes(-offset), actual.Date, "Non-nullable date adjusted");
-        Assert.IsNotNull(actual.NullableDate);
-        Assert.AreEqual(now.AddMinutes(-offset), actual.NullableDate.Value, "Nullable date with value adjusted");
-
-        date = new() { Date = now, NullableDate = null };
-        actual = (MyDateClass)date.AdjustTimeZone(offset);
-
-        Assert.IsNull(actual.NullableDate, "Nullable date adjusted");
-    }
-
     private static IQueryable FormatOutput(IQueryable q)
     {
         var list = new List<Thing>();
