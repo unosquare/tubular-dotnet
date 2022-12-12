@@ -16,8 +16,6 @@ PM> Install-Package Tubular.ServerSide
 
 ## Sample
 
-You can check out the <a href="http://unosquare.github.io/tubular" target="_blank">Tubular GitHub Page</a> to get a few examples. We still need to work on more samples and better documentation, but we feel what we have now will get you up to speed very quickly :).
-
 The following snippet shows how to use Tubular Helper to create a basic response grid using Entity Framework and ASP.NET Web API.
 
 ```csharp
