@@ -26,7 +26,6 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
 		<PackageReference Include="Unosquare.Swan.AspNetCore" Version="1.2.1" />
-		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.25.1" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.28.0" />
 	</ItemGroup>
 
