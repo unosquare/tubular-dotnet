@@ -1,4 +1,4 @@
-﻿# This GitHub Action simply builds, packs and publishes the package to Nuget.org
+# This GitHub Action simply builds, packs and publishes the package to Nuget.org
 # You will need to manually trigger it.
 # by @geoperez and @mariodivece
 name: Pack and Publish to Nuget.org
@@ -13,7 +13,7 @@ jobs:
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
     steps:
     - name: 🚕 Checkout codebase
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: 🏗 Build, Pack and Publish to Nuget.org
       run: |
         dotnet pack ${{ env.PROJECT_FILE_PATH }} --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
