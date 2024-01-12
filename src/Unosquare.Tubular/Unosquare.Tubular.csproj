@@ -1,20 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFrameworks>net8.0;net7.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 		<PackageId>Tubular.ServerSide</PackageId>
-		<Version>8.0.0</Version>
+		<Version>8.1.12</Version>
 		<Authors>mariodivece, geoperez, unosquare</Authors>
 		<Company>Unosquare</Company>
 		<Product>Unosquare Tubular Server-Side Library</Product>
 		<Description>A set of C# classes designed to rapidly build modern web applications to use with Tubular Angular library.</Description>
-		<Copyright>(c) 2016-2022 Unosquare, LLC</Copyright>
+		<Copyright>(c) 2016-2024 Unosquare, LLC</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>tubular, rest, api, grid</PackageTags>
 		<RepositoryType>git</RepositoryType>
@@ -22,6 +22,7 @@
 		<PackageReleaseNotes>Please review the examples in the repo for usage.</PackageReleaseNotes>
 		<PackageIcon>tubular.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<ImplicitUsings>true</ImplicitUsings>
 		<RepositoryType>git</RepositoryType>
 		<CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>

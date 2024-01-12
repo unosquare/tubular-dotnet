@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<AssemblyTitle>Tubular with EmbedIO webserver sample</AssemblyTitle>
-		<TargetFrameworks>net7.0</TargetFrameworks>
+		<TargetFrameworks>net8.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<PackageId>Unosquare.Tubular.EmbedioSample</PackageId>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>

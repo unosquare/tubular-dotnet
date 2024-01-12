@@ -21,13 +21,11 @@ public static class Extensions
         IQueryable dataSource,
         Func<IQueryable, IQueryable>? preProcessSubset = null)
     {
-        if (request is null)
-            throw new ArgumentNullException(nameof(request));
+        ArgumentNullException.ThrowIfNull(request);
         if (request.Columns is null)
             throw new ArgumentNullException(nameof(request), $"The {nameof(request.Columns)} is null.");
-        if (dataSource is null)
-            throw new ArgumentNullException(nameof(dataSource));
-        if (!request.Columns.Any())
+        ArgumentNullException.ThrowIfNull(dataSource);
+        if (request.Columns.Length == 0)
             throw new ArgumentOutOfRangeException(nameof(request), "Missing column information.");
 
         var response = new GridDataResponse
@@ -104,14 +102,16 @@ public static class Extensions
         if (preProcessSubset != null)
             subset = preProcessSubset(subset);
 
-        response.Payload = subset.CreateRowsPayload(columnMap, pageSize, request.TimezoneOffset);
+        response.Payload = subset.CreateRowsPayload(
+            columnMap, pageSize, request.TimezoneOffset);
+
         return response;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Dictionary<GridColumn, PropertyInfo> MapColumnsToProperties(
         IReadOnlyCollection<GridColumn?> columns,
-        IReadOnlyDictionary<string, PropertyInfo> properties)
+        Dictionary<string, PropertyInfo> properties)
     {
         var columnMap = new Dictionary<GridColumn, PropertyInfo>(columns.Count);
 
@@ -167,8 +167,9 @@ public static class Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Dictionary<string, object> CreateAggregationPayload(this IQueryable subset, IEnumerable<GridColumn?> columns)
     {
-        var aggregateColumns = columns.Where(c => c?.Aggregate != AggregationFunction.None);
-        var payload = new Dictionary<string, object>(aggregateColumns.Count());
+        var cols = columns.ToArray();
+        var aggregateColumns = cols.Where(c => c?.Aggregate != AggregationFunction.None).ToArray();
+        var payload = new Dictionary<string, object>(aggregateColumns.Length);
 
         foreach (var column in aggregateColumns)
         {
@@ -186,7 +187,7 @@ public static class Extensions
         return payload;
     }
 
-    private static void AddAggregateColumn(this IDictionary<string, object> payload, GridColumn gridColumn, IQueryable subset)
+    private static void AddAggregateColumn(this Dictionary<string, object> payload, GridColumn gridColumn, IQueryable subset)
     {
         void Aggregate(GridColumn column,
             Func<IQueryable<double>, double> doubleF,
@@ -195,8 +196,7 @@ public static class Extensions
             Func<IQueryable<string?>, string>? stringF,
             Func<IQueryable<DateTime>, DateTime>? dateF)
         {
-            if (column is null)
-                throw new ArgumentNullException(nameof(column));
+            ArgumentNullException.ThrowIfNull(column);
 
             if (string.IsNullOrWhiteSpace(column.Name))
                 throw new ArgumentNullException(nameof(column), $"The column has an empty '{nameof(column.Name)}'");
@@ -253,10 +253,10 @@ public static class Extensions
                     Aggregate(gridColumn, x => x.Average(), x => x.Average(), x => x.Sum() / x.Count(), null, null);
                     break;
                 case AggregationFunction.Max:
-                    Aggregate(gridColumn, x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max());
+                    Aggregate(gridColumn, x => x.Max(), x => x.Max(), x => x.Max(), x => x.Max() ?? string.Empty, x => x.Max());
                     break;
                 case AggregationFunction.Min:
-                    Aggregate(gridColumn, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min());
+                    Aggregate(gridColumn, x => x.Min(), x => x.Min(), x => x.Min(), x => x.Min() ?? string.Empty, x => x.Min());
                     break;
                 case AggregationFunction.Count:
                     payload.Add(gridColumn.Name!, subset.Select(gridColumn.Name!).Count());
@@ -331,7 +331,7 @@ public static class Extensions
     private static void AppendColumnFilter(
         this StringBuilder searchLambda,
         GridColumn column,
-        ICollection<object?> searchParamArgs,
+        List<object?> searchParamArgs,
         bool isDbQuery)
     {
         switch (column.FilterOperator)

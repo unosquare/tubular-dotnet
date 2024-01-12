@@ -14,7 +14,7 @@ public class GridDataResponse
     /// <summary>
     /// A list of object's list with all the rows.
     /// </summary>
-    public List<List<object?>>? Payload { get; set; }
+    public List<List<object?>> Payload { get; set; } = [];
 
     /// <summary>
     /// Set how many records are in the entire set.
@@ -39,5 +39,5 @@ public class GridDataResponse
     /// <summary>
     /// A dictionary with the aggregation functions.
     /// </summary>
-    public Dictionary<string, object>? AggregationPayload { get; set; }
+    public Dictionary<string, object>? AggregationPayload { get; set; } = [];
 }
