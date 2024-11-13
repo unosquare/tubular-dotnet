@@ -1,22 +1,15 @@
-name: Pack and Publish to Nuget.org
-on: workflow_dispatch
+name: Pack and Publish Nuget to Nuget.org
+on:
+  push:
+    branches: master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      PROJECT_FILE_PATH: '/home/runner/work/tubular-dotnet/tubular-dotnet/src/Unosquare.Tubular/Unosquare.Tubular.csproj'
-      BUILD_PATH: '/home/runner/work/tubular-dotnet/tubular-dotnet/src/Unosquare.Tubular/bin/Release/*.nupkg'
-
-    steps:
-    - name: 🚕 Checkout codebase
-      uses: actions/checkout@v4
-    - name: 🐜 Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: | 
-          9.x
-    - name: 🏗 Build, Pack and Publish to Nuget.org
-      run: |
-        dotnet pack ${{ env.PROJECT_FILE_PATH }} --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
-        dotnet nuget push ${{ env.BUILD_PATH }} --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
+  publish:
+    uses: unosquare/bump-nuget-version/.github/workflows/lib-ci-nuget-org.yml@master
+    with:
+      source-path: "src/"
+      project-name: "Unosquare.Tubular"
+    secrets:
+      nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+      github-token: ${{ secrets.GPR_ACCESS_TOKEN }}
+      cache-version: ${{ secrets.CACHE_VERSION }}
