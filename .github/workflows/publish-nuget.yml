@@ -1,6 +1,3 @@
-# This GitHub Action simply builds, packs and publishes the package to Nuget.org
-# You will need to manually trigger it.
-# by @geoperez and @mariodivece
 name: Pack and Publish to Nuget.org
 on: workflow_dispatch
 
@@ -10,7 +7,7 @@ jobs:
     env:
       PROJECT_FILE_PATH: '/home/runner/work/tubular-dotnet/tubular-dotnet/src/Unosquare.Tubular/Unosquare.Tubular.csproj'
       BUILD_PATH: '/home/runner/work/tubular-dotnet/tubular-dotnet/src/Unosquare.Tubular/bin/Release/*.nupkg'
-      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
     steps:
     - name: 🚕 Checkout codebase
       uses: actions/checkout@v4
@@ -22,4 +19,4 @@ jobs:
     - name: 🏗 Build, Pack and Publish to Nuget.org
       run: |
         dotnet pack ${{ env.PROJECT_FILE_PATH }} --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
-        dotnet nuget push ${{ env.BUILD_PATH }} --source https://api.nuget.org/v3/index.json --api-key ${{ env.NUGET_API_KEY }}
+        dotnet nuget push ${{ env.BUILD_PATH }} --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
