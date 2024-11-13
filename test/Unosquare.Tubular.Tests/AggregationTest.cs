@@ -18,7 +18,7 @@ public class AggregationTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Sum)
+            Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Sum),
         };
 
         var response = request.CreateGridDataResponse(_dataSource);
@@ -39,7 +39,7 @@ public class AggregationTest
             Take = PageSize,
             Skip = 0,
 
-            Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Average)
+            Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Average),
         };
 
         var response = request.CreateGridDataResponse(_dataSource);
@@ -48,7 +48,6 @@ public class AggregationTest
 
         Assert.AreEqual(_dataSource.Sum(x => x.Number) / _dataSource.Count(), response.AggregationPayload["Number"],
             "Same average number");
-
     }
 
     [Test]
@@ -60,7 +59,7 @@ public class AggregationTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Max)
+            Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Max),
         };
 
         var response = request.CreateGridDataResponse(_dataSource);
@@ -80,7 +79,7 @@ public class AggregationTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Min)
+            Columns = Thing.GetColumnsWithAggregateInt(AggregationFunction.Min),
         };
 
         var response = request.CreateGridDataResponse(_dataSource);
@@ -100,7 +99,7 @@ public class AggregationTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Count)
+            Columns = Thing.GetColumnsWithAggregateDouble(AggregationFunction.Count),
         };
 
         var response = request.CreateGridDataResponse(_dataSource);

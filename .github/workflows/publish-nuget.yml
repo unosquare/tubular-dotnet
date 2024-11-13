@@ -14,6 +14,11 @@ jobs:
     steps:
     - name: 🚕 Checkout codebase
       uses: actions/checkout@v4
+    - name: 🐜 Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: | 
+          9.x
     - name: 🏗 Build, Pack and Publish to Nuget.org
       run: |
         dotnet pack ${{ env.PROJECT_FILE_PATH }} --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg

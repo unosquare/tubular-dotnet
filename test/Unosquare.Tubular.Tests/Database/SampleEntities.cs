@@ -1,9 +1,9 @@
 ﻿namespace Unosquare.Tubular.Tests.Database;
 
-public static class SampleEntities
+internal static class SampleEntities
 {
-    private static readonly string[] Colors = { "red", "yellow", "blue" };
-    private static readonly string[] Category = { "A", "B" };
+    private static readonly string[] Colors = ["red", "yellow", "blue"];
+    private static readonly string[] Category = ["A", "B"];
 
     public static IEnumerable<Thing> GenerateData(int count = 100)
     {

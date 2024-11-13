@@ -76,7 +76,7 @@ public static class Extensions
             if (totalPages > 0)
             {
                 response.TotalPages = totalPages;
-                var currentPage = (request.Skip / pageSize) + 1;
+                var currentPage = pageSize == 0 ? 0 : (request.Skip / pageSize) + 1;
                 response.CurrentPage = Math.Min(currentPage, totalPages);
 
                 if (request.Skip > 0)
@@ -325,7 +325,7 @@ public static class Extensions
         CompareOperators.Gt => ">",
         CompareOperators.Lte => "<=",
         CompareOperators.Lt => "<",
-        _ => null
+        _ => null,
     };
 
     private static void AppendColumnFilter(

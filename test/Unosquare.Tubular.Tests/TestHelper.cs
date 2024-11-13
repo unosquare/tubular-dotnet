@@ -23,7 +23,7 @@ public class TestHelper
             Take = PageSize,
             Skip = PageSize * page,
             Columns = Thing.GetColumns(),
-            TimezoneOffset = timezoneOffset
+            TimezoneOffset = timezoneOffset,
         };
 
         var response = request.CreateGridDataResponse(dataSource);
@@ -58,7 +58,7 @@ public class TestHelper
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithIdFilter(filter.ToString(), CompareOperators.Gt)
+            Columns = Thing.GetColumnsWithIdFilter(filter.ToString(), CompareOperators.Gt),
         };
 
         var response = request.CreateGridDataResponse(dataSource);
@@ -78,7 +78,7 @@ public class TestHelper
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithSort()
+            Columns = Thing.GetColumnsWithSort(),
         };
 
         var response = request.CreateGridDataResponse(dataSource);
@@ -100,7 +100,7 @@ public class TestHelper
             Take = PageSize,
             Skip = 0,
             SearchText = SearchText,
-            Columns = Thing.GetColumns()
+            Columns = Thing.GetColumns(),
         };
 
         var response = request.CreateGridDataResponse(dataSource);
@@ -122,7 +122,7 @@ public class TestHelper
         {
             Take = -1,
             Skip = 0,
-            Columns = Thing.GetColumns()
+            Columns = Thing.GetColumns(),
         };
 
         var response = request.CreateGridDataResponse(dataSource);
@@ -143,7 +143,7 @@ public class TestHelper
         {
             Take = 0,
             Skip = 0,
-            Columns = Thing.GetColumns()
+            Columns = Thing.GetColumns(),
         };
 
         var response = request.CreateGridDataResponse(dataSource);
@@ -161,7 +161,7 @@ public class TestHelper
             new() {Name = SearchText.ToLower() + "2"},
             new() {Name = SearchText.ToUpper() + "3"},
             new() {Name = SearchText + "4"},
-            new() {Name = "ODOR"}
+            new() {Name = "ODOR"},
         };
 
         var data =
@@ -174,7 +174,7 @@ public class TestHelper
             Take = PageSize,
             Skip = 30,
             SearchText = SearchText,
-            Columns = Thing.GetColumns()
+            Columns = Thing.GetColumns(),
         };
 
 
@@ -206,9 +206,9 @@ public class TestHelper
                 Sortable = true,
                 Searchable = true,
                 DataType = DataType.String,
-                SortOrder = 2
+                SortOrder = 2,
             },
-            new GridColumn {Name = "Id"}
+            new GridColumn {Name = "Id"},
         };
 
         var request = new GridDataRequest
@@ -232,7 +232,7 @@ public class TestHelper
             new Thing {Name = SearchText.ToLower() + "2"},
             new Thing {Name = SearchText.ToUpper() + "3"},
             new Thing {Name = SearchText + "4"},
-            new Thing {Name = "ODOR"}
+            new Thing {Name = "ODOR"},
         };
 
         var data =
@@ -245,13 +245,13 @@ public class TestHelper
             Take = PageSize,
             Skip = 0,
             SearchText = SearchText,
-            Columns = Thing.GetColumns()
+            Columns = Thing.GetColumns(),
         };
 
         var response = request.CreateGridDataResponse(dataSource.AsQueryable());
 
-        Assert.AreEqual(data.Count, response.Payload?.Count ?? -1, "Same length");
-        Assert.AreEqual(data.First().Id, response.Payload!.First().First(), "Same first item");
+        Assert.AreEqual(data.Count, response.Payload.Count, "Same length");
+        Assert.AreEqual(data.First().Id, response.Payload.First().First(), "Same first item");
 
         Assert.AreEqual(dataSource.Count(x => x.Name.ToUpperInvariant().Contains(SearchText.ToUpperInvariant())),
             response.FilteredRecordCount, "Total filtered rows matching");
@@ -269,7 +269,7 @@ public class TestHelper
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithAggregate()
+            Columns = Thing.GetColumnsWithAggregate(),
         };
 
         var response = request.CreateGridDataResponse(dataSource);
@@ -301,7 +301,7 @@ public class TestHelper
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithMultipleCounts()
+            Columns = Thing.GetColumnsWithMultipleCounts(),
         };
 
         var response = request.CreateGridDataResponse(dataSource);
@@ -324,13 +324,6 @@ public class TestHelper
         Assert.AreEqual(dataSource.Select(x => x.IsShipped).Distinct().Count(),
             (int)response.AggregationPayload["IsShipped"],
             "IsShipped same distinct count");
-    }
-
-    private class MyDateClass
-    {
-        public DateTime Date { get; init; }
-
-        public DateTime? NullableDate { get; init; }
     }
 
     private static IQueryable FormatOutput(IQueryable q)
@@ -362,7 +355,7 @@ public class TestHelper
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithColorFilter(filter, CompareOperators.Equals)
+            Columns = Thing.GetColumnsWithColorFilter(filter, CompareOperators.Equals),
         };
 
         var response = request.CreateGridDataResponse(dataSource, FormatOutput);

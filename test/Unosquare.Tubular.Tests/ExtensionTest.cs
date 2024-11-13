@@ -18,7 +18,7 @@ public class ExtensionTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = null
+            Columns = null,
         };
 
         Assert.Throws<ArgumentNullException>(() => request.CreateGridDataResponse(dataSource));

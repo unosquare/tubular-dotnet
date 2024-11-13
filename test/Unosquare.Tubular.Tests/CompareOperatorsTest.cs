@@ -12,7 +12,7 @@ public class CompareOperatorsTest
     private static readonly IQueryable<Thing> DataSource = SampleEntities.GenerateData().ToList().AsQueryable();
 
     private static readonly object[] FilterColorCases =
-    {
+    [
         // Filter, filterCount, Operator 
         new object[] {"blue", DataSource.Where(x => x.Color.Equals("blue")), CompareOperators.Equals},
         new object[] {"l", DataSource.Where(x => x.Color.Contains("l")), CompareOperators.Contains},
@@ -23,17 +23,17 @@ public class CompareOperatorsTest
         new object[] {"yell", DataSource.Where(x => !x.Color.StartsWith("yell")), CompareOperators.NotStartsWith},
         new object[] {"yell", DataSource.Where(x => x.Color.StartsWith("yell")), CompareOperators.StartsWith},
         new object[] {string.Empty, DataSource, CompareOperators.None},
-        new object[] {string.Empty, DataSource, CompareOperators.Auto}
-    };
+        new object[] {string.Empty, DataSource, CompareOperators.Auto},
+    ];
 
     private static readonly object[] FilterIdCases =
-    {
+    [
         // filterCount, Operator 
         new object[] {DataSource.Where(x => x.Id > 20), CompareOperators.Gt},
         new object[] {DataSource.Where(x => x.Id >= 20), CompareOperators.Gte},
         new object[] {DataSource.Where(x => x.Id < 20), CompareOperators.Lt},
         new object[] {DataSource.Where(x => x.Id <= 20), CompareOperators.Lte},
-    };
+    ];
 
     [Test, TestCaseSource(nameof(FilterColorCases))]
     public void FilterColorTests(string filter, IQueryable<Thing> filterCount, CompareOperators compareOperator)
@@ -44,7 +44,7 @@ public class CompareOperatorsTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithColorFilter(filter, compareOperator)
+            Columns = Thing.GetColumnsWithColorFilter(filter, compareOperator),
         };
 
         var response = request.CreateGridDataResponse(DataSource);
@@ -65,7 +65,7 @@ public class CompareOperatorsTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithIdFilter("20", compareOperator)
+            Columns = Thing.GetColumnsWithIdFilter("20", compareOperator),
         };
 
         var response = request.CreateGridDataResponse(DataSource);
@@ -89,7 +89,7 @@ public class CompareOperatorsTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithBetweenFilter(a.ToString(), b)
+            Columns = Thing.GetColumnsWithBetweenFilter(a.ToString(), b),
         };
 
         var response = request.CreateGridDataResponse(DataSource);
@@ -112,7 +112,8 @@ public class CompareOperatorsTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithNumberFilter(filter.ToString(), CompareOperators.Equals)
+            Columns = Thing.GetColumnsWithNumberFilter(filter.ToString(CultureInfo.InvariantCulture),
+                CompareOperators.Equals),
         };
 
         var response = request.CreateGridDataResponse(DataSource);
@@ -135,7 +136,7 @@ public class CompareOperatorsTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.Date)
+            Columns = Thing.GetColumnsWithDateFilter(filter, CompareOperators.Equals, DataType.Date),
         };
 
         var response = request.CreateGridDataResponse(DataSource);
@@ -157,7 +158,7 @@ public class CompareOperatorsTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithMultipleFilter(filters, CompareOperators.Multiple)
+            Columns = Thing.GetColumnsWithMultipleFilter(filters, CompareOperators.Multiple),
         };
 
         var response = request.CreateGridDataResponse(sut.AsQueryable());
@@ -179,7 +180,7 @@ public class CompareOperatorsTest
         {
             Take = PageSize,
             Skip = 0,
-            Columns = Thing.GetColumnsWithBooleanFilter(filter, CompareOperators.Equals)
+            Columns = Thing.GetColumnsWithBooleanFilter(filter, CompareOperators.Equals),
         };
 
         var response = request.CreateGridDataResponse(DataSource);
