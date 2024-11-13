@@ -6,7 +6,7 @@
 
 Tubular provides .NET Framework and .NET Core Library to create **REST service** to use with Tubular Angular Components easily with any WebApi library (ASP.NET Web API for example).
 
-Please visit the [Tubular GitHub Page](http://unosquare.github.io/tubular) to learn how quickly you can start coding. See [Related projects](#related-projects) below to discover more Tubular libraries and backend solutions.
+Please visit the [Tubular GitHub Page](http://unosquare.github.io/tubular) to learn how quickly you can start coding.
 
 ## Installation
 
