@@ -53,6 +53,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.4.8" />
+		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.4.9" />
 	</ItemGroup>
 </Project>
