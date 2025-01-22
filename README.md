@@ -1,3 +1,5 @@
+**This repo is no longer maintained.**
+
 [![NuGet](https://img.shields.io/nuget/dt/Tubular.ServerSide.svg)](https://www.nuget.org/packages/Tubular.ServerSide/)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=unosquare_tubular-dotnet&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=unosquare_tubular-dotnet)
 [![NuGet version](https://badge.fury.io/nu/Tubular.ServerSide.svg)](https://badge.fury.io/nu/Tubular.ServerSide)
